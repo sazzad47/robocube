@@ -1,0 +1,25 @@
+.card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+    height: calc(100vh - 10px);
+  }
+  .block {
+    height: 25rem;
+    max-height: 25rem !important;
+    margin-bottom: 5rem;
+  }
+  @-moz-document url-prefix() {
+    .file-drop {
+      border: "2px dashed #32383e";
+      border-radius: "6px";
+     
+      min-height:'28rem';
+      height:'28rem';
+      display: "flex";
+      justify-content: "center";
+    }
+    .ml-block {
+        min-height: 28rem;
+    }
+}
