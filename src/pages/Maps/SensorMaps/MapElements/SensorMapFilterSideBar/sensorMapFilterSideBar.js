@@ -29,7 +29,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
       mapLayers.forEach((element) => {
         if (!batteryStatusState.includes(element.sensorBattery.toString())) {
           element.groupLayers.forEach((elem) => {
-            mapRef.current.removeLayer(elem);
+            mapRef.current?.removeLayer(elem);
           });
         }
       });
@@ -38,7 +38,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
       mapLayers.forEach((element) => {
         if (!sensorTypesState.includes(element.sensorType.toString())) {
           element.groupLayers.forEach((elem) => {
-            mapRef.current.removeLayer(elem);
+            mapRef.current?.removeLayer(elem);
           });
         }
       });
@@ -46,7 +46,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
   }, [sensorList, mapLayers, batteryStatusState, sensorTypesState]);
 
   const recieveSearchValue = (searchValue) => {
-    mapRef.current.setView(searchValue.markerPosition, 15);
+    mapRef.current?.setView(searchValue.markerPosition, 15);
   };
 
   const handleFilterBattery = (batteryStatus) => {
@@ -70,7 +70,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
   const resetMap = () => {
     mapLayers.forEach((element) => {
       element.groupLayers.forEach((elem) => {
-        mapRef.current.addLayer(elem);
+        mapRef.current?.addLayer(elem);
       });
     });
   };
@@ -80,7 +80,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
     setSensorTypesState([]);
     mapLayers.forEach((element) => {
       element.groupLayers.forEach((elem) => {
-        mapRef.current.addLayer(elem);
+        mapRef.current?.addLayer(elem);
       });
     });
   };
@@ -90,7 +90,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
       mapLayers.forEach((element) => {
         if (!batteryStatusState.includes(element.sensorBattery.toString())) {
           element.groupLayers.forEach((elem) => {
-            mapRef.current.removeLayer(elem);
+            mapRef.current?.removeLayer(elem);
           });
         }
       });
@@ -99,7 +99,7 @@ const SensorMapFilterSideBar = ({ sensorList, mapRef, mapLayers }) => {
       mapLayers.forEach((element) => {
         if (!sensorTypesState.includes(element.sensorType.toString())) {
           element.groupLayers.forEach((elem) => {
-            mapRef.current.removeLayer(elem);
+            mapRef.current?.removeLayer(elem);
           });
         }
       });

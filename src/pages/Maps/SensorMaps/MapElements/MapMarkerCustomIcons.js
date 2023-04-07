@@ -137,7 +137,7 @@ export default class MapMarkerCustomIcons extends Component {
           }
         });
         this.exisitngHeatLayers.push(heatLayer);
-        return this.mapRef.current.addLayer(heatLayer);
+        return this.mapRef.current?.addLayer(heatLayer);
       } else {
         this.exisitngHeatLayers.forEach((heatLayer) => {
           if (heatLayer.options.attribution === element.sensorName) {
@@ -195,7 +195,7 @@ export default class MapMarkerCustomIcons extends Component {
           }
         });
 
-        this.mapRef.current.addLayer(polyline);
+        this.mapRef.current?.addLayer(polyline);
         this.existingPolylines.push(polyline);
         this.linkedSensors.push({ linkName: tempName, connectionStrength: 5 });
       });
@@ -302,7 +302,7 @@ export default class MapMarkerCustomIcons extends Component {
   };
  
   render() {
-    // this.mapRef.current.addControl();
+    // this.mapRef.current?.addControl();
     console.log('instance', this.mapLayers)
    
     let layer = Leaflet.tileLayer(
