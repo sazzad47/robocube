@@ -4,6 +4,7 @@ import * as url from "../url_helper";
 import { accessToken, nodeApiToken } from "../jwt-token-access/accessToken";
 
 import {
+  datasetsDummyData,
   calenderDefaultCategories,
   events,
   defaultevent,
@@ -89,6 +90,20 @@ let users = [
 const fakeBackend = () => {
   // This sets the mock adapter on the default instance
   const mock = new MockAdapter(axios, { onNoMatch: "passthrough" });
+  
+    // Dataset > List
+    mock.onGet(url.GET_DATASET_LIST).reply(() => {
+      return new Promise((resolve, reject) => {
+          setTimeout(() => {
+              if (datasetsDummyData) {
+                  // Passing fake JSON data as response
+                  resolve([200, datasetsDummyData]);
+              } else {
+                  reject([400, 'Cannot get Dataset list data']);
+              }
+          });
+      });
+  });
 
   mock.onPost("/post-jwt-register").reply((config) => {
     const user = JSON.parse(config["data"]);

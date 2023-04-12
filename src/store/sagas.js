@@ -54,6 +54,9 @@ import teamSaga from "./team/saga";
 // File Manager
 import fileManager from "./fileManager/saga";
 
+//Dataset
+import datasetSaga from './dataSets/saga';
+
 // To do
 import todos from "./todos/saga";
 //Jobs
@@ -89,5 +92,6 @@ export default function* rootSaga() {
     fork(todos),
     fork(ApplicationSaga),
     fork(APIKeysaga),
+    fork(datasetSaga),
   ]);
 }

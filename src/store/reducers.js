@@ -64,6 +64,10 @@ import FileManager from "./fileManager/reducer";
 
 // To do
 import Todos from "./todos/reducer";
+
+// Data Sets
+import Datasets from './dataSets/reducer';
+
 //Jobs
 import Jobs from "./job/reducer";
 //API Key
@@ -97,6 +101,7 @@ const rootReducer = combineReducers({
   Todos,
   Jobs,
   APIKey,
+  Datasets,
 });
 
 export default rootReducer;

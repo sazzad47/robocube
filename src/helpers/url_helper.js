@@ -12,6 +12,18 @@ export const SOCIAL_LOGIN = "/social-login";
 export const POST_EDIT_JWT_PROFILE = "/post-jwt-profile";
 export const POST_EDIT_PROFILE = "/user";
 
+// Datasets
+// Projects - Added by Juan Guirao
+// IMPORTANT: I am using the fakebackend's Update Task URL just to test the whole update process,
+// including request being sent to the template's API at https://api-node.themesbrand.website/apps/task
+export const ADD_NEW_PROJECT = '/apps/task';
+export const UPDATE_PROJECT = '/apps/task';
+export const DELETE_PROJECT = '/apps/task';
+export const GET_DATASET_LIST = '/apps/task';
+export const ADD_NEW_DATASET = '/apps/task';
+export const UPDATE_DATASET = '/apps/task';
+export const DELETE_DATASET = '/apps/task';
+
 // Calendar
 export const GET_EVENTS = "/events";
 export const GET_CATEGORIES = "/categories";
@@ -188,9 +200,9 @@ export const GET_HALFYEARMARKETPLACE_DATA = "/halfYearMarketplace-data";
 export const GET_YEARMARKETPLACE_DATA = "/yearMarketplace-data";
 
 // Project
-export const ADD_NEW_PROJECT = "/add/project";
-export const UPDATE_PROJECT = "/update/project";
-export const DELETE_PROJECT = "/delete/project";
+// export const ADD_NEW_PROJECT = "/add/project";
+// export const UPDATE_PROJECT = "/update/project";
+// export const DELETE_PROJECT = "/delete/project";
 
 // Pages > Team
 export const GET_TEAMDATA = "/teamData";

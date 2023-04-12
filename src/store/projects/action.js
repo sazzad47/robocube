@@ -2,16 +2,17 @@ import {
     GET_PROJECT_LIST,
     API_RESPONSE_SUCCESS,
     API_RESPONSE_ERROR,
-    DELETE_PROJECT_LIST,
-    DELETE_PROJECT_LIST_SUCCESS,
-    DELETE_PROJECT_LIST_FAIL,
-    ADD_PROJECT_LIST,
-    ADD_PROJECT_LIST_SUCCESS,
-    ADD_PROJECT_LIST_FAIL,
-    UPDATE_PROJECT_LIST,
-    UPDATE_PROJECT_LIST_SUCCESS,
-    UPDATE_PROJECT_LIST_FAIL,
-} from "./actionType";
+    UPDATE_PROJECT,
+    UPDATE_PROJECT_SUCCESS,
+    UPDATE_PROJECT_FAIL,
+    ADD_NEW_PROJECT,
+    ADD_PROJECT_SUCCESS,
+    ADD_PROJECT_FAIL,
+    DELETE_PROJECT,
+    DELETE_PROJECT_SUCCESS,
+    DELETE_PROJECT_FAIL,
+    RESET_PROJECT_FLAG,
+} from './actionType';
 
 // common success
 export const projectApiResponseSuccess = (actionType, data) => ({
@@ -28,47 +29,53 @@ export const getProjectList = () => ({
     type: GET_PROJECT_LIST,
 });
 
-export const deleteProjectList = data => ({
-    type: DELETE_PROJECT_LIST,
-    payload: data,
-});
-
-export const deleteProjectListSuccess = data => ({
-    type: DELETE_PROJECT_LIST_SUCCESS,
-    payload: data,
-});
-
-export const deleteProjectListFail = error => ({
-    type: DELETE_PROJECT_LIST_FAIL,
-    payload: error,
-});
-
-export const addProjectList = data => ({
-    type: ADD_PROJECT_LIST,
-    payload: data,
-});
-
-export const addProjectListSuccess = project => ({
-    type: ADD_PROJECT_LIST_SUCCESS,
+export const updateProject = project => ({
+    type: UPDATE_PROJECT,
     payload: project,
 });
 
-export const addProjectListFail = error => ({
-    type: ADD_PROJECT_LIST_FAIL,
-    payload: error,
-});
-
-export const updateProjectList = project => ({
-    type: UPDATE_PROJECT_LIST,
+export const updateProjectSuccess = project => ({
+    type: UPDATE_PROJECT_SUCCESS,
     payload: project,
 });
 
-export const updateProjectListSuccess = project => ({
-    type: UPDATE_PROJECT_LIST_SUCCESS,
+export const updateProjectFail = error => ({
+    type: UPDATE_PROJECT_FAIL,
+    payload: error,
+});
+
+export const addNewProject = project => ({
+    type: ADD_NEW_PROJECT,
     payload: project,
 });
 
-export const updateProjectListFail = error => ({
-    type: UPDATE_PROJECT_LIST_FAIL,
+export const addProjectSuccess = project => ({
+    type: ADD_PROJECT_SUCCESS,
+    payload: project,
+});
+
+export const addProjectFail = error => ({
+    type: ADD_PROJECT_FAIL,
     payload: error,
 });
+
+export const deleteProject = project => ({
+    type: DELETE_PROJECT,
+    payload: project,
+});
+
+export const deleteProjectSuccess = project => ({
+    type: DELETE_PROJECT_SUCCESS,
+    payload: project,
+});
+
+export const deleteProjectFail = error => ({
+    type: DELETE_PROJECT_FAIL,
+    payload: error,
+});
+
+export const resetProjectFlag = () => {
+    return {
+        type: RESET_PROJECT_FLAG,
+    };
+};

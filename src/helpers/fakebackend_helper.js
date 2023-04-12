@@ -4,6 +4,48 @@ import * as url from "./url_helper";
 
 const api = new APIClient();
 
+// Project
+// get Project list
+export const getProjectList = () => {
+  const projects = api.get(url.GET_PROJECT_LIST);
+  console.log('projects', projects)
+  return projects;
+}
+
+// Added by Juan Guirao
+// add Project
+export const addNewProject = project =>
+    api.create(url.ADD_NEW_PROJECT, project);
+
+// update Project
+export const updateProject = project =>
+    api.update(url.UPDATE_PROJECT + '/' + project._id, project);
+
+// delete Project
+export const deleteProject = project =>
+    api.delete(url.DELETE_PROJECT + '/' + project);
+
+// Added by Juan Guirao
+// Dataset
+// get Dataset list
+export const getDatasetList = () => {
+  const test = api.get(url.GET_DATASET_LIST);
+  return test;
+};
+
+// add Dataset
+export const addNewDataset = dataset =>
+  api.create(url.ADD_NEW_DATASET, dataset);
+
+// update Dataset
+export const updateDataset = dataset =>
+  api.update(url.UPDATE_DATASET + '/' + dataset._id, dataset);
+
+// delete Dataset
+export const deleteDataset = dataset =>
+  api.delete(url.DELETE_DATASET + '/' + dataset);
+
+
 // Gets the logged in user data from local session
 export const getLoggedInUser = () => {
   const user = localStorage.getItem("user");
@@ -162,10 +204,6 @@ export const deleteCustomer = (customer) =>
 
 // get Sellers
 export const getSellers = () => api.get(url.GET_SELLERS);
-
-// Project
-// get Project list
-export const getProjectList = () => api.get(url.GET_PROJECT_LIST);
 
 // Tasks
 // get Task
@@ -412,8 +450,8 @@ export const updateTodo = (todo) => api.put(url.UPDATE_TODO, todo);
 
 // To do Project
 export const getProjects = (project) => api.get(url.GET_PROJECTS, project);
-export const addNewProject = (project) =>
-  api.create(url.ADD_NEW_TODO_PROJECT, project);
+// export const addNewProject = (project) =>
+//   api.create(url.ADD_NEW_TODO_PROJECT, project);
 
 //Job Application
 export const getJobApplicationList = () => api.get(url.GET_APPLICATION_LIST);

@@ -86,7 +86,7 @@ const Login = props => {
             password: Yup.string().required('Please Enter Your Password'),
         }),
         onSubmit: values => {
-            dispatch(loginUser(values, props.history));
+            dispatch(loginUser(values, props.router.navigate));
         },
     });
 

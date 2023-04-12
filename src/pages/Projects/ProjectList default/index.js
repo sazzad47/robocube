@@ -5,13 +5,13 @@ import { Container } from 'reactstrap';
 import List from './List';
 
 const ProjectList = () => {
-    document.title = 'Project List | UD Platform';
+    document.title="Project List | Velzon - React Admin & Dashboard Template";
 
     return (
         <React.Fragment>
-            <div className='page-content'>
+            <div className="page-content">
                 <Container fluid>
-                    <BreadCrumb title='All Projects' pageTitle='Projects' />
+                    <BreadCrumb title="Project List" pageTitle="Projects" />
                     <List />
                 </Container>
             </div>

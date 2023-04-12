@@ -20,7 +20,6 @@ import EcommerceAction from "../pages/Email/EmailTemplates/EcommerceAction";
 //Chat
 import Chat from "../pages/Chat";
 import Calendar from "../pages/Calendar";
-
 // Project
 import ProjectList from "../pages/Projects/ProjectList";
 import ProjectOverview from "../pages/Projects/ProjectOverview";
@@ -67,6 +66,9 @@ import EcommerceSellerDetail from "../pages/Ecommerce/EcommerceSellers/Ecommerce
 
 //MarketplaceSoon
 import MarketplaceSoon from "../pages/NFTMarketplace/Market";
+
+//MarketplaceSoon
+import Datasets from "../pages/Datasets";
 //ISS
 import ISS from "../pages/ISS/index";
 //Global View Page
@@ -232,7 +234,7 @@ import NFTLanding from "../pages/Landing/NFTLanding";
 import UserProfile from "../pages/Authentication/user-profile";
 
 import FileManager from "../pages/FileManager";
-import ToDoList from "../pages/ToDo";
+// import ToDoList from "../pages/ToDo";
 import Statistics from "../pages/Jobs/Statistics";
 import JobList from "../pages/Jobs/JobList/List";
 import JobGrid from "../pages/Jobs/JobList/Grid";
@@ -247,12 +249,13 @@ import APIKey from "../pages/APIKey";
 import PrivacyPolicy from "../pages/Pages/PrivacyPolicy.js";
 import TermsCondition from "../pages/Pages/TermsCondition";
 import JobLanding from "../pages/Landing/Job";
+import ObjectDetection from "../pages/objectDetection/ObjectDetectionPage";
 
 const authProtectedRoutes = [
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
   { path: "/dashboard-crm", component: <DashboardCrm /> },
-  { path: "/dashboard", component: <DashboardEcommerce /> },
-  { path: "/index", component: <DashboardEcommerce /> },
+  { path: "/dashboard", component: <ProjectList /> },
+  { path: "/index", component: <ProjectList /> },
   { path: "/dashboard-crypto", component: <DashboardCrypto /> },
   { path: "/dashboard-projects", component: <DashboardProject /> },
   { path: "/dashboard-nft", component: <DashboardNFT /> },
@@ -280,7 +283,7 @@ const authProtectedRoutes = [
   },
 
   { path: "/apps-file-manager", component: <FileManager /> },
-  { path: "/apps-todo", component: <ToDoList /> },
+  // { path: "/apps-todo", component: <ToDoList /> },
   { path: "/apps-job-statistics", component: <Statistics /> },
   { path: "/apps-job-lists", component: <JobList /> },
   { path: "/apps-job-grid-lists", component: <JobGrid /> },
@@ -338,6 +341,12 @@ const authProtectedRoutes = [
 
   //Smart Node
   { path: "/smartnodes", component: <Flow /> },
+
+  //Object detection
+  { path: "/object-detection", component: <ObjectDetection /> },
+
+  //Datasets
+  { path: "/datasets", component: <Datasets /> },
 
   //FinanceManagement
   { path: "/finance-mngt", component: <FinanceManagement /> },

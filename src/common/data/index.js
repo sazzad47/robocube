@@ -46,6 +46,7 @@ import {
   halfYearRevenueData,
   yearRevenueData,
 } from "./dashboardEcommerce";
+import { datasetsDummyData } from './datasets';
 import {
   cyptoWidgets,
   currencies,
@@ -196,6 +197,7 @@ import {
 } from "./appsJobs";
 import { apiKey } from "./apiKey";
 export {
+  datasetsDummyData,
   topPages,
   crmWidgets,
   cryptoSlider,
