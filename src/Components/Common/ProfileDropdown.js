@@ -8,7 +8,7 @@ import avatar1 from "../../assets/images/users/avatar-1.jpg";
 const ProfileDropdown = () => {
 
     const { user } = useSelector(state => ({
-        user: state.Profile.user,
+        user: state?.Profile?.user,
     }));
 
     const [userName, setUserName] = useState("Admin");
@@ -29,7 +29,7 @@ const ProfileDropdown = () => {
     };
     return (
         <React.Fragment>
-            <Dropdown isOpen={isProfileDropdown} toggle={toggleProfileDropdown} className="ms-sm-3 header-item topbar-user">
+            <Dropdown isOpen={isProfileDropdown} toggle={toggleProfileDropdown} className="ms-sm-3 header-item">
                 <DropdownToggle tag="button" type="button" className="btn">
                     <span className="d-flex align-items-center">
                         <img className="rounded-circle header-profile-user" src={avatar1}

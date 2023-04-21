@@ -30,12 +30,6 @@ const DashboardEcommerce = () => {
                   <Widget />
                 </Row>
                 <Row>
-                  <Col xl={8}>
-                    <Revenue />
-                  </Col>
-                  <SalesByLocations />
-                </Row>
-                <Row>
                   <BestSellingProducts />
                   <TopSellers />
                 </Row>
