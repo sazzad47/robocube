@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Widget from "./Widgets";
 import BestSellingProducts from "./BestSellingProducts";
-import RecentActivity from "./RecentActivity";
 import RecentOrders from "./RecentOrders";
-import Revenue from "./Revenue";
-import SalesByLocations from "./SalesByLocations";
 import Section from "./Section";
 import StoreVisits from "./StoreVisits";
 import TopSellers from "./TopSellers";
 
 const DashboardEcommerce = () => {
-  document.title ="Dashboard | Velzon - React Admin & Dashboard Template";
+  document.title ="Dashboard | Robocube HR";
 
   const [rightColumn, setRightColumn] = useState(false);
   const toggleRightColumn = () => {
@@ -39,8 +36,6 @@ const DashboardEcommerce = () => {
                 </Row>
               </div>
             </Col>
-
-            <RecentActivity rightColumn={rightColumn} hideRightColumn={toggleRightColumn} />
           </Row>
         </Container>
       </div>

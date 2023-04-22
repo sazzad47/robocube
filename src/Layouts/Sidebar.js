@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 //import logo
-import logoSm from "../assets/images/logo-sm.png";
-import logoDark from "../assets/images/logo-dark.png";
-import logoLight from "../assets/images/logo-light.png";
+import logoSm from "../assets/images/hr.png";
+import logoLg from "../assets/images/robocube.png";
 
 //Import Components
 import VerticalLayout from "./VerticalLayouts/index";
-import TwoColumnLayout from "./TwoColumnLayout";
 import { Container } from "reactstrap";
-import HorizontalLayout from "./HorizontalLayout";
 
 const Sidebar = ({ layoutType }) => {
 
@@ -37,21 +34,12 @@ const Sidebar = ({ layoutType }) => {
     <React.Fragment>
       <div className="app-menu navbar-menu">
         <div className="navbar-brand-box">
-          <Link to="/" className="logo logo-dark">
+          <Link to="/" className="logo">
             <span className="logo-sm">
               <img src={logoSm} alt="" height="22" />
             </span>
             <span className="logo-lg">
-              <img src={logoDark} alt="" height="17" />
-            </span>
-          </Link>
-
-          <Link to="/" className="logo logo-light">
-            <span className="logo-sm">
-              <img src={logoSm} alt="" height="22" />
-            </span>
-            <span className="logo-lg">
-              <img src={logoLight} alt="" height="17" />
+              <img src={logoLg} alt="" height="40" />
             </span>
           </Link>
           <button
@@ -63,21 +51,6 @@ const Sidebar = ({ layoutType }) => {
             <i className="ri-record-circle-line"></i>
           </button>
         </div>
-        {layoutType === "horizontal" ? (
-          <div id="scrollbar">
-            <Container fluid>
-              <div id="two-column-menu"></div>
-              <ul className="navbar-nav" id="navbar-nav">
-                <HorizontalLayout />
-              </ul>
-            </Container>
-          </div>
-        ) : layoutType === 'twocolumn' ? (
-          <React.Fragment>
-            <TwoColumnLayout />
-            <div className="sidebar-background"></div>
-          </React.Fragment>
-        ) : (
           <React.Fragment>
             <SimpleBar id="scrollbar" className="h-100">
               <Container fluid>
@@ -89,7 +62,6 @@ const Sidebar = ({ layoutType }) => {
             </SimpleBar>
             <div className="sidebar-background"></div>
           </React.Fragment>
-        )}
       </div>
       <div className="vertical-overlay"></div>
     </React.Fragment>

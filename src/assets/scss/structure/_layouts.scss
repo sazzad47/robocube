@@ -243,9 +243,9 @@
             left: calc(#{$semibox-width} + #{$grid-gutter-width});
         }
 
-        #page-topbar {
-            left: calc(#{$semibox-width} + #{$grid-gutter-width});
-        }
+        // #page-topbar {
+        //     left: calc(#{$semibox-width} + #{$grid-gutter-width});
+        // }
 
         .main-content {
             margin-left: 0px;

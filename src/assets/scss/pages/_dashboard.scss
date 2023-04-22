@@ -2,6 +2,13 @@
 // _dashboard.scss
 //
 
+.welcome-section {
+  background-color: $header-bg;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+}
+
 .dash-filter-picker {
   min-width: 210px !important;
 }

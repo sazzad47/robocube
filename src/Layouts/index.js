@@ -6,7 +6,7 @@ import withRouter from '../Components/Common/withRouter';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import RightSidebar from '../Components/Common/RightSidebar';
+
 
 //import actions
 import {
@@ -127,16 +127,15 @@ const Layout = (props) => {
     return (
         <React.Fragment>
             <div id="layout-wrapper">
+                <Sidebar layoutType={layoutType} />
                 <Header
                     headerClass={headerClass}
                     layoutModeType={layoutModeType}
                     onChangeLayoutMode={onChangeLayoutMode} />
-                <Sidebar layoutType={layoutType} />
                 <div className="main-content">{props.children}
                     <Footer />
                 </div>
             </div>
-            <RightSidebar />
         </React.Fragment>
 
     );
