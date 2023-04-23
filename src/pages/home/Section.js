@@ -1,9 +1,8 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import Flatpickr from "react-flatpickr";
 import MarqueeMessage from './MarqueeMessage';
 
-const Section = (props) => {
+const Section = () => {
 
     return (
         <React.Fragment>

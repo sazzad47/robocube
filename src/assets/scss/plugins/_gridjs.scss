@@ -139,8 +139,8 @@ th {
     float: left;
 
     &::before {
-        content: "\f0d1";
-        font-family: "remixicon";
+        content: "search";
+        font-family: "Material Icons";
         position: absolute;
         top: 50%;
         transform: translateY(-50%);

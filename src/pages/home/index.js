@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import Widget from "./Widgets";
-import BestSellingProducts from "./BestSellingProducts";
+import Upgrades from "./Upgrades";
 import Section from "./Section";
 import UpcomingEvents from "./UpcomingEvents";
 import Birthdays from "./BirthDays";
 import CalculateDeductions from "./CalculateDeductions";
 import Blocks from "./Blocks";
 
-const DashboardEcommerce = () => {
-  document.title = "Dashboard | Robocube HR";
-
-  const [rightColumn, setRightColumn] = useState(false);
-  const toggleRightColumn = () => {
-    setRightColumn(!rightColumn);
-  };
+const Home = () => {
+  document.title = "Home | Robocube HR";
 
   return (
     <React.Fragment>
@@ -23,7 +18,7 @@ const DashboardEcommerce = () => {
           <Row>
             <Col>
               <div className="h-100">
-                <Section rightClickBtn={toggleRightColumn} />
+                <Section />
                 <Row>
                   <Widget />
                 </Row>
@@ -32,7 +27,7 @@ const DashboardEcommerce = () => {
                     <Row>
                       <Blocks />
                     </Row>
-                    <BestSellingProducts />
+                    <Upgrades />
                   </Col>
                   <Col xl={6}>
                     <UpcomingEvents />
@@ -49,4 +44,4 @@ const DashboardEcommerce = () => {
   );
 };
 
-export default DashboardEcommerce;
+export default Home;

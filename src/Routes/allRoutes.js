@@ -1,12 +1,17 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-//Dashboard
-import DashboardEcommerce from "../pages/DashboardEcommerce";
+//Pages
+import Home from "../pages/home";
+import Daily from "../pages/attendance/daily";
+import Manually from "../pages/attendance/manually";
 
 const routes = [
-  { path: "/dashboard", component: <DashboardEcommerce /> },
-  { path: "/index", component: <DashboardEcommerce /> },
+  { path: "/dashboard", component: <Home /> },
+  { path: "/index", component: <Home /> },
+  { path: "/attendance-daily", component: <Daily /> },
+  { path: "/attendance-manually", component: <Manually /> },
+
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

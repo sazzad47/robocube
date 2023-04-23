@@ -10,7 +10,8 @@
     }
     +.breadcrumb-item {
         &::before {
-            font-family: "Material Design Icons";
+            font-family: 'Material Icons';
+            content: "chevron_right";
             font-size: 15px;
             line-height: 20px;
         }
