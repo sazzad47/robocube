@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Dropdown, DropdownMenu, DropdownToggle, Form } from "reactstrap";
 
 //import images
 import logoSm from "../assets/images/logo-sm.png";
-import logoDark from "../assets/images/logo-dark.png";
-import logoLight from "../assets/images/logo-light.png";
 
 //import Components
 import ProfileDropdown from "../Components/Common/ProfileDropdown";
+import BranchesDropdown from "../Components/Common/BranchesDropdown";
+import HeaderMenus from "../Components/Common/HeaderMenus";
 
 import { changeSidebarVisibility } from "../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 
-const Header = ({ headerClass }) => {
-  const [search, setSearch] = useState(false);
-  const toogleSearch = () => {
-    setSearch(!search);
-  };
 
+const Header = ({ headerClass }) => {
+ 
   const dispatch = useDispatch();
   const { sidebarVisibilitytype } = useSelector((state) => ({
     sidebarVisibilitytype: state.Layout.sidebarVisibilitytype,
@@ -69,7 +65,6 @@ const Header = ({ headerClass }) => {
                   </div>
                 </Link>
               </div>
-
               <button
                 onClick={toogleMenuBtn}
                 type="button"
@@ -83,40 +78,9 @@ const Header = ({ headerClass }) => {
                 </span>
               </button>
             </div>
-
             <div className="d-flex align-items-center">
-              <Dropdown
-                isOpen={search}
-                toggle={toogleSearch}
-                className="d-md-none topbar-head-dropdown header-item"
-              >
-                <DropdownToggle
-                  type="button"
-                  tag="button"
-                  className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-                >
-                  <i className="bx bx-search fs-22"></i>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
-                  <Form className="p-3">
-                    <div className="form-group m-0">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Search ..."
-                          aria-label="Recipient's username"
-                        />
-                        <button className="btn btn-primary" type="submit">
-                          <i className="mdi mdi-magnify"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </Form>
-                </DropdownMenu>
-              </Dropdown>
-
-              {/* ProfileDropdown */}
+              <BranchesDropdown />
+              <HeaderMenus/>
               <ProfileDropdown />
             </div>
           </div>

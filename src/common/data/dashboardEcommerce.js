@@ -17,66 +17,87 @@ import avatar3 from "../../assets/images/users/avatar-3.jpg";
 import avatar4 from "../../assets/images/users/avatar-4.jpg";
 import avatar6 from "../../assets/images/users/avatar-6.jpg";
 
-const ecomWidgets = [
+const statWidgets = [
     {
         id: 1,
         cardColor: "primary",
-        label: "Total Earnings",
+        label: "Total Employees",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
-        percentage: "+16.24",
-        counter: "559.25",
-        link: "View net earnings",
+        counter: "500",
+        link: "See details",
         bgcolor: "success",
-        icon: "bx bx-dollar-circle",
-        decimals: 2,
-        prefix: "$",
-        suffix: "k"
+        icon: "bx bx-group",
+        decimals: 0,
     },
     {
         id: 2,
         cardColor: "secondary",
-        label: "Orders",
+        label: "New Employees",
         badge: "ri-arrow-right-down-line",
         badgeClass: "danger",
-        percentage: "-3.57",
-        counter: "36894",
-        link: "View all orders",
+        counter: "20",
+        link: "See details",
         bgcolor: "info",
-        icon: "bx bx-shopping-bag",
+        icon: "bx bxs-news",
         decimals: 0,
-        prefix: "",
-        separator: ",",
-        suffix: ""
     },
     {
         id: 3,
         cardColor: "success",
-        label: "Customers",
+        label: "Total Leaves",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
-        percentage: "+29.08",
-        counter: "183.35",
+        counter: "2",
         link: "See details",
         bgcolor: "warning",
-        icon: "bx bx-user-circle",
-        decimals: 2,
-        prefix: "",
-        suffix: "M"
+        icon: "bx bxs-exit",
+        decimals: 0,
     },
     {
         id: 4,
         cardColor: "info",
-        label: "My Balance",
+        label: "Check in",
         badgeClass: "muted",
-        percentage: "+0.00",
-        counter: "165.89",
-        link: "Withdraw money",
+        counter: "5",
+        link: "See details",
         bgcolor: "primary",
-        icon: "bx bx-wallet",
-        decimals: 2,
-        prefix: "$",
-        suffix: "k"
+        icon: "bx bx-horizontal-center",
+        decimals: 0,
+    },
+];
+const blocks = [
+    {
+        id: 1,
+        cardColor: "primary",
+        label: "Calendar",
+        link: "/",
+        icon: "bx bx-calendar",
+        bgcolor: "success",
+    },
+    {
+        id: 2,
+        cardColor: "secondary",
+        label: "Payroll",
+        link: "/",
+        icon: "bx bx-note",
+        bgcolor: "info",
+    },
+    {
+        id: 3,
+        cardColor: "success",
+        label: "Claims",
+        link: "/",
+        icon: "bx bx-notepad",
+        bgcolor: "warning",
+    },
+    {
+        id: 4,
+        cardColor: "info",
+        label: "Reports",
+        link: "/",
+        icon: "bx bx-book-content",
+        bgcolor: "primary",
     },
 ];
 
@@ -390,4 +411,4 @@ const yearRevenueData = [
     },
 ];
 
-export { ecomWidgets, bestSellingProducts, topSellers, recentOrders, topCategories, allRevenueData, monthRevenueData, halfYearRevenueData, yearRevenueData };
+export { statWidgets, blocks, bestSellingProducts, topSellers, recentOrders, topCategories, allRevenueData, monthRevenueData, halfYearRevenueData, yearRevenueData };

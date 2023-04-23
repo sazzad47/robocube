@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Widget from "./Widgets";
 import BestSellingProducts from "./BestSellingProducts";
-import RecentOrders from "./RecentOrders";
 import Section from "./Section";
-import StoreVisits from "./StoreVisits";
-import TopSellers from "./TopSellers";
+import UpcomingEvents from "./UpcomingEvents";
+import Birthdays from "./BirthDays";
+import CalculateDeductions from "./CalculateDeductions";
+import Blocks from "./Blocks";
 
 const DashboardEcommerce = () => {
-  document.title ="Dashboard | Robocube HR";
+  document.title = "Dashboard | Robocube HR";
 
   const [rightColumn, setRightColumn] = useState(false);
   const toggleRightColumn = () => {
@@ -22,17 +23,22 @@ const DashboardEcommerce = () => {
           <Row>
             <Col>
               <div className="h-100">
-               <Section rightClickBtn={toggleRightColumn} />
+                <Section rightClickBtn={toggleRightColumn} />
                 <Row>
                   <Widget />
                 </Row>
                 <Row>
-                  <BestSellingProducts />
-                  <TopSellers />
-                </Row>
-                <Row>
-                  <StoreVisits />
-                  <RecentOrders />
+                  <Col xl={6}>
+                    <Row>
+                      <Blocks />
+                    </Row>
+                    <BestSellingProducts />
+                  </Col>
+                  <Col xl={6}>
+                    <UpcomingEvents />
+                    <Birthdays />
+                    <CalculateDeductions />
+                  </Col>
                 </Row>
               </div>
             </Col>

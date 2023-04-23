@@ -1,5 +1,6 @@
 import {
-  ecomWidgets,
+  statWidgets,
+  blocks,
   bestSellingProducts,
   topSellers,
   recentOrders,
@@ -13,7 +14,8 @@ import { apiKey } from "./apiKey";
 
 export {
   apiKey,
-  ecomWidgets,
+  statWidgets,
+  blocks,
   bestSellingProducts,
   topSellers,
   recentOrders,
