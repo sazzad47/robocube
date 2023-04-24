@@ -50,7 +50,7 @@ const BestSellingProducts = () => {
                 key={item.id}
                 className="mb-3 d-flex flex-column gap-2 border-bottom"
               >
-                <div className="w-100 d-flex flex-row align-items-center justify-content-between">
+                <div className="w-100 d-flex flex-column gap-1 gap-md-0 flex-md-row align-items-start align-items-md-center justify-content-between">
                   <h5>{item.title}</h5>
                   <span className="text-muted">{item.time}</span>
                 </div>
