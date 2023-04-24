@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col } from "reactstrap";
+import { Card, CardBody, CardHeader } from "reactstrap";
 
 const BestSellingProducts = () => {
   const upgrades = [

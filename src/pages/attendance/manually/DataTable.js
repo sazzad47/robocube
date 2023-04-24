@@ -3,6 +3,7 @@ import { Grid, _ } from "gridjs-react";
 import { Card, CardBody, CardHeader, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 import PreviewCardHeader from "../../../Components/Common/PreviewCardHeader";
+import AddNew from "./AddNew";
 
 const data = [
   { date: "2022-01-01", details: "New Year's Day" },
@@ -17,6 +18,7 @@ const DataTable = () => {
         <PreviewCardHeader title="Data" />
         <CardBody>
           <div className="live-preview">
+            <AddNew/>
             <div className="table-responsive">
               <Table className="table-borderless align-middle table-nowrap mb-0">
                 <thead>
