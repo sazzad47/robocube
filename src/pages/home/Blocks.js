@@ -1,5 +1,4 @@
 import React from "react";
-import CountUp from "react-countup";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Col } from "reactstrap";
 import { blocks } from "../../common/data";
