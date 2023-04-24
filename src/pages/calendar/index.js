@@ -202,7 +202,7 @@ const Calender = () => {
       />
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Calendar" pageTitle="Apps" />
+          <BreadCrumb title="Calendar" />
           <Row>
             <Col xs={12}>
               <Row>

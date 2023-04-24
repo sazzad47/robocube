@@ -5,7 +5,10 @@ import { Navigate } from "react-router-dom";
 import Home from "../pages/home";
 import Daily from "../pages/attendance/daily";
 import Manually from "../pages/attendance/manually";
-import Calendar from "../pages/calendar"
+import Calendar from "../pages/calendar";
+import Announcement from "../pages/contens/announcement";
+import CreateAnnouncement from "../pages/contens/announcement/Create";
+import SlideShow from "../pages/contens/slideshow";
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -13,6 +16,10 @@ const routes = [
   { path: "/attendance-daily", component: <Daily /> },
   { path: "/attendance-manually", component: <Manually /> },
   { path: "/calendar", component: <Calendar /> },
+  { path: "/contents-announcement", component: <Announcement /> },
+  { path: "/contents-announcement-add", component: <CreateAnnouncement /> },
+  { path: "/contents-slideshow", component: <SlideShow /> },
+  
 
 
   // this route should be at the end of all other routes

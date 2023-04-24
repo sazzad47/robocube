@@ -112,13 +112,13 @@ const Navdata = () => {
         {
           id: "announcement",
           label: "Announcement",
-          link: "/content-announcement",
+          link: "/contents-announcement",
           parentId: "content",
         },
         {
           id: "slideshow",
           label: "Slideshow",
-          link: "/content-slideshow",
+          link: "/contents-slideshow",
           parentId: "content",
         },
     
