@@ -2,13 +2,13 @@ import { combineReducers } from "redux";
 
 // Front
 import Layout from "./layouts/reducer";
-// Dashboard Ecommerce
-import DashboardEcommerce from "./dashboardEcommerce/reducer";
+//Calendar
+import Calendar from "./calendar/reducer";
 
 const rootReducer = combineReducers({
   // public
   Layout,
-  DashboardEcommerce,
+  Calendar,
 });
 
 export default rootReducer;

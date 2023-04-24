@@ -1,27 +1,11 @@
-import {
-  statWidgets,
-  blocks,
-  bestSellingProducts,
-  topSellers,
-  recentOrders,
-  topCategories,
-  allRevenueData,
-  monthRevenueData,
-  halfYearRevenueData,
-  yearRevenueData,
-} from "./dashboardEcommerce";
+import { statWidgets, blocks } from "./home";
 import { apiKey } from "./apiKey";
-
+import { calenderDefaultCategories, events, defaultevent } from "./calender";
 export {
   apiKey,
   statWidgets,
   blocks,
-  bestSellingProducts,
-  topSellers,
-  recentOrders,
-  topCategories,
-  allRevenueData,
-  monthRevenueData,
-  halfYearRevenueData,
-  yearRevenueData,
+  calenderDefaultCategories,
+  events,
+  defaultevent,
 };
