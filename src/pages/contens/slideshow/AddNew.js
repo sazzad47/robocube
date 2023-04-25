@@ -9,21 +9,8 @@ import {
   Card,
 } from "reactstrap";
 
-// Formik
-import * as Yup from "yup";
-import { useFormik } from "formik";
-
 import Dropzone from "react-dropzone";
 import { Link } from "react-router-dom";
-
-const actions = [
-  {
-    options: [
-      { label: "Yes", value: "Yes" },
-      { label: "No", value: "No" },
-    ],
-  },
-];
 
 const AddNew = () => {
   const [modal, setModal] = useState(false);

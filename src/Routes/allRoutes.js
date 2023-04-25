@@ -9,6 +9,8 @@ import Calendar from "../pages/calendar";
 import Announcement from "../pages/contens/announcement";
 import CreateAnnouncement from "../pages/contens/announcement/Create";
 import SlideShow from "../pages/contens/slideshow";
+import LeaveRequests from "../pages/leaves/requests";
+import LeaveApprovals from "../pages/leaves/approvals";
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -19,6 +21,8 @@ const routes = [
   { path: "/contents-announcement", component: <Announcement /> },
   { path: "/contents-announcement-add", component: <CreateAnnouncement /> },
   { path: "/contents-slideshow", component: <SlideShow /> },
+  { path: "/leaves-requests", component: <LeaveRequests /> },
+  { path: "/leaves-approvals", component: <LeaveApprovals /> },
   
 
 
