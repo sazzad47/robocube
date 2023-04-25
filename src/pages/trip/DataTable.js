@@ -67,7 +67,7 @@ const DataTable = () => {
   const navigate = useNavigate();
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const AddNew = () => {
+  const addNew = () => {
     navigate("/trip/add");
   };
 
@@ -168,7 +168,7 @@ const DataTable = () => {
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
               isAddNew={true}
-              addNewFunction={AddNew}
+              addNewFunction={addNew}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import TableContainer from "../../Components/Common/TableContainer";
 import { useMemo } from "react";
 import DeleteModal from "../../Components/Common/DeleteModal";
+import SelectMonth from "./SelectMonth";
+import { useCallback } from "react";
 
 const tableData = [
   {
@@ -67,9 +69,20 @@ const tableData = [
 ];
 
 const DataTable = () => {
-
+  const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-
+  console.log('modal', modal)
+  const toggle = useCallback(() => {
+    if (modal) {
+      setModal(false);
+    } else {
+      setModal(true);
+    }
+  }, [modal]);
+  
+  const runPayroll = ()=> {
+     setModal(true);
+  }
   const ActionCell = () => (
     <div className="d-flex justify-content-center">
       <button className="btn link-primary">
@@ -159,6 +172,7 @@ const DataTable = () => {
         onDeleteClick={() => setDeleteModal(false)}
         onCloseClick={() => setDeleteModal(false)}
       />
+      <SelectMonth modal={modal} setModal={setModal} toggle={toggle} />
       <Card>
         <CardBody>
           <div id="table-search">
@@ -172,6 +186,7 @@ const DataTable = () => {
               theadClass="table-light text-muted"
               isAddNew={true}
               addNewTitle="Run Payroll"
+              addNewFunction={runPayroll}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

@@ -72,9 +72,9 @@ const FormComponent = () => {
     },
   });
 
-  function handleDateChange(selectedDates) {
-    const date = selectedDates[0];
-    validation.setFieldValue("date", date);
+  function handleMonthChange(selectedMonths) {
+    const month = selectedMonths[0];
+    validation.setFieldValue("deductionMonth", month);
   }
 
   return (
@@ -201,7 +201,7 @@ const FormComponent = () => {
                       dateFormat: "m.y",
                       defaultDate: "today",
                     }}
-                    onChange={handleDateChange}
+                    onChange={handleMonthChange}
                     value={validation.values.deductionMonth || ""}
                   />
                   {validation.touched.deductionMonth &&

@@ -12,7 +12,6 @@ import {
 } from "react-table";
 import { Table, Row, Col, Button, Input, CardBody } from "reactstrap";
 import { DefaultColumnFilter } from "./filters";
-import { Link } from "react-router-dom";
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -31,33 +30,32 @@ function GlobalFilter({
   return (
     <React.Fragment>
       <CardBody className="border border-dashed border-end-0 border-start-0">
-        <form>
-          <Row className="g-3">
-            <Col>
-              <div className="search-box me-2 mb-2 d-inline-block">
-                <input
-                  onChange={(e) => {
-                    setValue(e.target.value);
-                    onChange(e.target.value);
-                  }}
-                  id="search-bar-0"
-                  type="text"
-                  className="form-control search /"
-                  placeholder={SearchPlaceholder}
-                  value={value || ""}
-                />
-                <i className="bx bx-search-alt search-icon"></i>
-              </div>
-            </Col>
-            {isAddNew && (
-              <div className="col-sm-auto ms-auto">
-                <button onClick={addNewFunction} className="btn btn-success">
-                    <i className="ri-add-line align-bottom me-1"></i> {addNewTitle? addNewTitle : "Add New"}
-                </button>
-              </div>
-            )}
-          </Row>
-        </form>
+        <Row className="g-3">
+          <Col>
+            <div className="search-box me-2 mb-2 d-inline-block">
+              <input
+                onChange={(e) => {
+                  setValue(e.target.value);
+                  onChange(e.target.value);
+                }}
+                id="search-bar-0"
+                type="text"
+                className="form-control search /"
+                placeholder={SearchPlaceholder}
+                value={value || ""}
+              />
+              <i className="bx bx-search-alt search-icon"></i>
+            </div>
+          </Col>
+          {isAddNew && (
+            <div className="col-sm-auto ms-auto">
+              <button onClick={addNewFunction} className="btn btn-success">
+                <i className="ri-add-line align-bottom me-1"></i>{" "}
+                {addNewTitle ? addNewTitle : "Add New"}
+              </button>
+            </div>
+          )}
+        </Row>
       </CardBody>
     </React.Fragment>
   );
@@ -162,7 +160,6 @@ const TableContainer = ({
                   >
                     {column.render("Header")}
                     {generateSortingIndicator(column)}
-                    {/* <Filter column={column} /> */}
                   </th>
                 ))}
               </tr>
@@ -192,17 +189,17 @@ const TableContainer = ({
 
       <div className="d-flex justify-content-between align-items-center p-2">
         <div>
-        <select
-          className="form-select"
-          value={pageSize}
-          onChange={onChangeInSelect}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+          <select
+            className="form-select"
+            value={pageSize}
+            onChange={onChangeInSelect}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="d-flex gap-2 align-items-center">
           <Button
