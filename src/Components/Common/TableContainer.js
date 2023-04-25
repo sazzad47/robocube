@@ -19,6 +19,7 @@ function GlobalFilter({
   globalFilter,
   setGlobalFilter,
   isAddNew,
+  addNewFunction,
   SearchPlaceholder,
 }) {
   const [value, setValue] = React.useState(globalFilter);
@@ -49,15 +50,10 @@ function GlobalFilter({
             </Col>
             {isAddNew && (
               <div className="col-sm-auto ms-auto">
-                <div>
-                  <Link
-                    to="/apps-ecommerce-add-product"
-                    className="btn btn-success"
-                  >
+                <button onClick={addNewFunction} className="btn btn-success">
                     <i className="ri-add-line align-bottom me-1"></i> Add
-                    Product
-                  </Link>
-                </div>
+                    New
+                </button>
               </div>
             )}
           </Row>
@@ -72,6 +68,7 @@ const TableContainer = ({
   data,
   isGlobalFilter,
   isAddNew,
+  addNewFunction,
   customPageSize,
   tableClass,
   theadClass,
@@ -140,6 +137,7 @@ const TableContainer = ({
             globalFilter={state.globalFilter}
             setGlobalFilter={setGlobalFilter}
             isAddNew={isAddNew}
+            addNewFunction={addNewFunction}
             SearchPlaceholder={SearchPlaceholder}
           />
         )}

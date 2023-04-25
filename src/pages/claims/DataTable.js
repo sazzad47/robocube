@@ -4,9 +4,9 @@ import {
   CardBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import TableContainer from "../../../Components/Common/TableContainer";
+import TableContainer from "../../Components/Common/TableContainer";
 import { useMemo } from "react";
-import DeleteModal from "../../../Components/Common/DeleteModal";
+import DeleteModal from "../../Components/Common/DeleteModal";
 
 const tableData = [
   {

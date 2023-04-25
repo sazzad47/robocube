@@ -11,6 +11,8 @@ import CreateAnnouncement from "../pages/contens/announcement/Create";
 import SlideShow from "../pages/contens/slideshow";
 import LeaveRequests from "../pages/leaves/requests";
 import LeaveApprovals from "../pages/leaves/approvals";
+import Claims from "../pages/claims";
+import AdvanceSalary from "../pages/advanceSalary";
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -23,6 +25,8 @@ const routes = [
   { path: "/contents-slideshow", component: <SlideShow /> },
   { path: "/leaves-requests", component: <LeaveRequests /> },
   { path: "/leaves-approvals", component: <LeaveApprovals /> },
+  { path: "/claims", component: <Claims /> },
+  { path: "/advance_salary", component: <AdvanceSalary /> },
   
 
 
