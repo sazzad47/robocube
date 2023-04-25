@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardBody,
-} from "reactstrap";
-import { Link } from "react-router-dom";
+import { Card, CardBody } from "reactstrap";
+import { Link, useNavigate } from "react-router-dom";
 import TableContainer from "../../Components/Common/TableContainer";
 import { useMemo } from "react";
 import DeleteModal from "../../Components/Common/DeleteModal";
@@ -12,7 +9,7 @@ const tableData = [
   {
     no: 1,
     employee: "John Smith",
-    status: "Pending",
+    status: "Inactive",
     location: "New York",
     start_date: "2023-05-01",
     start_time: "08:00 AM",
@@ -23,7 +20,7 @@ const tableData = [
   {
     no: 2,
     employee: "Jane Doe",
-    status: "Approved",
+    status: "Active",
     location: "Los Angeles",
     start_date: "2023-05-10",
     start_time: "09:00 AM",
@@ -34,7 +31,7 @@ const tableData = [
   {
     no: 3,
     employee: "Bob Johnson",
-    status: "Rejected",
+    status: "Inactive",
     location: "Chicago",
     start_date: "2023-05-15",
     start_time: "10:00 AM",
@@ -45,7 +42,7 @@ const tableData = [
   {
     no: 4,
     employee: "Alice Lee",
-    status: "Pending",
+    status: "Inactive",
     location: "San Francisco",
     start_date: "2023-05-20",
     start_time: "11:00 AM",
@@ -56,7 +53,7 @@ const tableData = [
   {
     no: 5,
     employee: "Tom Wilson",
-    status: "Approved",
+    status: "Active",
     location: "Seattle",
     start_date: "2023-05-25",
     start_time: "12:00 PM",
@@ -66,15 +63,18 @@ const tableData = [
   },
 ];
 
-
 const DataTable = () => {
-
+  const navigate = useNavigate();
   const [deleteModal, setDeleteModal] = useState(false);
+
+  const AddNew = () => {
+    navigate("/trip/add");
+  };
 
   const ActionCell = () => (
     <div className="d-flex justify-content-end">
-      <button onClick={()=> setDeleteModal(true)} className="btn link-danger">
-      <i className='bx bx-xs bx-trash'></i>
+      <button onClick={() => setDeleteModal(true)} className="btn link-danger">
+        <i className="bx bx-xs bx-trash"></i>
       </button>
     </div>
   );
@@ -99,8 +99,8 @@ const DataTable = () => {
           return (
             <span
               className={`${
-                cell.value === "Rejected"
-                  ? "badge badge-soft-danger": cell.value === "Pending"? "badge badge-soft-info"
+                cell.value === "Inactive"
+                  ? "badge badge-soft-danger"
                   : "badge badge-soft-success"
               }`}
             >
@@ -142,9 +142,7 @@ const DataTable = () => {
       {
         Header: "Action",
         Cell: (cell) => {
-          return (
-            <ActionCell id={cell.row.original._id} />
-          );
+          return <ActionCell id={cell.row.original._id} />;
         },
       },
     ],
@@ -153,7 +151,7 @@ const DataTable = () => {
 
   return (
     <React.Fragment>
-       <DeleteModal
+      <DeleteModal
         show={deleteModal}
         onDeleteClick={() => setDeleteModal(false)}
         onCloseClick={() => setDeleteModal(false)}
@@ -170,6 +168,7 @@ const DataTable = () => {
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
               isAddNew={true}
+              addNewFunction={AddNew}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

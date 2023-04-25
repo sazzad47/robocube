@@ -16,6 +16,7 @@ import AddNewClaims from "../pages/claims/addNew";
 import AdvanceSalary from "../pages/advanceSalary";
 import AddNewAdvanceSalary from "../pages/advanceSalary/addNew";
 import Trip from "../pages/trip";
+import AddNewTrip from "../pages/trip/addNew";
 import Payroll from "../pages/payroll";
 
 
@@ -35,6 +36,7 @@ const routes = [
   { path: "/advance_salary", component: <AdvanceSalary /> },
   { path: "/advance_salary/add", component: <AddNewAdvanceSalary /> },
   { path: "/trip", component: <Trip /> },
+  { path: "/trip/add", component: <AddNewTrip /> },
   { path: "/payroll", component: <Payroll /> },
   
 

@@ -16,7 +16,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import Flatpickr from "react-flatpickr";
-import * as monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
 
 const FormComponent = () => {
   const history = useNavigate();
@@ -34,9 +33,8 @@ const FormComponent = () => {
   ];
 
   const statusOptions = [
-    { label: "Approved", value: "Approved" },
-    { label: "Pending", value: "Pending" },
-    { label: "Rejected", value: "Rejected" },
+    { label: "Active", value: "Active" },
+    { label: "Inactive", value: "Inactive" },
     // add more status objects as needed
   ];
 
@@ -45,36 +43,40 @@ const FormComponent = () => {
 
     initialValues: {
       employee: "",
-      subject: "",
-      totalAmount: "",
-      deductionMonth: "",
+      location: "",
+      startDate: "",
+      endDate: "",
       status: "",
       remark: "",
     },
     validationSchema: Yup.object({
       employee: Yup.string().required("Please Select an employee"),
-      totalAmount: Yup.string().required("Please Enter Total Amount"),
+      location: Yup.string().required("Please Enter a Location"),
       remark: Yup.string().required("Please Enter a Remark"),
     }),
     onSubmit: (values) => {
       const data = {
         _id: (Math.floor(Math.random() * (30 - 20)) + 20).toString(),
         employee: values.employee,
-        subject: values.subject,
-        totalAmount: values.totalAmount,
-        deductionMonth: values.deductionMonth,
+        location: values.location,
+        startDate: values.startDate,
+        endDate: values.endDate,
         status: values.status,
         remark: values.remark,
       };
       console.log(data);
-      history("/advance_salary");
+      history("/trip");
       validation.resetForm();
     },
   });
 
-  function handleDateChange(selectedDates) {
+  function handleStartDateChange(selectedDates) {
     const date = selectedDates[0];
-    validation.setFieldValue("date", date);
+    validation.setFieldValue("startDate", date);
+  }
+  function handleEndDateChange(selectedDates) {
+    const date = selectedDates[0];
+    validation.setFieldValue("endDate", date);
   }
 
   return (
@@ -112,107 +114,95 @@ const FormComponent = () => {
               </Row>
               <Row className="mb-3">
                 <Col lg={3}>
-                  <Label htmlFor="subject" className="form-label">
-                    Subject
+                  <Label htmlFor="location" className="form-label">
+                    Location
                   </Label>
                 </Col>
                 <Col lg={9}>
                   <Input
                     type="text"
-                    name="subject"
-                    id="subject"
+                    name="location"
+                    id="location"
                     className="form-control"
-                    placeholder="Enter subject"
+                    placeholder="Enter location"
                     validate={{
                       required: { value: true },
                     }}
                     onChange={validation.handleChange}
                     onBlur={validation.handleBlur}
-                    value={validation.values.subject || ""}
+                    value={validation.values.location || ""}
                     invalid={
-                      validation.touched.subject && validation.errors.subject
+                      validation.touched.location && validation.errors.location
                         ? true
                         : false
                     }
                   />
-                  {validation.touched.subject && validation.errors.subject ? (
+                  {validation.touched.location && validation.errors.location ? (
                     <FormFeedback type="invalid">
-                      {validation.errors.subject}
+                      {validation.errors.location}
                     </FormFeedback>
                   ) : null}
                 </Col>
               </Row>
               <Row className="mb-3">
                 <Col lg={3}>
-                  <Label htmlFor="totalAmount" className="form-label">
-                    Total Amount
-                  </Label>
-                </Col>
-                <Col lg={9}>
-                  <Input
-                    type="number"
-                    name="totalAmount"
-                    id="totalAmount"
-                    className="form-control"
-                    placeholder="Enter totalAmount"
-                    validate={{
-                      required: { value: true },
-                    }}
-                    onChange={validation.handleChange}
-                    onBlur={validation.handleBlur}
-                    value={validation.values.totalAmount || ""}
-                    invalid={
-                      validation.touched.totalAmount &&
-                      validation.errors.totalAmount
-                        ? true
-                        : false
-                    }
-                  />
-                  {validation.touched.totalAmount &&
-                  validation.errors.totalAmount ? (
-                    <FormFeedback type="invalid">
-                      {validation.errors.totalAmount}
-                    </FormFeedback>
-                  ) : null}
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col lg={3}>
-                  <Label htmlFor="deductionMonth" className="form-label">
-                    Deduction Month
+                  <Label htmlFor="startDate" className="form-label">
+                    Start Date
                   </Label>
                 </Col>
                 <Col lg={9}>
                   <Flatpickr
-                    name="deductionMonth"
+                    name="startDate"
                     // type="date"
                     className="form-control"
                     id="datepicker-publish-input"
-                    placeholder="Select a month"
+                    placeholder="Select a starting date"
                     options={{
+                      enableTime: true,
                       altInput: true,
-                      plugins: [
-                        new monthSelectPlugin({
-                          shorthand: true,
-                          dateFormat: "m.y",
-                          altFormat: "F Y",
-                        }),
-                      ],
-                      dateFormat: "m.y",
-                      defaultDate: "today",
+                      altFormat: "d M, Y, G:i K",
+                      dateFormat: "d M, Y, G:i K",
                     }}
-                    onChange={handleDateChange}
-                    value={validation.values.deductionMonth || ""}
+                    onChange={handleStartDateChange}
+                    value={validation.values.startDate || ""}
                   />
-                  {validation.touched.deductionMonth &&
-                  validation.errors.deductionMonth ? (
+                  {validation.touched.startDate &&
+                  validation.errors.startDate ? (
                     <FormFeedback type="invalid">
-                      {validation.errors.deductionMonth}
+                      {validation.errors.startDate}
                     </FormFeedback>
                   ) : null}
                 </Col>
               </Row>
-
+              <Row className="mb-3">
+                <Col lg={3}>
+                  <Label htmlFor="endDate" className="form-label">
+                    End Date
+                  </Label>
+                </Col>
+                <Col lg={9}>
+                  <Flatpickr
+                    name="endDate"
+                    // type="date"
+                    className="form-control"
+                    id="datepicker-publish-input"
+                    placeholder="Select a starting date"
+                    options={{
+                      enableTime: true,
+                      altInput: true,
+                      altFormat: "d M, Y, G:i K",
+                      dateFormat: "d M, Y, G:i K",
+                    }}
+                    onChange={handleEndDateChange}
+                    value={validation.values.endDate || ""}
+                  />
+                  {validation.touched.endDate && validation.errors.endDate ? (
+                    <FormFeedback type="invalid">
+                      {validation.errors.endDate}
+                    </FormFeedback>
+                  ) : null}
+                </Col>
+              </Row>
               <Row className="mb-3">
                 <Col lg={3}>
                   <Label htmlFor="Status" className="form-label">
@@ -263,7 +253,7 @@ const FormComponent = () => {
                 </Col>
               </Row>
               <div className="d-flex gap-4 justify-content-end align-items-center">
-                <Link to="/advance_salary">Cancel</Link>
+                <Link to="/trip">Cancel</Link>
                 <button type="submit" className="btn btn-primary">
                   Add
                 </button>
