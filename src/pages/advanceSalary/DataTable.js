@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardBody } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TableContainer from "../../Components/Common/TableContainer";
 import { useMemo } from "react";
 import DeleteModal from "../../Components/Common/DeleteModal";
@@ -41,7 +41,12 @@ const tableData = [
 
 
 const DataTable = () => {
+  const navigate = useNavigate();
   const [deleteModal, setDeleteModal] = useState(false);
+  
+  const AddNew = () => {
+    navigate("/advance_salary/add");
+  };
 
   const ActionCell = () => (
     <div className="d-flex align-items-center justify-content-end">
@@ -140,6 +145,7 @@ const DataTable = () => {
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
               isAddNew={true}
+              addNewFunction={AddNew}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

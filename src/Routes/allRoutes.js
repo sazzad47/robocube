@@ -12,9 +12,12 @@ import SlideShow from "../pages/contens/slideshow";
 import LeaveRequests from "../pages/leaves/requests";
 import LeaveApprovals from "../pages/leaves/approvals";
 import Claims from "../pages/claims";
+import AddNewClaims from "../pages/claims/addNew";
 import AdvanceSalary from "../pages/advanceSalary";
+import AddNewAdvanceSalary from "../pages/advanceSalary/addNew";
 import Trip from "../pages/trip";
 import Payroll from "../pages/payroll";
+
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -28,7 +31,9 @@ const routes = [
   { path: "/leaves-requests", component: <LeaveRequests /> },
   { path: "/leaves-approvals", component: <LeaveApprovals /> },
   { path: "/claims", component: <Claims /> },
+  { path: "/claims/add", component: <AddNewClaims /> },
   { path: "/advance_salary", component: <AdvanceSalary /> },
+  { path: "/advance_salary/add", component: <AddNewAdvanceSalary /> },
   { path: "/trip", component: <Trip /> },
   { path: "/payroll", component: <Payroll /> },
   
