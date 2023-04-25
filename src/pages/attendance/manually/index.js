@@ -13,11 +13,17 @@ const Daily = () => {
         <Container fluid>
           <BreadCrumb title="Manually" pageTitle="Attendance" />
           <Row>
-            <Col sm={12} md={7}>
-              <DataTable />
-            </Col>
-            <Col sm={12} md={5}>
-              <CheckStatus />
+            <Col>
+              <div className="h-100">
+                <Row>
+                  <Col sm={12} md={7}>
+                    <DataTable />
+                  </Col>
+                  <Col sm={12} md={5}>
+                    <CheckStatus />
+                  </Col>
+                </Row>
+              </div>
             </Col>
           </Row>
         </Container>
