@@ -10,41 +10,60 @@ import DeleteModal from "../../Components/Common/DeleteModal";
 
 const tableData = [
   {
-    "serial_no": 1,
-    subject: "Vacation Request",
-    date: "2022-04-10",
-    status: "Approved",
-    employee: "John Doe",
-    remark: "Approved with conditions",
-    total: 5000
-  },
-  {
-    "serial_no": 2,
-    subject: "Sick Leave Request",
-    date: "2022-05-15",
-    status: "Rejected",
-    employee: "Jane Smith",
-    remark: "Insufficient documentation",
-    total: 10000
-  },
-  {
-    "serial_no": 3,
-    subject: "Maternity Leave Request",
-    date: "2022-06-20",
+    no: 1,
+    employee: "John Smith",
     status: "Pending",
-    employee: "Alice Lee",
-    remark: "N/A",
-    total: 8000
+    location: "New York",
+    start_date: "2023-05-01",
+    start_time: "08:00 AM",
+    end_date: "2023-05-05",
+    end_time: "05:00 PM",
+    Remark: "Client Meeting",
   },
   {
-    "serial_no": 4,
-    subject: "Business Trip Request",
-    date: "2022-07-25",
+    no: 2,
+    employee: "Jane Doe",
     status: "Approved",
-    employee: "Bob Chen",
-    remark: "Approved without conditions",
-    total: 12000
-  }
+    location: "Los Angeles",
+    start_date: "2023-05-10",
+    start_time: "09:00 AM",
+    end_date: "2023-05-12",
+    end_time: "02:00 PM",
+    Remark: "Conference",
+  },
+  {
+    no: 3,
+    employee: "Bob Johnson",
+    status: "Rejected",
+    location: "Chicago",
+    start_date: "2023-05-15",
+    start_time: "10:00 AM",
+    end_date: "2023-05-16",
+    end_time: "03:00 PM",
+    Remark: "Training",
+  },
+  {
+    no: 4,
+    employee: "Alice Lee",
+    status: "Pending",
+    location: "San Francisco",
+    start_date: "2023-05-20",
+    start_time: "11:00 AM",
+    end_date: "2023-05-22",
+    end_time: "04:00 PM",
+    Remark: "Sales Visit",
+  },
+  {
+    no: 5,
+    employee: "Tom Wilson",
+    status: "Approved",
+    location: "Seattle",
+    start_date: "2023-05-25",
+    start_time: "12:00 PM",
+    end_date: "2023-05-27",
+    end_time: "01:00 PM",
+    Remark: "Product Demo",
+  },
 ];
 
 
@@ -64,17 +83,12 @@ const DataTable = () => {
     () => [
       {
         Header: "No",
-        accessor: "serial_no",
+        accessor: "no",
         filterable: false,
       },
       {
-        Header: "Subject",
-        accessor: "subject",
-        filterable: false,
-      },
-      {
-        Header: "Date",
-        accessor: "date",
+        Header: "Employee",
+        accessor: "employee",
         filterable: false,
       },
       {
@@ -96,20 +110,34 @@ const DataTable = () => {
         },
       },
       {
-        Header: "Employee",
-        accessor: "employee",
+        Header: "Location",
+        accessor: "location",
+        filterable: false,
+      },
+      {
+        Header: "Start Date",
+        accessor: "start_date",
+        filterable: false,
+      },
+      {
+        Header: "Start Time",
+        accessor: "start_time",
+        filterable: false,
+      },
+      {
+        Header: "End Date",
+        accessor: "end_date",
+        filterable: false,
+      },
+      {
+        Header: "End Time",
+        accessor: "end_time",
         filterable: false,
       },
       {
         Header: "Remark",
-        accessor: "remark",
+        accessor: "Remark",
         filterable: false,
-      },
-      {
-        Header: "Total ($)",
-        accessor: "total",
-        filterable: false,
-        
       },
       {
         Header: "Action",
@@ -142,7 +170,6 @@ const DataTable = () => {
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
               isAddNew={true}
-              // addNewFunction={}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

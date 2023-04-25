@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardBody,
-} from "reactstrap";
+import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import TableContainer from "../../Components/Common/TableContainer";
 import { useMemo } from "react";
@@ -10,44 +7,49 @@ import DeleteModal from "../../Components/Common/DeleteModal";
 
 const tableData = [
   {
-    employee: "John Doe",
-    duration: "2 days",
-    type: "Sick Leave",
-    days: "2022-03-15 to 2022-03-16",
-    reason: "Fever and cold",
-    file: "file.pdf",
-    status: "Approved",
+    "serial_no": 1,
+    "subject": "Advance Salary for May 2023",
+    "status": "Approved",
+    "employee": "John Doe",
+    "remark": "Approved by HR",
+    "application_date": "2023-04-20",
+    "deduction_date": "2023-05-01",
+    "total": 1500
   },
   {
-    employee: "Jane Doe",
-    duration: "1 day",
-    type: "Casual Leave",
-    days: "2022-04-05",
-    reason: "Personal",
-    file: "",
-    status: "Pending",
+    "serial_no": 2,
+    "subject": "Advance Salary for June 2023",
+    "status": "Rejected",
+    "employee": "Jane Smith",
+    "remark": "Not eligible for advance",
+    "application_date": "2023-05-20",
+    "deduction_date": "2023-06-01",
+    "total": 0
   },
   {
-    employee: "Bob Smith",
-    duration: "3 days",
-    type: "Paid Leave",
-    days: "2022-05-10 to 2022-05-12",
-    reason: "Vacation",
-    file: "",
-    status: "Rejected",
+    "serial_no": 3,
+    "subject": "Advance Salary for July 2023",
+    "status": "Pending",
+    "employee": "Bob Johnson",
+    "remark": "Pending approval from HR",
+    "application_date": "2023-06-20",
+    "deduction_date": "2023-07-01",
+    "total": 2000
   },
-
-  // Add more data as needed
+  // Add more rows as needed
 ];
 
-const DataTable = () => {
 
+const DataTable = () => {
   const [deleteModal, setDeleteModal] = useState(false);
 
   const ActionCell = () => (
-    <div className="d-flex justify-content-end">
-      <button onClick={()=> setDeleteModal(true)} className="btn link-danger">
-      <i className='bx bx-xs bx-trash'></i>
+    <div className="d-flex align-items-center justify-content-end">
+      <Link to="#">
+        <i className="bx bxs-printer fs-17 lh-1"></i>
+      </Link>
+      <button onClick={() => setDeleteModal(true)} className="btn link-danger">
+        <i className="bx bx-xs bx-trash"></i>
       </button>
     </div>
   );
@@ -55,41 +57,14 @@ const DataTable = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Employee",
-        accessor: "employee",
+        Header: "No",
+        accessor: "serial_no",
         filterable: false,
       },
       {
-        Header: "Duration",
-        accessor: "duration",
+        Header: "Subject",
+        accessor: "subject",
         filterable: false,
-      },
-      {
-        Header: "Type",
-        accessor: "type",
-        filterable: false,
-      },
-      {
-        Header: "Days",
-        accessor: "days",
-        filterable: false,
-      },
-      {
-        Header: "Reason",
-        accessor: "reason",
-        filterable: false,
-      },
-      {
-        Header: "File",
-        accessor: "file",
-        filterable: false,
-        Cell: () => {
-          return (
-            <Link to="#">
-              <i className="ri-download-2-line fs-17 lh-1 align-middle"></i>
-            </Link>
-          );
-        },
       },
       {
         Header: "Status",
@@ -100,7 +75,9 @@ const DataTable = () => {
             <span
               className={`${
                 cell.value === "Rejected"
-                  ? "badge badge-soft-danger": cell.value === "Pending"? "badge badge-soft-info"
+                  ? "badge badge-soft-danger"
+                  : cell.value === "Pending"
+                  ? "badge badge-soft-info"
                   : "badge badge-soft-success"
               }`}
             >
@@ -110,11 +87,34 @@ const DataTable = () => {
         },
       },
       {
+        Header: "Employee",
+        accessor: "employee",
+        filterable: false,
+      },
+      {
+        Header: "Remark",
+        accessor: "remark",
+        filterable: false,
+      },
+      {
+        Header: "Application Date",
+        accessor: "application_date",
+        filterable: false,
+      },
+      {
+        Header: "Deduction Date",
+        accessor: "deduction_date",
+        filterable: false,
+      },
+      {
+        Header: "Total ($)",
+        accessor: "total",
+        filterable: false,
+      },
+      {
         Header: "Action",
         Cell: (cell) => {
-          return (
-            <ActionCell id={cell.row.original._id} />
-          );
+          return <ActionCell id={cell.row.original._id} />;
         },
       },
     ],
@@ -123,7 +123,7 @@ const DataTable = () => {
 
   return (
     <React.Fragment>
-       <DeleteModal
+      <DeleteModal
         show={deleteModal}
         onDeleteClick={() => setDeleteModal(false)}
         onCloseClick={() => setDeleteModal(false)}
@@ -139,7 +139,7 @@ const DataTable = () => {
               divClass="table-responsive mb-1"
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
-              isAddNew={false}
+              isAddNew={true}
               SearchPlaceholder="Type a keyword..."
             />
           </div>

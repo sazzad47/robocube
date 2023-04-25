@@ -19,6 +19,7 @@ function GlobalFilter({
   globalFilter,
   setGlobalFilter,
   isAddNew,
+  addNewTitle,
   addNewFunction,
   SearchPlaceholder,
 }) {
@@ -51,8 +52,7 @@ function GlobalFilter({
             {isAddNew && (
               <div className="col-sm-auto ms-auto">
                 <button onClick={addNewFunction} className="btn btn-success">
-                    <i className="ri-add-line align-bottom me-1"></i> Add
-                    New
+                    <i className="ri-add-line align-bottom me-1"></i> {addNewTitle? addNewTitle : "Add New"}
                 </button>
               </div>
             )}
@@ -68,6 +68,7 @@ const TableContainer = ({
   data,
   isGlobalFilter,
   isAddNew,
+  addNewTitle,
   addNewFunction,
   customPageSize,
   tableClass,
@@ -137,6 +138,7 @@ const TableContainer = ({
             globalFilter={state.globalFilter}
             setGlobalFilter={setGlobalFilter}
             isAddNew={isAddNew}
+            addNewTitle={addNewTitle}
             addNewFunction={addNewFunction}
             SearchPlaceholder={SearchPlaceholder}
           />

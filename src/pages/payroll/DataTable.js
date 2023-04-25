@@ -10,52 +10,70 @@ import DeleteModal from "../../Components/Common/DeleteModal";
 
 const tableData = [
   {
-    "serial_no": 1,
-    subject: "Vacation Request",
-    date: "2022-04-10",
+    no: 1,
+    month: "January 2022",
     status: "Approved",
-    employee: "John Doe",
-    remark: "Approved with conditions",
-    total: 5000
+    total_basis: 5000,
+    total_additions: 1000,
+    total_gross_pay: 6000,
+    total_deductoins: 1200,
+    total_net_pay: 4800,
+    hrdf_listing: "View Listing",
   },
   {
-    "serial_no": 2,
-    subject: "Sick Leave Request",
-    date: "2022-05-15",
+    no: 2,
+    month: "February 2022",
     status: "Rejected",
-    employee: "Jane Smith",
-    remark: "Insufficient documentation",
-    total: 10000
+    total_basis: 5500,
+    total_additions: 800,
+    total_gross_pay: 6300,
+    total_deductoins: 1300,
+    total_net_pay: 5000,
+    hrdf_listing: "View Listing",
   },
   {
-    "serial_no": 3,
-    subject: "Maternity Leave Request",
-    date: "2022-06-20",
+    no: 3,
+    month: "March 2022",
     status: "Pending",
-    employee: "Alice Lee",
-    remark: "N/A",
-    total: 8000
+    total_basis: 6000,
+    total_additions: 1200,
+    total_gross_pay: 7200,
+    total_deductoins: 1500,
+    total_net_pay: 5700,
+    hrdf_listing: "View Listing",
   },
   {
-    "serial_no": 4,
-    subject: "Business Trip Request",
-    date: "2022-07-25",
+    no: 4,
+    month: "April 2022",
     status: "Approved",
-    employee: "Bob Chen",
-    remark: "Approved without conditions",
-    total: 12000
+    total_basis: 5500,
+    total_additions: 1000,
+    total_gross_pay: 6500,
+    total_deductoins: 1400,
+    total_net_pay: 5100,
+    hrdf_listing: "View Listing",
+  },
+  {
+    no: 5,
+    month: "May 2022",
+    status: "Approved",
+    total_basis: 6000,
+    total_additions: 1500,
+    total_gross_pay: 7500,
+    total_deductoins: 1800,
+    total_net_pay: 5700,
+    hrdf_listing: "View Listing",
   }
 ];
-
 
 const DataTable = () => {
 
   const [deleteModal, setDeleteModal] = useState(false);
 
   const ActionCell = () => (
-    <div className="d-flex justify-content-end">
-      <button onClick={()=> setDeleteModal(true)} className="btn link-danger">
-      <i className='bx bx-xs bx-trash'></i>
+    <div className="d-flex justify-content-center">
+      <button className="btn link-primary">
+      <i className='bx bx-link-external'></i>
       </button>
     </div>
   );
@@ -64,18 +82,18 @@ const DataTable = () => {
     () => [
       {
         Header: "No",
-        accessor: "serial_no",
+        accessor: "no",
         filterable: false,
       },
       {
-        Header: "Subject",
-        accessor: "subject",
+        Header: "Month",
+        accessor: "month",
         filterable: false,
-      },
-      {
-        Header: "Date",
-        accessor: "date",
-        filterable: false,
+        Cell: (cell) => {
+          return (
+            <Link to="/payroll">{cell.value}</Link>
+          );
+        },
       },
       {
         Header: "Status",
@@ -96,23 +114,34 @@ const DataTable = () => {
         },
       },
       {
-        Header: "Employee",
-        accessor: "employee",
+        Header: "Total Basis (MYR)",
+        accessor: "total_basis",
         filterable: false,
       },
       {
-        Header: "Remark",
-        accessor: "remark",
+        Header: "Total Additions (MYR)",
+        accessor: "total_additions",
         filterable: false,
       },
       {
-        Header: "Total ($)",
-        accessor: "total",
+        Header: "Total Gross Pay (MYR)",
+        accessor: "total_gross_pay",
         filterable: false,
-        
       },
       {
-        Header: "Action",
+        Header: "Total Deductoins (MYR)",
+        accessor: "total_deductoins",
+        filterable: false,
+      },
+      {
+        Header: "Total Net Pay (MYR)",
+        accessor: "total_net_pay",
+        filterable: false,
+      },
+      {
+        Header: "HRDF Listing",
+        accessor: "hrdf_listing",
+        filterable: false,
         Cell: (cell) => {
           return (
             <ActionCell id={cell.row.original._id} />
@@ -139,10 +168,10 @@ const DataTable = () => {
               isGlobalFilter={true}
               customPageSize={10}
               divClass="table-responsive mb-1"
-              tableClass="mb-0 align-middle table-bordered"
+              tableClass="mb-0 align-middle table-borderless"
               theadClass="table-light text-muted"
               isAddNew={true}
-              // addNewFunction={}
+              addNewTitle="Run Payroll"
               SearchPlaceholder="Type a keyword..."
             />
           </div>
