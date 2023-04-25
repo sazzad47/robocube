@@ -5,7 +5,6 @@ import {
   Row,
 } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
-import ScanID from "./ScanID";
 import DataTable from "./DataTable";
 
 const Announcement = () => {

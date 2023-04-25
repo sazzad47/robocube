@@ -1,117 +1,128 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, _ } from "gridjs-react";
-import { Card, CardBody, CardHeader } from "reactstrap";
+import { Card, CardBody, CardHeader, Input } from "reactstrap";
+import DeleteModal from "../../../Components/Common/DeleteModal";
+import AddNew from "./AddNew";
 
-const usersData = [
+const tableData = [
   {
-    date: "2022-04-23",
-    name: "John Doe",
-    email: "johndoe@example.com",
-    position: "Manager",
+    serialNo: 1,
+    status: "Active",
+    author: "John Doe",
+    createdOn: "2022-04-01",
+    imageUrl: "https://via.placeholder.com/50x50/0000FF/FFFFFF?text=1",
   },
   {
-    date: "2022-04-24",
-    name: "Jane Smith",
-    email: "janesmith@example.com",
-    position: "Developer",
+    serialNo: 2,
+    status: "Inactive",
+    author: "Jane Smith",
+    createdOn: "2022-03-28",
+    imageUrl: "https://via.placeholder.com/50x50/FF0000/FFFFFF?text=2",
   },
   {
-    date: "2022-04-25",
-    name: "Bob Johnson",
-    email: "bobjohnson@example.com",
-    position: "Designer",
+    serialNo: 3,
+    status: "Active",
+    author: "Bob Johnson",
+    createdOn: "2022-03-23",
+    imageUrl: "https://via.placeholder.com/50x50/00FF00/FFFFFF?text=3",
   },
   {
-    date: "2022-04-26",
-    name: "Alice Lee",
-    email: "alicelee@example.com",
-    position: "Marketing",
-  },
-  {
-    date: "2022-04-27",
-    name: "Mike Brown",
-    email: "mikebrown@example.com",
-    position: "Manager",
-  },
-  {
-    date: "2022-04-28",
-    name: "Sarah Adams",
-    email: "sarahadams@example.com",
-    position: "Developer",
-  },
-  {
-    date: "2022-04-29",
-    name: "Tom Davis",
-    email: "tomdavis@example.com",
-    position: "Designer",
-  },
-  {
-    date: "2022-04-30",
-    name: "Kate Lee",
-    email: "katelee@example.com",
-    position: "Marketing",
-  },
-  {
-    date: "2022-05-01",
-    name: "Jake Smith",
-    email: "jakesmith@example.com",
-    position: "Developer",
-  },
-  {
-    date: "2022-05-02",
-    name: "Emily Taylor",
-    email: "emilytaylor@example.com",
-    position: "Manager",
+    serialNo: 4,
+    status: "Inactive",
+    author: "Sarah Lee",
+    createdOn: "2022-03-17",
+    imageUrl: "https://via.placeholder.com/50x50/FFFF00/000000?text=4",
   },
 ];
 
+const tableDataWithImage = tableData.map((item) => ({
+  ...item,
+  image: (
+    <img
+      src={item.imageUrl}
+      alt="Sample"
+      className="img-fluid"
+    />
+  ),
+}));
+
+
 const DataTable = () => {
+
+  const [deleteModal, setDeleteModal] = useState(false);
+
   const nameSearch = (cell, searchValue) => {
     return cell.toLowerCase().includes(searchValue.toLowerCase());
   };
 
+  const ActionCell = () => (
+    <div className="d-flex justify-content-end">
+      <button className="btn link-primary me-2">
+      <i className='bx bx-sm bx-edit'></i>
+      </button>
+      <button onClick={()=> setDeleteModal(true)} className="btn link-danger">
+      <i className='bx bx-sm bx-trash'></i>
+      </button>
+    </div>
+  );
+
   return (
     <React.Fragment>
       <Card>
+      <DeleteModal
+        show={deleteModal}
+        onDeleteClick={() => setDeleteModal(false)}
+        onCloseClick={() => setDeleteModal(false)}
+      />
         <CardHeader>
-          <h4 className="card-title mb-0">Search</h4>
+          <div className="w-100 d-flex align-items-center justify-content-between">
+            <h4 className="card-title mb-0">Slideshow</h4>
+            <AddNew/>
+          </div>
         </CardHeader>
         <CardBody>
           <div id="table-search">
             <Grid
-              data={usersData}
+              data={tableDataWithImage}
               columns={[
                 {
-                  name: "Date",
+                  name: "Serial No",
                   formatter: (cell) =>
                     _(<span className="fw-semibold">{cell}</span>),
                 },
                 {
-                  name: "Name",
+                  name: "Image",
+                  formatter: (cell) => _(cell),
+                },
+                {
+                  name: "Status",
+                  formatter: (cell) => _(
+                    <div className="form-check form-switch form-switch-md">
+                      <Input
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id={`SwitchCheck${cell}`}
+                        defaultChecked={cell === "Active"}
+                      />
+                    </div>
+                  ),
+                },
+                
+                {
+                  name: "Author",
+                  formatter: (cell) => _(<a href="/#"> {cell} </a>),
                   search: {
                     enabled: true,
                     method: nameSearch,
                   },
                 },
                 {
-                  name: "Email",
-                  formatter: (cell) => _(<a href="/#"> {cell} </a>),
+                  name: "Created On",
                 },
-                "Position",
                 {
-                  name: "Action",
-                  sort: false,
-                  width: "120px",
-                  formatter: (cell) =>
-                    _(
-                      <a
-                        href="/#"
-                        className="text-reset text-decoration-underline"
-                      >
-                        {" "}
-                        Details{" "}
-                      </a>
-                    ),
+                  name: "Actions",
+                  formatter: (cell, row) => _(<ActionCell id={row.serialNo} />),
                 },
               ]}
               search={true}
