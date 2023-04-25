@@ -145,7 +145,7 @@ const DataTable = () => {
               divClass="table-responsive mb-1"
               tableClass="mb-0 align-middle table-bordered"
               theadClass="table-light text-muted"
-              isAddNew={true}
+              isAddNew={false}
               SearchPlaceholder="Type a keyword..."
             />
           </div>
