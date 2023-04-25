@@ -90,6 +90,8 @@ const AddNew = () => {
         >
           <ModalBody>
             <div>
+              <p className="w-100 bg-soft-info p-3 text-danger">image with a size of 920px x 200px is highly recommended.</p>
+
               <Dropzone
                 onDrop={(acceptedFiles) => {
                   handleAcceptedFiles(acceptedFiles);
