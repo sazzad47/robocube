@@ -1,122 +1,152 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Grid, _ } from "gridjs-react";
-import { Card, CardBody, CardHeader } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import TableContainer from "../../../Components/Common/TableContainer";
+import { useMemo } from "react";
+import DeleteModal from "../../../Components/Common/DeleteModal";
 
-const usersData = [
+const tableData = [
   {
-    date: "2022-04-23",
-    name: "John Doe",
-    email: "johndoe@example.com",
-    position: "Manager",
+    employee: "John Doe",
+    duration: "2 days",
+    type: "Sick Leave",
+    days: "2022-03-15 to 2022-03-16",
+    reason: "Fever and cold",
+    file: "file.pdf",
+    status: "Approved",
   },
   {
-    date: "2022-04-24",
-    name: "Jane Smith",
-    email: "janesmith@example.com",
-    position: "Developer",
+    employee: "Jane Doe",
+    duration: "1 day",
+    type: "Casual Leave",
+    days: "2022-04-05",
+    reason: "Personal",
+    file: "",
+    status: "Pending",
   },
   {
-    date: "2022-04-25",
-    name: "Bob Johnson",
-    email: "bobjohnson@example.com",
-    position: "Designer",
+    employee: "Bob Smith",
+    duration: "3 days",
+    type: "Paid Leave",
+    days: "2022-05-10 to 2022-05-12",
+    reason: "Vacation",
+    file: "",
+    status: "Rejected",
   },
-  {
-    date: "2022-04-26",
-    name: "Alice Lee",
-    email: "alicelee@example.com",
-    position: "Marketing",
-  },
-  {
-    date: "2022-04-27",
-    name: "Mike Brown",
-    email: "mikebrown@example.com",
-    position: "Manager",
-  },
-  {
-    date: "2022-04-28",
-    name: "Sarah Adams",
-    email: "sarahadams@example.com",
-    position: "Developer",
-  },
-  {
-    date: "2022-04-29",
-    name: "Tom Davis",
-    email: "tomdavis@example.com",
-    position: "Designer",
-  },
-  {
-    date: "2022-04-30",
-    name: "Kate Lee",
-    email: "katelee@example.com",
-    position: "Marketing",
-  },
-  {
-    date: "2022-05-01",
-    name: "Jake Smith",
-    email: "jakesmith@example.com",
-    position: "Developer",
-  },
-  {
-    date: "2022-05-02",
-    name: "Emily Taylor",
-    email: "emilytaylor@example.com",
-    position: "Manager",
-  },
+
+  // Add more data as needed
 ];
 
 const DataTable = () => {
-  const nameSearch = (cell, searchValue) => {
-    return cell.toLowerCase().includes(searchValue.toLowerCase());
-  };
+
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const ActionCell = () => (
+    <div className="d-flex justify-content-end">
+      <button onClick={()=> setDeleteModal(true)} className="btn link-danger">
+      <i className='bx bx-xs bx-trash'></i>
+      </button>
+    </div>
+  );
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Employee",
+        accessor: "employee",
+        filterable: false,
+      },
+      {
+        Header: "Duration",
+        accessor: "duration",
+        filterable: false,
+      },
+      {
+        Header: "Type",
+        accessor: "type",
+        filterable: false,
+      },
+      {
+        Header: "Days",
+        accessor: "days",
+        filterable: false,
+      },
+      {
+        Header: "Reason",
+        accessor: "reason",
+        filterable: false,
+      },
+      {
+        Header: "File",
+        accessor: "file",
+        filterable: false,
+        Cell: () => {
+          return (
+            <Link to="#">
+              <i className="ri-download-2-line fs-17 lh-1 align-middle"></i>
+            </Link>
+          );
+        },
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        filterable: false,
+        Cell: (cell) => {
+          return (
+            <span
+              className={`${
+                cell.value === "Rejected"
+                  ? "badge badge-soft-danger": cell.value === "Pending"? "badge badge-soft-info"
+                  : "badge badge-soft-success"
+              }`}
+            >
+              {cell.value}
+            </span>
+          );
+        },
+      },
+      {
+        Header: "Action",
+        Cell: (cell) => {
+          return (
+            <ActionCell id={cell.row.original._id} />
+          );
+        },
+      },
+    ],
+    []
+  );
 
   return (
     <React.Fragment>
+       <DeleteModal
+        show={deleteModal}
+        onDeleteClick={() => setDeleteModal(false)}
+        onCloseClick={() => setDeleteModal(false)}
+      />
       <Card>
-        <CardHeader>
-          <h4 className="card-title mb-0">Search</h4>
-        </CardHeader>
         <CardBody>
           <div id="table-search">
-            <Grid
-              data={usersData}
-              columns={[
-                {
-                  name: "Date",
-                  formatter: (cell) =>
-                    _(<span className="fw-semibold">{cell}</span>),
-                },
-                {
-                  name: "Name",
-                  search: {
-                    enabled: true,
-                    method: nameSearch,
-                  },
-                },
-                {
-                  name: "Email",
-                  formatter: (cell) => _(<a href="/#"> {cell} </a>),
-                },
-                "Position",
-                {
-                  name: "Action",
-                  sort: false,
-                  width: "120px",
-                  formatter: (cell) =>
-                    _(
-                      <a
-                        href="/#"
-                        className="text-reset text-decoration-underline"
-                      >
-                        {" "}
-                        Details{" "}
-                      </a>
-                    ),
-                },
-              ]}
-              search={true}
-              sort={true}
-              pagination={{ enabled: true, limit: 5 }}
+            <TableContainer
+              columns={columns}
+              data={tableData || []}
+              isGlobalFilter={true}
+              customPageSize={10}
+              divClass="table-responsive mb-1"
+              tableClass="mb-0 align-middle table-bordered"
+              theadClass="table-light text-muted"
+              isAddNew={true}
+              SearchPlaceholder="Type a keyword..."
             />
           </div>
         </CardBody>

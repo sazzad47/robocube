@@ -5,22 +5,16 @@ import {
   Row,
 } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
-import ScanID from "./ScanID";
 import DataTable from "./DataTable";
 
-const Daily = () => {
-  document.title = "Attendance-Daily | Robocube HR";
+const Approvals = () => {
+  document.title = "Leaves-Approvals | Robocube HR";
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Daily" pageTitle="Attendance" />
-          <Row>
-            <Col xxl={6}>
-              <ScanID/>
-            </Col>
-          </Row>
+          <BreadCrumb title="Approvals" pageTitle="Leaves" />
           <Row>
             <Col xxl={6}>
               <DataTable/>
@@ -32,4 +26,4 @@ const Daily = () => {
   );
 };
 
-export default Daily;
+export default Approvals;
