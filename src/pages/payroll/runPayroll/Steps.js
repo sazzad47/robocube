@@ -1,26 +1,21 @@
 import React from "react";
-import { Progress } from "reactstrap";
+import Stepper from "react-stepper-horizontal";
 
 const Steps = () => {
   return (
     <React.Fragment>
-      <div className="live-preview mb-3">
-        <Progress multi className="progress-step-arrow progress-info">
-          <Progress bar value="35">
-            Select a Month
-          </Progress>
-          <Progress bar value="35">
-            Review & Confirm
-          </Progress>
-          <Progress bar value="35" color="light" className="text-dark">
-            Payment & Submission
-          </Progress>
-        </Progress>
-      </div>
-      <div>
+      <Stepper
+        steps={[
+          { title: "Select a Month" },
+          { title: "Review & Confirm" },
+          { title: "Payment & Submission" },
+        ]}
+        activeStep={1}
+      />
+      <div className="mt-5">
         <p className="w-100 p-3 bg-soft-warning text-dark">
-          You are viewing the payroll of April, 2023. Make sure the employeers
-          has active and joined.
+          You are viewing the payroll of April, 2023. Make sure the employee
+          is active and joined.
         </p>
       </div>
     </React.Fragment>

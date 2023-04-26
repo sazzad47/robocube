@@ -16,6 +16,7 @@ import { DefaultColumnFilter } from "./filters";
 // Define a default UI for filtering
 function GlobalFilter({
   globalFilter,
+  isGlobalFilter,
   setGlobalFilter,
   isAddNew,
   addNewTitle,
@@ -32,20 +33,22 @@ function GlobalFilter({
       <CardBody className="border border-dashed border-end-0 border-start-0">
         <Row className="g-3">
           <Col>
-            <div className="search-box me-2 mb-2 d-inline-block">
-              <input
-                onChange={(e) => {
-                  setValue(e.target.value);
-                  onChange(e.target.value);
-                }}
-                id="search-bar-0"
-                type="text"
-                className="form-control search /"
-                placeholder={SearchPlaceholder}
-                value={value || ""}
-              />
-              <i className="bx bx-search-alt search-icon"></i>
-            </div>
+            {isGlobalFilter && (
+              <div className="search-box me-2 mb-2 d-inline-block">
+                <input
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                    onChange(e.target.value);
+                  }}
+                  id="search-bar-0"
+                  type="text"
+                  className="form-control search /"
+                  placeholder={SearchPlaceholder}
+                  value={value || ""}
+                />
+                <i className="bx bx-search-alt search-icon"></i>
+              </div>
+            )}
           </Col>
           {isAddNew && (
             <div className="col-sm-auto ms-auto">
@@ -131,16 +134,15 @@ const TableContainer = ({
   return (
     <Fragment>
       <Row className="mb-3">
-        {isGlobalFilter && (
-          <GlobalFilter
-            globalFilter={state.globalFilter}
-            setGlobalFilter={setGlobalFilter}
-            isAddNew={isAddNew}
-            addNewTitle={addNewTitle}
-            addNewFunction={addNewFunction}
-            SearchPlaceholder={SearchPlaceholder}
-          />
-        )}
+        <GlobalFilter
+          globalFilter={state.globalFilter}
+          setGlobalFilter={setGlobalFilter}
+          isGlobalFilter={isGlobalFilter}
+          isAddNew={isAddNew}
+          addNewTitle={addNewTitle}
+          addNewFunction={addNewFunction}
+          SearchPlaceholder={SearchPlaceholder}
+        />
       </Row>
 
       <div className={divClass}>
