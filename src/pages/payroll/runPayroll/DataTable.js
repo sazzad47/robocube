@@ -47,6 +47,18 @@ const tableData = [
 const DataTable = () => {
   const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [checkedAll, setCheckedAll] = useState(false);
+  const [checkedIndex, setCheckedIndex] = useState(-1);
+
+  const handleCheckAll = (event) => {
+    const { checked } = event.target;
+    setCheckedAll(checked);
+  };
+
+  const handleCheck = (e, i) => {
+    const isChecked = e.target.checked;
+    setCheckedIndex(isChecked ? i : -1);
+  };
 
   const toggle = useCallback(() => {
     if (modal) {
@@ -121,6 +133,8 @@ const DataTable = () => {
                         type="checkbox"
                         value=""
                         id="cardtableCheck03"
+                        onChange={handleCheckAll}
+                        checked={checkedAll}
                       />
                       <label
                         className="form-check-label"
@@ -146,11 +160,13 @@ const DataTable = () => {
                           className="form-check-input"
                           type="checkbox"
                           value=""
-                          id="cardtableCheck03"
+                          id={`cardtableCheck${i}`}
+                          checked={(checkedIndex === i) || checkedAll}
+                          onChange={(e) => handleCheck(e, i)}
                         />
                         <label
                           className="form-check-label"
-                          htmlFor="cardtableCheck03"
+                          htmlFor={`cardtableCheck${i}`}
                         ></label>
                       </div>
                     </td>
