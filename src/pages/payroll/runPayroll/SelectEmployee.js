@@ -10,44 +10,45 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-//flatpickr
-import Flatpickr from "react-flatpickr";
-import * as monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
+import Select from "react-select";
 
-import * as Yup from "yup";
 //formik
 import { useFormik } from "formik";
 
-const SelectMonth = ({ modal, setModal, toggle }) => {
+const SelectEmployee = ({ modal, setModal, toggle }) => {
   const navigate = useNavigate();
 
+  const employees = [
+    { label: "John Doe", value: "John Doe" },
+    { label: "Jane Smith", value: "Jane Smith" },
+    { label: "Bob Johnson", value: "Bob Johnson" },
+    { label: "Alice Lee", value: "Alice Lee" },
+    { label: "Mike Davis", value: "Mike Davis" },
+    // add more employee objects as needed
+  ];
   const validation = useFormik({
     enableReinitialize: true,
 
     initialValues: {
-      month: "",
+      employee: "",
     },
-    validationSchema: Yup.object({
-      month: Yup.string().required("Please select a month"),
-    }),
+
     onSubmit: () => {
-      navigate("/payroll/run")
+      navigate("/payroll/run");
       validation.resetForm();
       setModal(false);
     },
-    
   });
 
-  const handleMonthChange = (selectedMonths) => {
-    const month = selectedMonths[0];
-    validation.setFieldValue("month", month);
-  }
+  const handleSelectEmployee = (data) => {
+    validation.setFieldValue("employee", data);
+  };
 
   return (
     <React.Fragment>
       <Modal id="showModal" isOpen={modal} toggle={toggle} centered>
         <ModalHeader className="bg-light p-3" toggle={toggle}>
-          Select Month
+          Add Employee
         </ModalHeader>
         <Form
           className="tablelist-form"
@@ -60,39 +61,26 @@ const SelectMonth = ({ modal, setModal, toggle }) => {
           <ModalBody>
             <Row className="mb-3">
               <Col>
-                <Label htmlFor="month" className="form-label">
-                  Month
+                <Label htmlFor="employee" className="form-label">
+                  Employee
                 </Label>
-                <Flatpickr
-                  name="month"
-                  // type="date"
-                  className="form-control"
-                  id="datepicker-publish-input"
-                  placeholder="Select a month"
-                  options={{
-                    altInput: true,
-                    plugins: [
-                      new monthSelectPlugin({
-                        shorthand: true,
-                        dateFormat: "m.y",
-                        altFormat: "F Y",
-                      }),
-                    ],
-                    dateFormat: "m.y",
-                    defaultDate: "today",
-                  }}
-                  onChange={handleMonthChange}
+                <Select
+                  name="employee"
+                  defaultValue={employees[0]}
+                  value={validation.values.employee}
+                  onChange={handleSelectEmployee}
+                  options={employees}
+                  isSearchable={true}
                   onBlur={validation.handleBlur}
-                  value={validation.values.month}
                   invalid={
-                    validation.touched.month && validation.errors.month
+                    validation.touched.employee && validation.errors.employee
                       ? true
                       : false
                   }
                 />
-                {validation.touched.month && validation.errors.month ? (
+                {validation.touched.employee && validation.errors.employee ? (
                   <FormFeedback type="invalid">
-                    {validation.errors.month}
+                    {validation.errors.employee}
                   </FormFeedback>
                 ) : null}
               </Col>
@@ -104,13 +92,18 @@ const SelectMonth = ({ modal, setModal, toggle }) => {
                 type="button"
                 className="btn btn-light"
                 onClick={() => {
+                  validation.resetForm();
                   setModal(false);
                 }}
               >
                 Close
               </button>
-              <button type="submit" className="btn btn-success">
-                Run Payroll
+              <button
+                disabled={!validation.values.employee}
+                type="submit"
+                className="btn btn-success"
+              >
+                Add
               </button>
             </div>
           </div>
@@ -120,4 +113,4 @@ const SelectMonth = ({ modal, setModal, toggle }) => {
   );
 };
 
-export default SelectMonth;
+export default SelectEmployee;

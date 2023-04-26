@@ -64,17 +64,16 @@ const FormComponent = () => {
         status: values.status,
         remark: values.remark,
       };
-      console.log(data);
       history("/trip");
       validation.resetForm();
     },
   });
 
-  function handleStartDateChange(selectedDates) {
+  const handleStartDateChange = (selectedDates) => {
     const date = selectedDates[0];
     validation.setFieldValue("startDate", date);
   }
-  function handleEndDateChange(selectedDates) {
+  const handleEndDateChange = (selectedDates) => {
     const date = selectedDates[0];
     validation.setFieldValue("endDate", date);
   }

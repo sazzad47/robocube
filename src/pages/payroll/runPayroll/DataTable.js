@@ -4,10 +4,10 @@ import {
   CardBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import TableContainer from "../../Components/Common/TableContainer";
+import TableContainer from "../../../Components/Common/TableContainer";
 import { useMemo } from "react";
-import DeleteModal from "../../Components/Common/DeleteModal";
-import SelectMonth from "./SelectMonth";
+import DeleteModal from "../../../Components/Common/DeleteModal";
+import SelectEmployee from "./SelectEmployee";
 import { useCallback } from "react";
 
 const tableData = [
@@ -172,7 +172,7 @@ const DataTable = () => {
         onDeleteClick={() => setDeleteModal(false)}
         onCloseClick={() => setDeleteModal(false)}
       />
-      <SelectMonth modal={modal} setModal={setModal} toggle={toggle} />
+      <SelectEmployee modal={modal} setModal={setModal} toggle={toggle} />
       <Card>
         <CardBody>
           <div id="table-search">
@@ -185,7 +185,7 @@ const DataTable = () => {
               tableClass="mb-0 align-middle table-borderless"
               theadClass="table-light text-muted"
               isAddNew={true}
-              addNewTitle="Run Payroll"
+              addNewTitle="Add New"
               addNewFunction={runPayroll}
               SearchPlaceholder="Type a keyword..."
             />

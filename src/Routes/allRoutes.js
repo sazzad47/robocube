@@ -18,6 +18,7 @@ import AddNewAdvanceSalary from "../pages/advanceSalary/addNew";
 import Trip from "../pages/trip";
 import AddNewTrip from "../pages/trip/addNew";
 import Payroll from "../pages/payroll";
+import RunPayroll from "../pages/payroll/runPayroll";
 
 
 const routes = [
@@ -38,6 +39,7 @@ const routes = [
   { path: "/trip", component: <Trip /> },
   { path: "/trip/add", component: <AddNewTrip /> },
   { path: "/payroll", component: <Payroll /> },
+  { path: "/payroll/run", component: <RunPayroll /> },
   
 
 
