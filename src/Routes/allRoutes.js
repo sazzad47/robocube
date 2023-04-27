@@ -22,6 +22,7 @@ import EditPayroll from "../pages/payroll/edit";
 import ViewPayroll from "../pages/payroll/view";
 import GeneralTimetable from "../pages/timeTable/general";
 import DriverTimetable from "../pages/timeTable/driver";
+import AddNewTimetable from "../pages/timeTable/general/addNew";
 
 
 const routes = [
@@ -46,6 +47,7 @@ const routes = [
   { path: "/payroll/:id/view", component: <ViewPayroll /> },
   { path: "/timetable/general", component: <GeneralTimetable /> },
   { path: "/timetable/driver", component: <DriverTimetable /> },
+  { path: "/timetable/add", component: <AddNewTimetable /> },
   
 
 

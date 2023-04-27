@@ -10,19 +10,11 @@ import {
   usePagination,
   useRowSelect,
 } from "react-table";
-import { Table, Row, Col, Button, Input, CardBody } from "reactstrap";
+import { Table, Input } from "reactstrap";
 import { DefaultColumnFilter } from "./filters";
 
 // Define a default UI for filtering
-function GlobalFilter({
-  globalFilter,
-  isGlobalFilter,
-  setGlobalFilter,
-  isAddNew,
-  addNewTitle,
-  addNewFunction,
-  SearchPlaceholder,
-}) {
+function GlobalFilter({ globalFilter, isGlobalFilter, setGlobalFilter }) {
   const [value, setValue] = React.useState(globalFilter);
   const onChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
@@ -30,36 +22,21 @@ function GlobalFilter({
 
   return (
     <React.Fragment>
-      <CardBody className="border border-dashed border-end-0 border-start-0">
-        <Row className="g-3">
-          <Col>
-            {isGlobalFilter && (
-              <div className="search-box me-2 mb-2 d-inline-block">
-                <input
-                  onChange={(e) => {
-                    setValue(e.target.value);
-                    onChange(e.target.value);
-                  }}
-                  id="search-bar-0"
-                  type="text"
-                  className="form-control search /"
-                  placeholder={SearchPlaceholder}
-                  value={value || ""}
-                />
-                <i className="bx bx-search-alt search-icon"></i>
-              </div>
-            )}
-          </Col>
-          {isAddNew && (
-            <div className="col-sm-auto ms-auto">
-              <button onClick={addNewFunction} className="btn btn-success">
-                <i className="ri-add-line align-bottom me-1"></i>{" "}
-                {addNewTitle ? addNewTitle : "Add New"}
-              </button>
-            </div>
-          )}
-        </Row>
-      </CardBody>
+      {isGlobalFilter && (
+        <div className="d-flex gap-2 align-items-center">
+          <span>Search:</span>
+          <input
+            onChange={(e) => {
+              setValue(e.target.value);
+              onChange(e.target.value);
+            }}
+            id="search-bar-0"
+            type="text"
+            className="form-control"
+            value={value || ""}
+          />
+        </div>
+      )}
     </React.Fragment>
   );
 }
@@ -68,9 +45,6 @@ const TableContainer = ({
   columns,
   data,
   isGlobalFilter,
-  isAddNew,
-  addNewTitle,
-  addNewFunction,
   customPageSize,
   tableClass,
   theadClass,
@@ -87,8 +61,6 @@ const TableContainer = ({
     prepareRow,
     canPreviousPage,
     canNextPage,
-    pageOptions,
-    gotoPage,
     nextPage,
     previousPage,
     setPageSize,
@@ -106,7 +78,8 @@ const TableContainer = ({
         selectedRowIds: 0,
         sortBy: [
           {
-            desc: true,
+            id: columns[0].accessor,
+            asc: true,
           },
         ],
       },
@@ -120,34 +93,52 @@ const TableContainer = ({
   );
 
   const generateSortingIndicator = (column) => {
-    return column.isSorted ? (column.isSortedDesc ? " " : "") : "";
+    return column.isSorted ? (
+      column.isSortedDesc ? (
+        <span className="ms-1">&darr;</span>
+      ) : (
+        <span className="ms-1">&uarr;</span>
+      )
+    ) : column.Header === "Action" ? (
+      ""
+    ) : (
+      <span className="ms-1">&uarr;&darr;</span>
+    );
   };
 
   const onChangeInSelect = (event) => {
     setPageSize(Number(event.target.value));
   };
-  const onChangeInInput = (event) => {
-    const page = event.target.value ? Number(event.target.value) - 1 : 0;
-    gotoPage(page);
-  };
 
   return (
     <Fragment>
-      <Row className="mb-3">
-        <GlobalFilter
-          globalFilter={state.globalFilter}
-          setGlobalFilter={setGlobalFilter}
-          isGlobalFilter={isGlobalFilter}
-          isAddNew={isAddNew}
-          addNewTitle={addNewTitle}
-          addNewFunction={addNewFunction}
-          SearchPlaceholder={SearchPlaceholder}
-        />
-      </Row>
+      <div className="d-flex align-items-center justify-content-between my-3">
+        <div>
+          <select
+            className="form-select"
+            value={pageSize}
+            onChange={onChangeInSelect}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <GlobalFilter
+            globalFilter={state.globalFilter}
+            setGlobalFilter={setGlobalFilter}
+            isGlobalFilter={isGlobalFilter}
+            SearchPlaceholder={SearchPlaceholder}
+          />
+        </div>
+      </div>
 
       <div className={divClass}>
         <Table hover {...getTableProps()} className={tableClass}>
-          <thead className={theadClass}>
+          <thead className={theadClass} >
             {headerGroups.map((headerGroup) => (
               <tr
                 className={trClass}
@@ -191,52 +182,29 @@ const TableContainer = ({
 
       <div className="d-flex justify-content-between align-items-center p-2">
         <div>
-          <select
-            className="form-select"
-            value={pageSize}
-            onChange={onChangeInSelect}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
+          <div>
+            Showing {pageIndex * pageSize + 1} to{" "}
+            {pageIndex * pageSize + page.length} of {data.length} entries
+          </div>
         </div>
-        <div className="d-flex gap-2 align-items-center">
-          <Button
-            color="primary"
+        <div className="d-flex align-items-center">
+          <button
+            className="btn btn-white"
             onClick={previousPage}
             disabled={!canPreviousPage}
           >
-            {"<"}
-          </Button>
-
-          <div className="col-md-auto d-none d-md-block">
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>
-          </div>
-          <div className="col-md-auto">
-            <Input
-              type="number"
-              min={1}
-              style={{ width: 70 }}
-              max={pageOptions.length}
-              defaultValue={pageIndex + 1}
-              onChange={onChangeInInput}
-            />
-          </div>
+            Previous
+          </button>
+          <div className="page-number btn ">{pageIndex + 1}</div>
           <div className="col-md-auto">
             <div className="d-flex gap-1">
-              <Button
-                color="primary"
+              <button
+                className="btn btn-white"
                 onClick={nextPage}
                 disabled={!canNextPage}
               >
-                {">"}
-              </Button>
+                Next
+              </button>
             </div>
           </div>
         </div>

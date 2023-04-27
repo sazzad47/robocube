@@ -66,10 +66,10 @@
 
     .fc-daygrid-day {
         &.fc-day-today {
-            background-color: rgba($primary, 0.1);
+            background-color: #6c757d;
     
             .fc-daygrid-day-number {
-                background-color: $primary;
+                background-color: #6c757d;
                 color: $white;
             }
         }
@@ -77,13 +77,13 @@
 
     .fc-daygrid-day {
         &.fc-day-today {
-            background-color: rgba($primary, 0.1);
+            background-color: #6c757d;
         }
     }
     
     .fc-timegrid-col {
         &.fc-day-today {
-            background-color: rgba($primary, 0.1);
+            background-color: #6c757d;
         }
     }
 
@@ -152,7 +152,7 @@
 }
 
 .fc-button {
-    background: var(--#{$prefix}card-bg-custom);
+    background-color: #6c757d;
     border-color: $border-color;
     color: $gray-700;
     text-transform: capitalize;
@@ -164,7 +164,7 @@
 .fc-state-down,
 .fc-state-active,
 .fc-state-disabled {
-    background-color: $primary;
+    background-color: #6c757d;
     color: $white;
     text-shadow: none;
 }
@@ -181,12 +181,12 @@
 
 .fc-event,
 .fc-event-dot {
-    background-color: $primary;
+    background-color: #6c757d;
 }
 
 .fc-daygrid-dot-event.fc-event-mirror,
 .fc-daygrid-dot-event:hover {
-    background-color: $primary;
+    background-color: #6c757d;
 }
 
 // .fc-daygrid-dot-event {
@@ -264,24 +264,31 @@
     .btn-group {
         box-shadow: $element-shadow;
         .btn {
-            color: $secondary;
-            background-color: rgba($secondary, 0.15);
-            border: none;
-            box-shadow: none;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: #fff;
 
             &:hover,
             &.active {
-                color: $white;
-                background-color: $secondary;
+                color: #fff;
+                background-color: #5a6268;
+                border-color: #545b62;
             }
         }
     }
 
     .fc-today-button {
-        background-color: $secondary !important;
-        border: $secondary;
+       background-color: #6c757d;
+       border-color: #6c757d;
+       color: #fff;
     }
 }
+
+.fc-toolbar-chunk:nth-of-type(3) {
+    .btn-group {
+        gap: 7px;
+    }
+  }
 
 .fc-toolbar {
     @media (max-width: 575.98px) {

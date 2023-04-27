@@ -2,22 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 
-const BreadCrumb = ({ title, pageTitle }) => {
+const BreadCrumb = ({ title, isAddNew, addNewTitle, addNewFunction }) => {
   return (
     <React.Fragment>
       <Row>
         <Col xs={12}>
-          <div className="page-title-box d-sm-flex align-items-center justify-content-between">
+          <div className="d-sm-flex align-items-center justify-content-between">
             <h4 className="mb-sm-0">{title}</h4>
 
-            {pageTitle && (
-              <div className="page-title-right">
-                <ol className="breadcrumb m-0">
-                  <li className="breadcrumb-item">
-                    <Link to="#">{pageTitle}</Link>
-                  </li>
-                  <li className="breadcrumb-item active">{title}</li>
-                </ol>
+            {isAddNew && (
+              <div className="col-sm-auto ms-auto">
+                <button onClick={addNewFunction} className="fs-16 d-flex align-items-center gap-2 btn btn-primary">
+                <i className='bx bxs-plus-circle'></i>{" "}
+
+                  <div>{addNewTitle ? addNewTitle : "Add New"}</div>
+                </button>
               </div>
             )}
           </div>

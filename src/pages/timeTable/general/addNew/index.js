@@ -4,18 +4,16 @@ import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import FormComponent from "./FormComponent";
 
 const AddNew = () => {
-  document.title = "Add Trip | Robocube HR";
+  document.title = "Add Timetable | Robocube HR";
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Add Trip" pageTitle="Trip" />
+          <BreadCrumb title="Add Timetable" />
           <Row>
-            <Col xxl={6}  className="d-flex justify-content-center" >
-              <div style={{width: "100%", maxWidth: "620px"}}>
-                <FormComponent />
-              </div>
+            <Col xxl={6}>
+              <FormComponent />
             </Col>
           </Row>
         </Container>
