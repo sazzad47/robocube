@@ -31,7 +31,7 @@ const SelectMonth = ({ modal, setModal, toggle }) => {
       month: Yup.string().required("Please select a month"),
     }),
     onSubmit: () => {
-      navigate("/payroll/run")
+      navigate("/payroll/123/edit")
       validation.resetForm();
       setModal(false);
     },

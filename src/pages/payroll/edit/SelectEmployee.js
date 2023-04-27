@@ -34,7 +34,7 @@ const SelectEmployee = ({ modal, setModal, toggle }) => {
     },
 
     onSubmit: () => {
-      navigate("/payroll/run");
+      navigate("/payroll");
       validation.resetForm();
       setModal(false);
     },

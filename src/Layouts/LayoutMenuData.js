@@ -229,13 +229,13 @@ const Navdata = () => {
         {
           id: "timetable-general",
           label: "General",
-          link: "/timetable-general",
+          link: "/timetable/general",
           parentId: "timetable",
         },
         {
           id: "timetable-driver",
           label: "Driver",
-          link: "/timetable-driver",
+          link: "/timetable/driver",
           parentId: "timetable",
         },
     

@@ -1,81 +1,90 @@
 import React, { useState } from "react";
 import { Card, CardBody, Table } from "reactstrap";
-import { Link } from "react-router-dom";
-import DeleteModal from "../../../Components/Common/DeleteModal";
-import SelectEmployee from "./SelectEmployee";
-import { useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import avatar1 from "../../../assets/images/users/avatar-3.jpg";
 import { Tooltip } from "react-tooltip";
+import ConfirmationModal from "../../../Components/Common/ConfirmationModal";
 
 const tableData = [
   {
+    no: 1,
     employee: {
       name: "John Doe",
       position: "Manager",
-      general: "Full-time",
+      general: "Full Time",
       salary_basis: "Monthly",
-      salary_amount: 5000,
-      public_holiday: 12,
-      working_days: 22,
+      salary_amount: "5000",
+      public_holiday: "12",
+      working_days: "22",
     },
     basic_salary: 5000,
-    additions: 1000,
-    gross_pay: 6000,
-    deductoins: 500,
-    net_pay: 5500,
+    additions: 500,
+    gross_pay: 5500,
+    deductoins: 750,
+    net_pay: 4750,
+    hrdf: 100,
   },
   {
+    no: 2,
     employee: {
       name: "Jane Smith",
-      position: "Sales Executive",
-      general: "Part-time",
-      salary_basis: "Hourly",
-      salary_amount: 20,
-      public_holiday: 5,
-      working_days: 18,
+      position: "Developer",
+      general: "Full Time",
+      salary_basis: "Monthly",
+      salary_amount: "4000",
+      public_holiday: "12",
+      working_days: "22",
     },
-    basic_salary: 1440,
-    additions: 200,
-    gross_pay: 1640,
-    deductoins: 50,
-    net_pay: 1590,
+    basic_salary: 4000,
+    additions: 250,
+    gross_pay: 4250,
+    deductoins: 500,
+    net_pay: 3750,
+    hrdf: 80,
   },
-  // Add more objects to represent additional rows
+  {
+    no: 3,
+    employee: {
+      name: "Bob Johnson",
+      position: "Designer",
+      general: "Part Time",
+      salary_basis: "Hourly",
+      salary_amount: "50",
+      public_holiday: "0",
+      working_days: "12",
+    },
+    basic_salary: 2400,
+    additions: 100,
+    gross_pay: 2500,
+    deductoins: 250,
+    net_pay: 2250,
+    hrdf: 40,
+  },
 ];
 
 const DataTable = () => {
-  const [modal, setModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [checkedAll, setCheckedAll] = useState(false);
-  const [checkedIndex, setCheckedIndex] = useState(-1);
+  const navigate = useNavigate();
 
-  const handleCheckAll = (event) => {
-    const { checked } = event.target;
-    setCheckedAll(checked);
-  };
-
-  const handleCheck = (e, i) => {
-    const isChecked = e.target.checked;
-    setCheckedIndex(isChecked ? i : -1);
-  };
-
-  const toggle = useCallback(() => {
-    if (modal) {
-      setModal(false);
-    } else {
-      setModal(true);
-    }
-  }, [modal]);
-
-  const runPayroll = () => {
-    setModal(true);
-  };
+  const [confirmModal, setConfirmModal] = useState(false);
 
   const ActionCell = () => (
-    <div className="d-flex justify-content-center">
-      <button className="btn link-danger">
-        <i className="bx bx-x-circle bx-sm"></i>
+    <div className="d-flex flex-column justify-content-center">
+      <button className="btn p-1 btn-info email">
+      <i className='bx fs-19 bx-envelope'></i>
+      <Tooltip anchorSelect=".email" place="top">Send Email</Tooltip>
+      </button>
+      <button className="btn p-1 btn-info whatsapp">
+      <i className='bx fs-19 bxl-whatsapp'></i>
+      <Tooltip anchorSelect=".whatsapp" place="top">Send Whatsapp</Tooltip>
+      </button>
+      <button className="btn p-1 btn-success download">
+      <i className='bx fs-19 bxs-download'></i>
+      <Tooltip anchorSelect=".download" place="top">Download</Tooltip>
+      </button>
+      <button className="btn p-1 btn-warning view">
+      <i className="ri-eye-line fs-19"></i>
+      <Tooltip anchorSelect=".view" place="top">View</Tooltip>
       </button>
     </div>
   );
@@ -106,70 +115,49 @@ const DataTable = () => {
     0
   );
 
+  const totalHRDF = tableData.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.hrdf,
+    0
+  );
+
   return (
     <React.Fragment>
-      <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
+      <ConfirmationModal
+        show={confirmModal}
+        text="Are you sure you want to delete this payroll?"
+        primaryCmd="No"
+        secondaryCmd="Yes"
+        onPrimaryCmd={() => setConfirmModal(false)}
+        onSecondaryCmd={() => setConfirmModal(false)}
       />
-      <SelectEmployee modal={modal} setModal={setModal} toggle={toggle} />
       <Card>
         <CardBody>
-          <div className="w-100 d-flex justify-content-end mb-3">
-            <button onClick={runPayroll} className="btn btn-success">
-              <i className="ri-add-line align-bottom me-1"></i>
-              Add New
-            </button>
-          </div>
           <div className="table-responsive">
-            <Table className="table-nowrap mb-0">
-              <thead className="table-light">
+            <Table className="table-nowrap mb-0 table-hover">
+              <thead className="">
                 <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Employee</th>
                   <th scope="col">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="cardtableCheck03"
-                        onChange={handleCheckAll}
-                        checked={checkedAll}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cardtableCheck03"
-                      ></label>
+                    <div className="d-flex align-items-center gap-2">
+                      <i className="bx bx-sync bx-sm link link-primary sync"></i>{" "}
+                      <Tooltip anchorSelect=".sync" place="top">
+                        Sync to basic salary
+                      </Tooltip>
+                      <div>Basic Salary (MYR)</div>
                     </div>
                   </th>
-                  <th scope="col">Employee</th>
-                  <th scope="col">Basic Salary (MYR)</th>
                   <th scope="col">Additions (MYR)</th>
                   <th scope="col">Gross Pay (MYR)</th>
                   <th scope="col">Deductoins (MYR)</th>
                   <th scope="col">Net Pay (MYR)</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">HRDF (MYR)</th>
                 </tr>
               </thead>
               <tbody>
                 {tableData.map((item, i) => (
                   <tr key={i}>
-                    <td>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id={`cardtableCheck${i}`}
-                          checked={(checkedIndex === i) || checkedAll}
-                          onChange={(e) => handleCheck(e, i)}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor={`cardtableCheck${i}`}
-                        ></label>
-                      </div>
-                    </td>
+                    <td>{item.no}</td>
                     <td>
                       <div className="d-flex align-items-start">
                         <div className="flex-shrink-0 me-3">
@@ -235,6 +223,7 @@ const DataTable = () => {
                     <td>{item.gross_pay}</td>
                     <td>{item.deductoins}</td>
                     <td>{item.net_pay}</td>
+                    <td>{item.hrdf}</td>
                     <td>
                       <ActionCell />
                     </td>
@@ -248,14 +237,20 @@ const DataTable = () => {
                   <td>{totalAdditions.toFixed(2)}</td>
                   <td>{totalGrossPay.toFixed(2)}</td>
                   <td>{totalDeductoins.toFixed(2)}</td>
-                  <td colSpan="2">{totalNetPay.toFixed(2)}</td>
+                  <td>{totalNetPay.toFixed(2)}</td>
+                  <td colSpan="2">{totalHRDF.toFixed(2)}</td>
                 </tr>
               </tfoot>
             </Table>
           </div>
           <div className="w-100 d-flex justify-content-end gap-2 mt-4">
-            <button className="btn btn-danger">Save as Draft</button>
-            <button className="btn btn-primary">Confirm</button>
+            <button onClick={()=> setConfirmModal(true)} className="btn btn-danger">Delete</button>
+            <button
+              onClick={() => navigate("/payroll/123/edit")}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
           </div>
         </CardBody>
       </Card>

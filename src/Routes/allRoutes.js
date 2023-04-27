@@ -18,7 +18,10 @@ import AddNewAdvanceSalary from "../pages/advanceSalary/addNew";
 import Trip from "../pages/trip";
 import AddNewTrip from "../pages/trip/addNew";
 import Payroll from "../pages/payroll";
-import RunPayroll from "../pages/payroll/runPayroll";
+import EditPayroll from "../pages/payroll/edit";
+import ViewPayroll from "../pages/payroll/view";
+import GeneralTimetable from "../pages/timeTable/general";
+import DriverTimetable from "../pages/timeTable/driver";
 
 
 const routes = [
@@ -39,7 +42,10 @@ const routes = [
   { path: "/trip", component: <Trip /> },
   { path: "/trip/add", component: <AddNewTrip /> },
   { path: "/payroll", component: <Payroll /> },
-  { path: "/payroll/run", component: <RunPayroll /> },
+  { path: "/payroll/:id/edit", component: <EditPayroll /> },
+  { path: "/payroll/:id/view", component: <ViewPayroll /> },
+  { path: "/timetable/general", component: <GeneralTimetable /> },
+  { path: "/timetable/driver", component: <DriverTimetable /> },
   
 
 
