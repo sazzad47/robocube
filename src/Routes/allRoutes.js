@@ -39,6 +39,19 @@ import DailyAttendance from "../pages/reports/attendance/dailyAttendance";
 import MonthlyAttendanceEmployees from "../pages/reports/attendance/monthlyAttendanceEmployees";
 import MonthlyAttendance from "../pages/reports/attendance/monthlyAttendance";
 import DailyOvertime from "../pages/reports/attendance/dailyOvertime";
+import LeaveByTypes from "../pages/reports/leave/leaveByTypes";
+import LeaveByDepartment from "../pages/reports/leave/leaveByDepartment";
+import MonthlyLeave from "../pages/reports/leave/monthlyLeave";
+import LeaveSummary from "../pages/reports/leave/leaveSummary";
+import ClaimsDetails from "../pages/reports/claims/claimsDetails";
+import ClaimsSummary from "../pages/reports/claims/claimsSummary";
+import ClaimsbyTypes from "../pages/reports/claims/claimsByTypes";
+import CheckEmployees from "../pages/reports/dataCheck/employees";
+import CheckAllowance from "../pages/reports/dataCheck/allowance";
+import CheckDeduction from "../pages/reports/dataCheck/deduction";
+import PCBReport from "../pages/reports/PCBReport";
+import HRDFListing from "../pages/reports/HRDFfListing";
+
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -88,6 +101,18 @@ const routes = [
     path: "/reports/daily_overtime",
     component: <DailyOvertime />,
   },
+  { path: "/reports/leave_types", component: <LeaveByTypes /> },
+  { path: "/reports/leave_department", component: <LeaveByDepartment /> },
+  { path: "/reports/monthly_leave", component: <MonthlyLeave /> },
+  { path: "/reports/leave_summary", component: <LeaveSummary /> },
+  { path: "/reports/claims_details", component: <ClaimsDetails /> },
+  { path: "/reports/claims_summary", component: <ClaimsSummary /> },
+  { path: "/reports/claims_type", component: <ClaimsbyTypes /> },
+  { path: "/reports/check_employees", component: <CheckEmployees /> },
+  { path: "/reports/allowance", component: <CheckAllowance /> },
+  { path: "/reports/deduction", component: <CheckDeduction /> },
+  { path: "/reports/pcb", component: <PCBReport /> },
+  { path: "/reports/hrdf", component: <HRDFListing /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

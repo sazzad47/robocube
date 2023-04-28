@@ -4,14 +4,14 @@ import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import FormComponent from "./FormComponent";
 
-const Reports = () => {
-  document.title = "Daily Attendance (Employees) | Robocube HR";
+const DailyOvertime = () => {
+  document.title = "Daily Overtime | Robocube HR";
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Daily Attendance (Employees)" />
+          <BreadCrumb title="Daily Overtime" />
           <Row className="mt-3">
             <FormComponent/>
           </Row>
@@ -24,4 +24,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default DailyOvertime;

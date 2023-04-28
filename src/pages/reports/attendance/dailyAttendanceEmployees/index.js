@@ -4,7 +4,7 @@ import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import FormComponent from "./FormComponent";
 
-const Reports = () => {
+const DailyAttendanceEmployees = () => {
   document.title = "Daily Attendance (Employees) | Robocube HR";
 
   return (
@@ -24,4 +24,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default DailyAttendanceEmployees;

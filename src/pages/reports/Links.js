@@ -154,7 +154,7 @@ const Links = () => {
           </div>
           <ul className="nav flex-column">
             <li className="nav-item">
-              <Link className="nav-link px-0 py-2" to="/pcb">
+              <Link className="nav-link px-0 py-2" to="/reports/pcb">
                 PCB Report
               </Link>
             </li>
@@ -167,7 +167,7 @@ const Links = () => {
           </div>
           <ul className="nav flex-column">
             <li className="nav-item">
-              <Link className="nav-link px-0 py-2" to="/hrdf">
+              <Link className="nav-link px-0 py-2" to="/reports/hrdf">
                 HRDF Listing
               </Link>
             </li>

@@ -187,42 +187,7 @@ ul {
 }
 
 
-@each $color, $value in $theme-colors {
 
-    .label-arrow {
-        &.alert-#{$color} {
-            .label-icon {
-                color: set-color-from-background($value);
-                background-color: $value;
-                &:after {
-                    border-color: transparent !important;
-                    border-right-color: $value !important;
-                }
-            }
-        }
-    }
-
-    .badge-label {
-        margin-right: 8px;
-        &.bg-#{$color} {
-            &:before {
-                border-color: transparent;
-                border-left-color: $value;
-                right: -14px;
-                left: auto;
-            }
-        }
-    }
-
-
-
-  // alert border left
-  .alert-border-left {
-    &.alert-#{$color} {
-        border-right-color: $value;
-    }
-}
-}
 
 .alert-label-icon {
     padding-right: 60px !important;

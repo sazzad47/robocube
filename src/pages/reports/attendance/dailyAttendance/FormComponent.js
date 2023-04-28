@@ -19,30 +19,9 @@ const FormComponent = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group row mb-3">
-                <label className="col-form-label col-md-3">Month</label>
+                <label className="col-form-label col-md-3">Date</label>
                 <div className="col-md-9">
-                  <input type="month" className="form-control" name="month" />
-                </div>
-              </div>
-
-              <div className="form-group row mb-3">
-                <label className="col-form-label col-md-3">Employee</label>
-                <div className="col-md-9">
-                  <select
-                    ref={selectRef}
-                    className="form-control "
-                    name="employee"
-                  >
-                    <option value="">-</option>
-                    <option value="166804835212">Amirah</option>
-                    <option value="167108913646">Jacky</option>
-                    <option value="167763914983">Lafar</option>
-                    <option value="167783056568">Gorilia</option>
-                    <option value="167783091726">Lilly</option>
-                    <option value="167990984395">Imp_student</option>
-                    <option value="167991003789">a kao</option>
-                    <option value="167991105435">ah kau</option>
-                  </select>
+                  <input type="date" className="form-control" name="date" />
                 </div>
               </div>
 

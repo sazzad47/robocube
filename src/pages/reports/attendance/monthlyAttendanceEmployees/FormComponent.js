@@ -5,7 +5,7 @@ import { Col } from "reactstrap";
 import $ from "jquery";
 import "select2";
 
-const FormComponent = () => {
+const FormComponent = ({ setData }) => {
   const selectRef = useRef(null);
 
   useEffect(() => {
@@ -15,7 +15,12 @@ const FormComponent = () => {
   return (
     <React.Fragment>
       <Col xxl={6}>
-        <form method="get">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setData(true);
+          }}
+        >
           <div className="row">
             <div className="col-md-6">
               <div className="form-group row mb-3">
@@ -50,6 +55,13 @@ const FormComponent = () => {
                 <div className="col-md-9 offset-md-3">
                   <button type="submit" className="btn btn-primary">
                     Submit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="btn btn-secondary ms-2"
+                  >
+                    Print
                   </button>
                 </div>
               </div>

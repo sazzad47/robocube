@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { Col } from "reactstrap";
 import $ from "jquery";
 import "select2";
+import ConfirmationModal from "../../../../Components/Common/ConfirmationModal";
 
-const FormComponent = () => {
+const FormComponent = ({ setData }) => {
   const selectRef = useRef(null);
+
+  const [confirmModal, setConfirmModal] = useState(false);
 
   useEffect(() => {
     $(selectRef.current).select2();
@@ -14,8 +17,21 @@ const FormComponent = () => {
 
   return (
     <React.Fragment>
+      <ConfirmationModal
+        show={confirmModal}
+        text="Are you sure want to recheck all timetable?"
+        primaryCmd="No"
+        secondaryCmd="Yes"
+        onPrimaryCmd={() => setConfirmModal(false)}
+        onSecondaryCmd={() => setConfirmModal(false)}
+      />
       <Col xxl={6}>
-        <form method="get">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setData(true);
+          }}
+        >
           <div className="row">
             <div className="col-md-6">
               <div className="form-group row mb-3">
@@ -50,6 +66,13 @@ const FormComponent = () => {
                 <div className="col-md-9 offset-md-3">
                   <button type="submit" className="btn btn-primary">
                     Submit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setConfirmModal(true)}
+                    className="btn btn-secondary ms-2"
+                  >
+                    Check All
                   </button>
                 </div>
               </div>

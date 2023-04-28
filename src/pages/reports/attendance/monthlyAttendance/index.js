@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row } from "reactstrap";
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import FormComponent from "./FormComponent";
 
-const Reports = () => {
-  document.title = "Daily Attendance (Employees) | Robocube HR";
+const MonthlyAttendance = () => {
+  document.title = "Monthly Attendance | Robocube HR";
+
+  const [data, setData] = useState(false);
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Daily Attendance (Employees)" />
+          <BreadCrumb title="Monthly Attendance" />
           <Row className="mt-3">
-            <FormComponent/>
+            <FormComponent setData={setData} />
           </Row>
           <Row>
-            <Datatable/>
+            {!data ? (
+              <div className="alert alert-warning">
+                Please select an employee
+              </div>
+            ) : (
+              <Datatable />
+            )}
           </Row>
         </Container>
       </div>
@@ -24,4 +32,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default MonthlyAttendance;
