@@ -51,6 +51,39 @@ import CheckAllowance from "../pages/reports/dataCheck/allowance";
 import CheckDeduction from "../pages/reports/dataCheck/deduction";
 import PCBReport from "../pages/reports/PCBReport";
 import HRDFListing from "../pages/reports/HRDFfListing";
+//Secondary
+import Banks from "../pages/secondary/banks";
+import AddBank from "../pages/secondary/banks/add";
+import Races from "../pages/secondary/races";
+import AddRace from "../pages/secondary/races/add";
+import Locations from "../pages/secondary/locations";
+import AddLocation from "../pages/secondary/locations/add";
+import Positions from "../pages/secondary/positions";
+import AddPosition from "../pages/secondary/positions/add";
+import Religions from "../pages/secondary/religions";
+import AddReligion from "../pages/secondary/religions/add";
+import Additions from "../pages/secondary/additions";
+import AddAddition from "../pages/secondary/additions/add";
+import Deductions from "../pages/secondary/deductions";
+import AddDeduction from "../pages/secondary/deductions/add";
+import WorkMode from "../pages/secondary/workMode";
+import AddWorkMode from "../pages/secondary/workMode/add";
+import LeaveTypes from "../pages/secondary/leaveTypes";
+import AddLeaveType from "../pages/secondary/leaveTypes/add";
+import ClaimTypes from "../pages/secondary/claimTypes";
+import AddClaimType from "../pages/secondary/claimTypes/add";
+import Nationalities from "../pages/secondary/nationalities";
+import AddNationality from "../pages/secondary/nationalities/add";
+import Departments from "../pages/secondary/departments";
+import AddDepartment from "../pages/secondary/departments/add";
+import Relationships from "../pages/secondary/relationships";
+import AddRelationship from "../pages/secondary/relationships/add";
+import MaritalStatus from "../pages/secondary/maritalStatus";
+import AddMaritalStatus from "../pages/secondary/maritalStatus/add";
+import PaymentMethods from "../pages/secondary/paymentMethods";
+import AddPaymentMethod from "../pages/secondary/paymentMethods/add";
+import HighEducationalLevels from "../pages/secondary/highEducationalLevels";
+import AddHighEducationalLevel from "../pages/secondary/highEducationalLevels/add";
 
 
 const routes = [
@@ -113,6 +146,40 @@ const routes = [
   { path: "/reports/deduction", component: <CheckDeduction /> },
   { path: "/reports/pcb", component: <PCBReport /> },
   { path: "/reports/hrdf", component: <HRDFListing /> },
+  { path: "/secondary/list/bank", component: <Banks /> },
+  { path: "/secondary/add/bank", component: <AddBank /> },
+  { path: "/secondary/list/race", component: <Races /> },
+  { path: "/secondary/add/race", component: <AddRace /> },
+  { path: "/secondary/list/location", component: <Locations /> },
+  { path: "/secondary/add/location", component: <AddLocation /> },
+  { path: "/secondary/list/position", component: <Positions /> },
+  { path: "/secondary/add/position", component: <AddPosition /> },
+  { path: "/secondary/list/religion", component: <Religions /> },
+  { path: "/secondary/add/religion", component: <AddReligion /> },
+  { path: "/secondary/list/addition", component: <Additions /> },
+  { path: "/secondary/add/addition", component: <AddAddition /> },
+  { path: "/secondary/list/deduction", component: <Deductions /> },
+  { path: "/secondary/add/deduction", component: <AddDeduction /> },
+  { path: "/secondary/list/work_mode", component: <WorkMode /> },
+  { path: "/secondary/add/work_mode", component: <AddWorkMode /> },
+  { path: "/secondary/list/leave_type", component: <LeaveTypes /> },
+  { path: "/secondary/add/leave_type", component: <AddLeaveType /> },
+  { path: "/secondary/list/claim_type", component: <ClaimTypes /> },
+  { path: "/secondary/add/claim_type", component: <AddClaimType /> },
+  { path: "/secondary/list/nationality", component: <Nationalities /> },
+  { path: "/secondary/add/nationality", component: <AddNationality /> },
+  { path: "/secondary/list/department", component: <Departments /> },
+  { path: "/secondary/add/department", component: <AddDepartment /> },
+  { path: "/secondary/list/relationship", component: <Relationships /> },
+  { path: "/secondary/add/relationship", component: <AddRelationship /> },
+  { path: "/secondary/list/marital_status", component: <MaritalStatus /> },
+  { path: "/secondary/add/marital_status", component: <AddMaritalStatus /> },
+  { path: "/secondary/list/payment_method", component: <PaymentMethods /> },
+  { path: "/secondary/add/payment_method", component: <AddPaymentMethod /> },
+  { path: "/secondary/list/highest_education_level", component: <PaymentMethods /> },
+  { path: "/secondary/add/highest_education_level", component: <AddPaymentMethod /> },
+
+
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

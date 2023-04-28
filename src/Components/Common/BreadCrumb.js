@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 
 const BreadCrumb = ({ title, isAddNew, addNewTitle, addNewFunction }) => {
@@ -13,7 +12,7 @@ const BreadCrumb = ({ title, isAddNew, addNewTitle, addNewFunction }) => {
             {isAddNew && (
               <div className="col-sm-auto ms-auto">
                 <button onClick={addNewFunction} className="fs-16 d-flex align-items-center gap-2 btn btn-primary">
-                <i className='bx bxs-plus-circle'></i>{" "}
+                <i className='fa mr-1 fa-plus-circle'></i>{" "}
 
                   <div>{addNewTitle ? addNewTitle : "Add New"}</div>
                 </button>
