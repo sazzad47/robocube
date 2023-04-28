@@ -8,7 +8,7 @@ const BreadCrumb = ({ title, isAddNew, addNewTitle, addNewFunction }) => {
       <Row>
         <Col xs={12}>
           <div className="d-sm-flex align-items-center justify-content-between">
-            <h4 className="mb-sm-0">{title}</h4>
+            <h4 className="mb-sm-0 fw-bold">{title}</h4>
 
             {isAddNew && (
               <div className="col-sm-auto ms-auto">
