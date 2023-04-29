@@ -89,6 +89,9 @@ import GeneralSettings from "../pages/settings/general";
 import AllAdmins from "../pages/settings/admins";
 import Devices from "../pages/settings/devices";
 import AddDevice from "../pages/settings/devices/add";
+import Payslip from "../pages/settings/payslip";
+import Migrate from "../pages/settings/migrate";
+import PointoAPI from "../pages/settings/pointoAPI";
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -192,6 +195,9 @@ const routes = [
   { path: "/admins/list", component: <AllAdmins /> },
   { path: "/devices/list", component: <Devices /> },
   { path: "/devices/add", component: <AddDevice /> },
+  { path: "/settings/payslip", component: <Payslip /> },
+  { path: "/migrate/list", component: <Migrate /> },
+  { path: "/settings/pointoapi", component: <PointoAPI /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

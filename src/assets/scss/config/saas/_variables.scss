@@ -1570,24 +1570,6 @@ $modal-scale-transform:             scale(1.02);
 // scss-docs-end modal-variables
 
 
-// Alerts
-//
-// Define alert colors, border radius, and padding.
-
-// scss-docs-start alert-variables
-$alert-padding-y:               $spacer * 0.8;
-$alert-padding-x:               $spacer;
-$alert-margin-bottom:           1rem;
-$alert-border-radius:           $border-radius;
-$alert-link-font-weight:        $font-weight-semibold;
-$alert-border-width:            $border-width;
-$alert-bg-scale:                -85%;
-$alert-border-scale:            -70%;
-$alert-color-scale:             25%;
-$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
-// scss-docs-end alert-variables
-
-
 // Progress bars
 
 // scss-docs-start progress-variables

@@ -184,3 +184,18 @@
   visibility: hidden;
 }
 
+//Alert
+.alert.alert-info {
+  color: rgb(97, 86, 86);
+  background-color: #d3edf8;
+  border-color: #b8dbe0;
+
+  hr {
+    border-top-color: #a6c9ce;
+  }
+
+  .alert-link {
+    color: #0b2e46;
+    font-weight: bold;
+  }
+}
