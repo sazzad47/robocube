@@ -183,25 +183,25 @@ const Navdata = () => {
         {
           id: "all_employees",
           label: "All Employees",
-          link: "/employees-all",
+          link: "/employees/list",
           parentId: "employees",
         },
         {
           id: "resignation",
           label: "Resignation",
-          link: "/employees-resignation",
+          link: "/employees/list/resignation",
           parentId: "employees",
         },
         {
           id: "asli",
           label: "Asli",
-          link: "/employees-asli",
+          link: "/employees/asli",
           parentId: "employees",
         },
         {
           id: "driver",
           label: "Driver",
-          link: "/employees-driver",
+          link: "/employees/driver",
           parentId: "employees",
         },
     

@@ -20,6 +20,12 @@ import AddNewClaims from "../pages/claims/addNew";
 //Advance Salary
 import AdvanceSalary from "../pages/advanceSalary";
 import AddNewAdvanceSalary from "../pages/advanceSalary/addNew";
+//Employees
+import AllEmployees from "../pages/employees/allEmployees";
+import AddEmployee from "../pages/employees/allEmployees/add";
+import Resignation from "../pages/employees/resignation";
+import Asli from "../pages/employees/asli";
+import Driver from "../pages/employees/driver";
 //Trip
 import Trip from "../pages/trip";
 import AddNewTrip from "../pages/trip/addNew";
@@ -198,6 +204,11 @@ const routes = [
   { path: "/settings/payslip", component: <Payslip /> },
   { path: "/migrate/list", component: <Migrate /> },
   { path: "/settings/pointoapi", component: <PointoAPI /> },
+  { path: "/employees/list", component: <AllEmployees /> },
+  { path: "/employees/add", component: <AddEmployee /> },
+  { path: "/employees/list/resignation", component: <Resignation /> },
+  { path: "/employees/asli", component: <Asli /> },
+  { path: "/employees/driver", component: <Driver /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
