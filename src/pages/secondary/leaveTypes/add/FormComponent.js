@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Col } from "reactstrap";
 
 const FormComponent = () => {
+  const [dayType, setDayType] = useState("custom");
+
+  const handleDayTypeChange = (event) => {
+    setDayType(event.target.value);
+  };
+
+  const yearFields = [];
+  for (let i = 0; i <= 10; i++) {
+    const fieldName = `${i}year`;
+    yearFields.push(
+      <div className="form-group row" key={fieldName}>
+        <label className="col-form-label col-md-3">{i} Year</label>
+        <div className="col-md-9">
+          <input type="number" className="form-control" name={fieldName} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <React.Fragment>
       <Col xxl={6}>
@@ -24,37 +43,59 @@ const FormComponent = () => {
               </div>
 
               <div className="form-group row">
-                <label className="col-form-label col-md-3">Swift Code</label>
-                <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="swift_code"
-                  />
+                <label className="col-form-label col-md-3">Day Type</label>
+                <div className="col-md-9 my-auto">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="dayType"
+                      id="dayType1"
+                      value="custom"
+                      checked={dayType === "custom"}
+                      onChange={handleDayTypeChange}
+                    />
+                    <label className="form-check-label" htmlFor="dayType1">
+                      Custom
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="dayType"
+                      id="dayType2"
+                      value="working-experience-based"
+                      checked={dayType === "working-experience-based"}
+                      onChange={handleDayTypeChange}
+                    />
+                    <label className="form-check-label" htmlFor="dayType2">
+                      Working Experience Based
+                    </label>
+                  </div>
                 </div>
               </div>
 
               <div className="form-group row">
-                <label className="col-form-label col-md-3">City</label>
+                <label className="col-form-label col-md-3">Due Date</label>
                 <div className="col-md-9">
-                  <input type="text" className="form-control" name="city" />
+                  <input type="date" className="form-control" name="dueDate" />
                 </div>
               </div>
-
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">Branch Name</label>
-                <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="branch_name"
-                  />
+              {dayType === "working-experience-based" ? (
+                yearFields
+              ) : (
+                <div className="form-group row">
+                  <label className="col-form-label col-md-3">Day(s)</label>
+                  <div className="col-md-9">
+                    <input type="number" className="form-control" name="days" />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="col-md-6">
-              <div className="form-group mb-4 mt-3 mt-md-0 d-flex">
+              <div className="form-group mb-4 mt-3 mt-md-1 d-flex">
                 <div className="form-check">
                   <input
                     className="form-check-input"

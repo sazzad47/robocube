@@ -22,35 +22,7 @@ const FormComponent = () => {
                   />
                 </div>
               </div>
-
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">Swift Code</label>
-                <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="swift_code"
-                  />
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">City</label>
-                <div className="col-md-9">
-                  <input type="text" className="form-control" name="city" />
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">Branch Name</label>
-                <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="branch_name"
-                  />
-                </div>
-              </div>
+              
             </div>
 
             <div className="col-md-6">

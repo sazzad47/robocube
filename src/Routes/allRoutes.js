@@ -84,7 +84,11 @@ import PaymentMethods from "../pages/secondary/paymentMethods";
 import AddPaymentMethod from "../pages/secondary/paymentMethods/add";
 import HighEducationalLevels from "../pages/secondary/highEducationalLevels";
 import AddHighEducationalLevel from "../pages/secondary/highEducationalLevels/add";
-
+//Settings
+import GeneralSettings from "../pages/settings/general";
+import AllAdmins from "../pages/settings/admins";
+import Devices from "../pages/settings/devices";
+import AddDevice from "../pages/settings/devices/add";
 
 const routes = [
   { path: "/dashboard", component: <Home /> },
@@ -176,10 +180,18 @@ const routes = [
   { path: "/secondary/add/marital_status", component: <AddMaritalStatus /> },
   { path: "/secondary/list/payment_method", component: <PaymentMethods /> },
   { path: "/secondary/add/payment_method", component: <AddPaymentMethod /> },
-  { path: "/secondary/list/highest_education_level", component: <PaymentMethods /> },
-  { path: "/secondary/add/highest_education_level", component: <AddPaymentMethod /> },
-
-
+  {
+    path: "/secondary/list/highest_education_level",
+    component: <HighEducationalLevels />,
+  },
+  {
+    path: "/secondary/add/highest_education_level",
+    component: <AddHighEducationalLevel />,
+  },
+  { path: "/settings/general", component: <GeneralSettings /> },
+  { path: "/admins/list", component: <AllAdmins /> },
+  { path: "/devices/list", component: <Devices /> },
+  { path: "/devices/add", component: <AddDevice /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

@@ -10,6 +10,7 @@ const Navdata = () => {
   const [isEmployees, setIsEmployees] = useState(false);
   const [isTimetable, setIsTimetable] = useState(false);
   const [isSecondary, setIsSecondary] = useState(false);
+  const [isSettings, setIsSettings] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
 
   function updateIconSidebar(e) {
@@ -46,6 +47,9 @@ const Navdata = () => {
     if (iscurrentState !== "Secondary") {
       setIsSecondary(false);
     }
+    if (iscurrentState !== "Settings") {
+      setIsSettings(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -55,6 +59,7 @@ const Navdata = () => {
     isEmployees,
     isTimetable,
     isSecondary,
+    isSettings,
   ]);
 
   const menuItems = [
@@ -361,7 +366,52 @@ const Navdata = () => {
       id: "settings",
       label: "Settings",
       icon: "bx bx-cog",
-      link: "/settings",
+      stateVariables: isSettings,
+      click: function (e) {
+        e.preventDefault();
+        setIsSettings(!isSettings);
+        setIscurrentState("Settings");
+        updateIconSidebar(e);
+      },
+      subItems: [
+        {
+          id: "settings-general",
+          label: "General",
+          link: "/settings/general",
+          parentId: "settings",
+        },
+        {
+          id: "settings-admins",
+          label: "Admins",
+          link: "/admins/list",
+          parentId: "settings",
+        },
+        {
+          id: "settings-devices",
+          label: "Devices",
+          link: "/devices/list",
+          parentId: "settings",
+        },
+        {
+          id: "settings-payslip",
+          label: "Payslip",
+          link: "/settings/payslip",
+          parentId: "settings",
+        },
+        {
+          id: "settings-migrate",
+          label: "Migrate",
+          link: "/migrate/list",
+          parentId: "settings",
+        },
+        {
+          id: "settings-poinToAPI",
+          label: "PointoAPI",
+          link: "/settings/pointoapi",
+          parentId: "settings",
+        },
+       
+      ],
     },
   ];
   return <React.Fragment>{menuItems}</React.Fragment>;

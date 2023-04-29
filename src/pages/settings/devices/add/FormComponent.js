@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useRef } from "react";
 import { Col } from "reactstrap";
+import $ from "jquery";
+import "select2";
+import { Link } from "react-router-dom";
 
 const FormComponent = () => {
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    $(selectRef.current).select2();
+  }, []);
+
   return (
     <React.Fragment>
       <Col xxl={6}>
@@ -20,6 +30,20 @@ const FormComponent = () => {
                     name="title"
                     required=""
                   />
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-form-label col-md-3">Type</label>
+                <div className="col-md-9">
+                  <select
+                    ref={selectRef}
+                    className="form-control "
+                    name="employee"
+                  >
+                    <option value="QR Code">QR Code</option>
+                    <option value="RFID">RFID</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -43,26 +67,12 @@ const FormComponent = () => {
 
           <div className="row">
             <div className="col-md-6">
-              <div className="form-group row mt-0 mt-md-3">
-                <label className="col-form-label col-md-3">Remark</label>
-                <div className="col-md-9">
-                  <textarea
-                    className="form-control"
-                    name="remark"
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-
               <div className="form-group row mt-3">
                 <div className="col-md-9 offset-md-3">
                   <button type="submit" name="save" className="btn btn-primary">
                     Save
                   </button>
-                  <Link
-                    to="/secondary/list/highest_education_level"
-                    className="btn btn-link text-muted"
-                  >
+                  <Link to="/devices/list" className="btn btn-link text-muted">
                     Cancel
                   </Link>
                 </div>

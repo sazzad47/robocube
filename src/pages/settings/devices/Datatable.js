@@ -2,45 +2,47 @@ import React, { useRef, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
 import { Input } from "reactstrap";
+import { Link } from "react-router-dom";
 
 //Sample Data
 const sampleData = [
   {
     no: 1,
-    title: "Title 1",
+    title: "Printer A",
     status: "Active",
-    days: "11",
-    remark: "Lorem ipsum dolor sit amet.",
+    type: "Printer",
+    lastOnline: "2022-05-01 09:00:00",
   },
   {
     no: 2,
-    title: "Title 2",
-    status: "Inactive",
-    days: "11",
-    remark: "Consectetur adipiscing elit.",
+    title: "Scanner B",
+    status: "Active",
+    type: "Scanner",
+    lastOnline: "2022-05-01 10:00:00",
   },
   {
     no: 3,
-    title: "Title 3",
-    status: "Active",
-    days: "11",
-    remark: "Sed do eiusmod tempor.",
+    title: "Laptop C",
+    status: "Inactive",
+    type: "Laptop",
+    lastOnline: "2022-05-01 11:00:00",
   },
   {
     no: 4,
-    title: "Title 4",
-    status: "Inactive",
-    days: "11",
-    remark: "Ut enim ad minim veniam.",
+    title: "Tablet D",
+    status: "Active",
+    type: "Tablet",
+    lastOnline: "2022-05-01 12:00:00",
   },
   {
     no: 5,
-    title: "Title 5",
+    title: "Smartphone E",
     status: "Active",
-    days: "12",
-    remark: "Quis nostrud exercitation.",
+    type: "Smartphone",
+    lastOnline: "2022-05-01 13:00:00",
   },
 ];
+
 const Datatable = () => {
   const tableRef = useRef(null);
 
@@ -57,28 +59,30 @@ const Datatable = () => {
             <th style={{ width: "10%" }}>No</th>
             <th style={{ width: "35%" }}>Title</th>
             <th style={{ width: "10%" }}>Status</th>
-            <th>Day(s)</th>
-            <th>Remark</th>
+            <th>Type</th>
+            <th>Last Online</th>
           </tr>
         </thead>
         <tbody>
           {sampleData.map((item) => (
             <tr key={item.no}>
               <td>{item.no}</td>
-              <td>{item.title}</td>
               <td>
-                <div className="form-check form-switch form-switch-md">
-                  <Input
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id={`SwitchCheck${item.no}`}
-                    defaultChecked={item.status === "Active"}
-                  />
+                <Link>{item.title}</Link>
+              </td>
+              <td>
+                <div
+                  className={`badge ${
+                    item.status === "Active"
+                      ? "badge-success"
+                      : "badge-warning text-dark"
+                  }`}
+                >
+                  {item.status}
                 </div>
               </td>
-              <td>{item.days}</td>
-              <td>{item.remark}</td>
+              <td>{item.type}</td>
+              <td>{item.lastOnline}</td>
             </tr>
           ))}
         </tbody>

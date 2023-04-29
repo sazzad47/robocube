@@ -9,40 +9,40 @@ const sampleData = [
     no: 1,
     title: "Title 1",
     status: "Active",
-    city: "New York",
-    branchName: "Branch A",
+    type: "Per Minute",
+    rate: "1.00",
     remark: "Lorem ipsum dolor sit amet.",
   },
   {
     no: 2,
     title: "Title 2",
     status: "Inactive",
-    city: "Los Angeles",
-    branchName: "Branch B",
+    type: "Per Hour",
+    rate: "1.00",
     remark: "Consectetur adipiscing elit.",
   },
   {
     no: 3,
     title: "Title 3",
     status: "Active",
-    city: "Chicago",
-    branchName: "Branch C",
+    type: "Per Day",
+    rate: "1.00",
     remark: "Sed do eiusmod tempor.",
   },
   {
     no: 4,
     title: "Title 4",
     status: "Inactive",
-    city: "Houston",
-    branchName: "Branch D",
+    type: "Per Minute",
+    rate: "1.00",
     remark: "Ut enim ad minim veniam.",
   },
   {
     no: 5,
     title: "Title 5",
     status: "Active",
-    city: "Philadelphia",
-    branchName: "Branch E",
+    type: "Custom",
+    rate: "1.00",
     remark: "Quis nostrud exercitation.",
   },
 ];
@@ -62,8 +62,8 @@ const Datatable = () => {
             <th style={{ width: "10%" }}>No</th>
             <th style={{ width: "35%" }}>Title</th>
             <th style={{ width: "10%" }}>Status</th>
-            <th>City</th>
-            <th>Branch Name</th>
+            <th>Type</th>
+            <th>Rate</th>
             <th>Remark</th>
           </tr>
         </thead>
@@ -83,8 +83,8 @@ const Datatable = () => {
                   />
                 </div>
               </td>
-              <td>{item.city}</td>
-              <td>{item.branchName}</td>
+              <td>{item.type}</td>
+              <td>{item.rate}</td>
               <td>{item.remark}</td>
             </tr>
           ))}

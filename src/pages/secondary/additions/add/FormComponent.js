@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useRef } from "react";
 import { Col } from "reactstrap";
+import $ from "jquery";
+import "select2";
+import { Link } from "react-router-dom";
 
 const FormComponent = () => {
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    $(selectRef.current).select2();
+  }, []);
+
   return (
     <React.Fragment>
       <Col xxl={6}>
@@ -23,39 +33,31 @@ const FormComponent = () => {
                 </div>
               </div>
 
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">Swift Code</label>
+              <div className="form-group row mb-3">
+                <label className="col-form-label col-md-3">Type</label>
                 <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="swift_code"
-                  />
+                  <select ref={selectRef} className="form-control " name="type">
+                    <option value="">-</option>
+                    <option value="Per Minute">Per Minute</option>
+                    <option value="Per Hour">Per Hour</option>
+                    <option value="Per Day">Per Day</option>
+                    <option value="Per Month">Per Month</option>
+                    <option value="Custom">Custom</option>
+                  </select>
                 </div>
               </div>
 
               <div className="form-group row">
-                <label className="col-form-label col-md-3">City</label>
+                <label className="col-form-label col-md-3">Rate</label>
                 <div className="col-md-9">
-                  <input type="text" className="form-control" name="city" />
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-form-label col-md-3">Branch Name</label>
-                <div className="col-md-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="branch_name"
-                  />
+                  <input type="number" className="form-control" name="rate" />
                 </div>
               </div>
             </div>
 
             <div className="col-md-6">
-              <div className="form-group mb-4 mt-3 mt-md-0 d-flex">
-                <div className="form-check">
+              <div className="form-group mb-4 d-flex flex-wrap">
+                <div className="form-check mt-1 ms-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -64,6 +66,63 @@ const FormComponent = () => {
                   />
                   <label className="form-check-label" htmlFor="checkbox-active">
                     Active
+                  </label>
+                </div>
+
+                <div className="form-check mt-1 ms-4">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkbox-EPF"
+                  />
+                  <label className="form-check-label" htmlFor="checkbox-EPF">
+                    EPF
+                  </label>
+                </div>
+                <div className="form-check mt-1 ms-4">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkbox-SOCSO"
+                  />
+                  <label className="form-check-label" htmlFor="checkbox-SOCSO">
+                    SOCSO
+                  </label>
+                </div>
+                <div className="form-check mt-1 ms-4">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkbox-EIS"
+                  />
+                  <label className="form-check-label" htmlFor="checkbox-EIS">
+                    EIS
+                  </label>
+                </div>
+                <div className="form-check mt-1 ms-4">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkbox-PCB"
+                  />
+                  <label className="form-check-label" htmlFor="checkbox-PCB">
+                    PCB
+                  </label>
+                </div>
+
+                <div className="form-check mt-1 ms-4">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkbox-HRDF"
+                  />
+                  <label className="form-check-label" htmlFor="checkbox-HRDF">
+                    HRDF
                   </label>
                 </div>
               </div>
