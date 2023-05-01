@@ -23,9 +23,9 @@ const Home = () => {
                 <div style={{ width: "5%" }}>
                   <i className="fa fa-fw fa-bullhorn"></i>
                 </div>
-                {/* <div style={{ width: "95%" }}>
+                <div style={{ width: "95%" }}>
                   <marquee className="m-0">Welcome to Robocube HR</marquee>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
