@@ -1,222 +1,208 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Form,
-  FormFeedback,
-  Input,
-  Label,
-  Row,
-} from "reactstrap";
-
-import * as Yup from "yup";
-import { useFormik } from "formik";
-
-import Flatpickr from "react-flatpickr";
-import Select from "react-select";
-
-const employeeOptions = [
-  { label: "John Smith", value: "John Smith" },
-  { label: "Jane Doe", value: "Jane Doe" },
-  { label: "Bob Johnson", value: "Bob Johnson" },
-  { label: "Sarah Lee", value: "Sarah Lee" },
-  { label: "David Brown", value: "David Brown" },
-  // Add more employees here as needed
-];
-
-const typeOptions = [
-  { label: "Annual", value: "Annual" },
-  { label: "Sick", value: "Sick" },
-  { label: "Paid", value: "Paid" },
-  { label: "Unpaid", value: "Unpaid" },
-  // Add more type here as needed
-];
+import React from "react";
+import $ from "jquery";
+import "select2";
+import { useEffect } from "react";
 
 const NewRequest = () => {
-  const [selectedDay, setSelectedDay] = useState(0);
-  const [selectedNewDay, setSelectedNewDay] = useState(0);
-
-  const [selectedEmployee, setSelectedEmployee] = useState("");
-  const [selectedType, setSelectedType] = useState("");
-
-  const validation = useFormik({
-    // enableReinitialize : use this flag when initial values needs to be changed
-    enableReinitialize: true,
-
-    initialValues: {
-      employee: "",
-      type: "",
-      reason: "",
-      file: "",
-    },
-
-    validationSchema: Yup.object({
-      employee: Yup.string().required("Please Select Employee Name"),
-      reason: Yup.string().required("Please Enter Reason"),
-    }),
-    onSubmit: (values) => {
-      var updatedDay = "";
-      if (selectedNewDay) {
-        updatedDay = new Date(selectedNewDay[1]);
-        updatedDay.setDate(updatedDay.getDate() + 1);
-      }
-
-      const request = {
-        id: Math.floor(Math.random() * 100),
-        employee: values["employee"],
-        type: values["type"],
-        reason: values["reason"],
-        start: selectedDay ? selectedNewDay[0] : new Date(),
-        end: selectedDay ? updatedDay : new Date(),
-        file: values["file"],
-      };
-      console.log("request", request);
-      validation.resetForm();
-
-      setSelectedDay(null);
-      setSelectedNewDay(null);
-    },
-  });
-
-  const handleEmployeeChange = (selectedOption) => {
-    validation.setFieldValue("employee", selectedOption.value);
-    setSelectedEmployee(selectedOption);
-  };
-
-  const handleTypeChange = (selectedOption) => {
-    validation.setFieldValue("type", selectedOption.value);
-    setSelectedType(selectedOption);
-  };
+  useEffect(() => {
+    $(".select2").select2({
+      theme: "bootstrap4",
+    });
+  }, []);
 
   return (
     <React.Fragment>
-      <Card className="card-h-100">
-        <CardHeader>
-          <h4 className="card-title mb-0">New Request</h4>
-        </CardHeader>
-        <CardBody>
-          <Form
-            className="needs-validation"
-            name="event-form"
-            id="form-event"
-            onSubmit={(e) => {
-              e.preventDefault();
-              validation.handleSubmit();
-              return false;
-            }}
-          >
-            <Row className="event-form">
-              <Col xs={12}>
-                <div className="mb-3">
-                  <Label className="form-label">Employee</Label>
-                  <Select
-                    name="employee"
-                    defaultValue={employeeOptions[0]}
-                    value={selectedEmployee}
-                    onChange={handleEmployeeChange}
-                    options={employeeOptions}
-                    isSearchable={true}
-                  />
-                  {validation.touched.employee && validation.errors.employee ? (
-                    <FormFeedback type="invalid">
-                      {validation.errors.employee}
-                    </FormFeedback>
-                  ) : null}
-                  <p className="w-100 p-0 text-primary">Make sure the employee is activated and joined.</p>
-                </div>
-              </Col>
-              <Col xs={12}>
-                <div className="mb-3">
-                  <Label className="form-label">Type</Label>
-                  <Select
-                    name="type"
-                    defaultValue={typeOptions[0]}
-                    value={selectedType}
-                    onChange={handleTypeChange}
-                    options={typeOptions}
-                    isSearchable={true}
-                  />
-                  {validation.touched.type && validation.errors.type ? (
-                    <FormFeedback type="invalid">
-                      {validation.errors.type}
-                    </FormFeedback>
-                  ) : null}
-                </div>
-              </Col>
+      <div className="col-md-3">
+        <div className="card mb-4">
+          <div className="card-body font-weight-bold pb-0">New Request</div>
+          <div className="card-body">
+            <form
+              method="post"
+              encType="multipart/form-data"
+              onSubmit="Loading(1)"
+            >
+              <div className="form-group">
+                <label className="text-danger">Employee</label>
+                <select
+                  className="form-control select2"
+                  onChange="show_leave_balance()"
+                  name="user"
+                  required=""
+                  data-select2-id="1"
+                  tabIndex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="" data-select2-id="3">
+                    -
+                  </option>
+                  <option value="166804835212">Amirah</option>
+                  <option value="167108877793">Cuttie</option>
+                  <option value="167108913646">Jacky</option>
+                  <option value="167763914983">Lafar</option>
+                  <option value="167783056568">Gorilia</option>
+                  <option value="167783091726">Lilly</option>
+                  <option value="167990984395">Imp_student</option>
+                  <option value="167991003789">a kao</option>
+                  <option value="167991105435">ah kau</option>
+                </select>
+              </div>
 
-              <Col xs={12}>
-                <div className="mb-3">
-                  <Label>Duration</Label>
-                  <div className="input-group">
-                    <Flatpickr
-                      className="form-control"
-                      id="duration"
-                      name="defaultDate"
-                      placeholder="Select Date"
-                      value={validation.values.defaultDate || ""}
-                      options={{
-                        mode: "range",
-                        dateFormat: "Y-m-d",
-                      }}
-                      onChange={(date) => {
-                        setSelectedNewDay(date);
-                      }}
+              <div className="alert alert-warning">
+                Make sure the employees have been activated and joined
+              </div>
+
+              <div className="form-group">
+                <label className="text-danger">Leave Type</label>
+                <select
+                  className="form-control select2"
+                  onChange="show_leave_balance()"
+                  name="leave_type"
+                  required=""
+                  data-select2-id="4"
+                  tabIndex="-1"
+                  aria-hidden="true"
+                >
+                  <option value="" data-select2-id="6">
+                    -
+                  </option>
+                  <option value="162843765711">Sick Leave</option>
+                  <option value="163014486258">Annual Leave</option>
+                  <option value="163021224487">Unpaid Leave</option>
+                  <option value="163021225254">Paid Leave</option>
+                  <option value="167565514056">Annual Leave 2</option>
+                </select>
+
+                <small
+                  id="leave_balance_container"
+                  className="d-none form-text text-muted"
+                >
+                  Your leave balance:{" "}
+                  <span className="font-weight-bold" id="leave_balance"></span>
+                </small>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Start</label>
+                    <input
+                      type="date"
+                      className="form-control mb-2"
+                      name="date_start"
                     />
-                    <span className="input-group-text">
-                      <i className="ri-calendar-event-line"></i>
-                    </span>
+                    <div
+                      className="btn-group btn-group-toggle"
+                      data-toggle="buttons"
+                    >
+                      <label className="btn btn-sm btn-outline-secondary border border-secondary active">
+                        <input
+                          type="radio"
+                          name="date_start_days"
+                          id="option1"
+                          value="all day"
+                        />{" "}
+                        All Day
+                      </label>
+                      <label className="btn btn-sm btn-outline-secondary border border-secondary">
+                        <input
+                          type="radio"
+                          name="date_start_days"
+                          id="option2"
+                          value="AM"
+                        />{" "}
+                        AM
+                      </label>
+                      <label className="btn btn-sm btn-outline-secondary border border-secondary">
+                        <input
+                          type="radio"
+                          name="date_start_days"
+                          id="option3"
+                          value="PM"
+                        />{" "}
+                        PM
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </Col>
-              <Col xs={12}>
-                <div className="mb-3">
-                  <Label className="form-label">Reason</Label>
-                  <textarea
-                    className="form-control d-block"
-                    id="reason"
-                    name="reason"
-                    placeholder="Enter a reason"
-                    rows="3"
-                    onChange={validation.handleChange}
-                    onBlur={validation.handleBlur}
-                    value={validation.values.reason || ""}
-                  ></textarea>
-                  {validation.touched.reason && validation.errors.reason ? (
-                    <FormFeedback type="invalid">
-                      {validation.errors.reason}
-                    </FormFeedback>
-                  ) : null}
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>End</label>
+                    <input
+                      type="date"
+                      className="form-control mb-2"
+                      name="date_end"
+                    />
+                    <div
+                      className="btn-group btn-group-toggle"
+                      data-toggle="buttons"
+                    >
+                      <label
+                        name="date_end_days_lbl"
+                        className="btn btn-sm btn-outline-secondary border border-secondary active disabled"
+                      >
+                        <input type="radio" name="date_end_days" id="option1" />{" "}
+                        All Day
+                      </label>
+                      <label
+                        name="date_end_days_lbl"
+                        className="btn btn-sm btn-outline-secondary border border-secondary disabled"
+                      >
+                        <input type="radio" name="date_end_days" id="option2" />{" "}
+                        AM
+                      </label>
+                      <label
+                        name="date_end_days_lbl"
+                        className="btn btn-sm btn-outline-secondary border border-secondary disabled"
+                      >
+                        <input type="radio" name="date_end_days" id="option3" />{" "}
+                        PM
+                      </label>
+                    </div>
+                  </div>
                 </div>
-              </Col>
-              <Col xs={12}>
-                <div className="mb-3">
-                  <Label htmlFor="file" className="form-label">
-                    File
-                  </Label>
-                  <Input
-                    className="form-control"
-                    name="file"
-                    type="file"
-                    id="file"
-                    multiple
+              </div>
+
+              <div className="form-group">
+                <label className="text-danger">Reason</label>
+                <textarea
+                  className="form-control"
+                  name="reason"
+                  rows="4"
+                  required=""
+                ></textarea>
+              </div>
+
+              <div className="form-group">
+                <label>File</label>
+                <input type="file" className="form-control-file" name="file" />
+              </div>
+
+              <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    name="approve"
+                    id="checkbox-approve"
                   />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="checkbox-approve"
+                  >
+                    Check to approve the request automatically
+                  </label>
                 </div>
-              </Col>
-            </Row>
-            <div className="hstack gap-2 justify-content-end">
-              <button
-                type="submit"
-                className="btn btn-success"
-                id="btn-save-event"
-              >
-                Save
-              </button>
-            </div>
-          </Form>
-        </CardBody>
-      </Card>
+              </div>
+
+              <div className="form-group">
+                <button className="btn btn-primary" name="save">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

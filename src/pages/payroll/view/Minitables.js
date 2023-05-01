@@ -4,96 +4,175 @@ import { Card, Col, Row } from "reactstrap";
 const Minitables = () => {
   return (
     <React.Fragment>
-      <Row className="mt-3">
-        <Col md={4}>
-          <Card>
-            <div className="p-3">
-              <h6 className="fw-bold">Bank File</h6>
-              <p>
-                Download banking Excel file to easily copy paste the data to you
-                bank excel template.
-              </p>
+      <div className="row">
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <div className="card-body font-weight-bold pb-1">Bank File</div>
+            <div className="card-body py-0">
+              Download banking Excel file to easily copy paste the data to you
+              bank excel template.
             </div>
-            <div className="d-flex flex-column">
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">Excel</div>
-                <button className="btn btn-custom">Download</button>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">EPF</div>
-                <button className="btn btn-custom">CSV</button>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">PBB</div>
-                <button className="btn btn-custom">EXCEL</button>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div>
-                  <div className="fs-13">SOCSO</div>
-                  <p className="text-warning fs-12">
-                    Please make sure the employer SOCSO code and employees' ID
-                    number have been set
-                  </p>
-                </div>
-                <button className="btn btn-custom">TXT</button>
-              </div>
+            <div className="card-body px-0 pb-0">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">Excel</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/payroll/export_bank_excel/168295900266"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">EPF</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/payroll/export_epf_csv/168295900266"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      CSV
+                    </a>
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">PBB</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/payroll/export_pbb_excel/168295900266"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      EXCEL
+                    </a>
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">
+                    SOCSO
+                    <small
+                      className="d-block mt-2 text-warning font-weight-bold"
+                      style={{ flexBasis: "100%" }}
+                    >
+                      Please make sure the employer SOCSO code and employees' ID
+                      number have been set
+                    </small>
+                  </div>
+                  <div className="w-50 my-auto">
+                    <button
+                      onClick="download_txt(168295900266)"
+                      className="btn btn-secondary float-right"
+                      disabled=""
+                    >
+                      TXT
+                    </button>
+                  </div>
+                </li>
+              </ul>
             </div>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <div className="p-3">
-              <h6 className="fw-bold">Payroll Reports</h6>
-              <p>
-                You can download the reports listed below for this pay period.
-              </p>
+          </div>
+        </div>
+
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <div className="card-body font-weight-bold pb-1">
+              Payroll Reports
             </div>
-            <div className="d-flex flex-column">
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">Payroll Report</div>
-                <button className="btn btn-custom">Download</button>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">Variance Report</div>
-                <button className="btn btn-custom">Download</button>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">Department Report</div>
-                <button className="btn btn-custom">Download</button>
-              </div>
+            <div className="card-body py-0">
+              You can download the reports listed below for this pay period.
             </div>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <div className="p-3">
-              <h6 className="fw-bold">Summary</h6>
+            <div className="card-body px-0 pb-0">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">Payroll Report</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/payroll/export_payroll/168295900266"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">Variance Report</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/payroll/export_variance?month=2023-05"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">Department Report</div>
+                  <div className="w-50 my-auto">
+                    <a
+                      href="https://robocube.synorexcloud.com/hr/export/dprt_report/168295900266"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary float-right"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="d-flex flex-column">
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">EPF</div>
-                <div className="fw-bold">32.00</div>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">SOCSO</div>
-                <div className="fw-bold">4.35</div>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">EIS</div>
-                <div className="fw-bold">0.50</div>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">PCB</div>
-                <div className="fw-bold">30.00</div>
-              </div>
-              <div className="border-top p-3 d-flex w-100 justify-content-between align-items-center">
-                <div className="fs-13">HRDF</div>
-                <div className="fw-bold">0.00</div>
-              </div>
+          </div>
+        </div>
+
+        <div className="col-md-3 mb-4">
+          <div className="card">
+            <div className="card-body font-weight-bold pb-1">Summary</div>
+            <div className="card-body px-0 pb-0">
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">EPF</div>
+                  <div className="w-50 my-auto text-right font-weight-bold">
+                    0.00{" "}
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">SOCSO</div>
+                  <div className="w-50 my-auto text-right font-weight-bold">
+                    0.00
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">EIS</div>
+                  <div className="w-50 my-auto text-right font-weight-bold">
+                    0.00
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">PCB</div>
+                  <div className="w-50 my-auto text-right font-weight-bold">
+                    0.00
+                  </div>
+                </li>
+                <li className="list-group-item border-top d-flex">
+                  <div className="w-50 my-auto">HRDF</div>
+                  <div className="w-50 my-auto text-right font-weight-bold">
+                    0.00
+                  </div>
+                </li>
+              </ul>
             </div>
-          </Card>
-        </Col>
-      </Row>
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

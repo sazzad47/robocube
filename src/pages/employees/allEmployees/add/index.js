@@ -11,9 +11,7 @@ const AddEmployee = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Add Employee" />
-          <Row className="mt-3">
           <FormComponent/>
-          </Row>
         </Container>
       </div>
     </React.Fragment>

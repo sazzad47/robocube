@@ -10,11 +10,6 @@ const Calendar = () => {
  
   return (
     <React.Fragment>
-      <Card className="card-h-100">
-        <CardHeader>
-          <h4 className="card-title mb-0">Calendar</h4>
-        </CardHeader>
-        <CardBody>
           <FullCalendar
             plugins={[
               BootstrapTheme,
@@ -32,8 +27,6 @@ const Calendar = () => {
               right: "dayGridMonth,dayGridWeek,dayGridDay,listWeek",
             }}
           />
-        </CardBody>
-      </Card>
     </React.Fragment>
   );
 };

@@ -9,7 +9,9 @@ const FormComponent = ({ setData }) => {
   const selectRef = useRef(null);
 
   useEffect(() => {
-    $(selectRef.current).select2();
+    $(selectRef.current).select2({
+      theme: "bootstrap4"
+    });
   }, []);
 
   return (
@@ -59,7 +61,7 @@ const FormComponent = ({ setData }) => {
                   <button
                     type="button"
                     onClick={() => window.print()}
-                    className="btn btn-secondary ms-2"
+                    className="btn btn-secondary ml-2"
                   >
                     Print
                   </button>

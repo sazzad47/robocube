@@ -1,82 +1,113 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TableContainer from "../../../Components/Common/TableContainer";
-import { useMemo } from "react";
-import DeleteModal from "../../../Components/Common/DeleteModal";
-
-const tableData = [
-  { no: 1, title: "Math", status: "Active", remark: "none" },
-  { no: 2, title: "Science", status: "Active", remark: "none" },
-  { no: 3, title: "History", status: "Inactive", remark: "none" },
-  { no: 4, title: "English", status: "Active", remark: "none" },
-  { no: 5, title: "Art", status: "Inactive", remark: "none" },
-  { no: 6, title: "Music", status: "Active", remark: "none" },
-  { no: 7, title: "Physical Education", status: "Active", remark: "none" },
-  { no: 8, title: "Computer Science", status: "Inactive", remark: "none" },
-  { no: 9, title: "Foreign Language", status: "Active", remark: "none" },
-  { no: 10, title: "Social Studies", status: "Active", remark: "none" },
-];
+import React from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import $ from "jquery";
+import "datatables.net-bs4";
+import { Link } from "react-router-dom";
 
 const DataTable = () => {
-  const [deleteModal, setDeleteModal] = useState(false);
+  const tableRef = useRef(null);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "No",
-        accessor: "no",
-        filterable: false,
-      },
-      {
-        Header: "Title",
-        accessor: "title",
-        filterable: false,
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        filterable: false,
-        Cell: (cell) => {
-          return (
-            <span
-              className={`${
-                cell.value === "Inactive"
-                  ? "badge badge-warning"
-                  : "badge badge-success"
-              }`}
-            >
-              {cell.value}
-            </span>
-          );
-        },
-      },
-      {
-        Header: "Remark",
-        accessor: "remark",
-        filterable: false,
-      },
-    ],
-    []
-  );
+  useEffect(() => {
+    // initialize DataTables
+    $(tableRef.current).DataTable();
+  }, []);
 
   return (
     <React.Fragment>
-      <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
-      />
-      <div>
-        <TableContainer
-          columns={columns}
-          data={tableData || []}
-          isGlobalFilter={true}
-          customPageSize={10}
-          divClass="table-responsive mb-1"
-          tableClass="mb-0 align-middle "
-          theadClass="custom-table-head table-bordered text-muted"
-          SearchPlaceholder="Type a keyword..."
-        />
+      <div className="container-fluid container-wrapper">
+        <div className="row">
+          <div className="col-sm-12">
+            <table
+              ref={tableRef}
+              className="DTable table dataTable no-footer"
+              id="DataTables_Table_0"
+              role="grid"
+              aria-describedby="DataTables_Table_0_info"
+            >
+              <thead>
+                <tr role="row">
+                  <th
+                    style={{ width: "10%" }}
+                    className="sorting_asc"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-sort="ascending"
+                    aria-label="No: activate to sort column descending"
+                  >
+                    No
+                  </th>
+                  <th
+                    style={{ width: "35%" }}
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Title: activate to sort column ascending"
+                  >
+                    Title
+                  </th>
+                  <th
+                    style={{ width: "10%" }}
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Status: activate to sort column ascending"
+                  >
+                    Status
+                  </th>
+                  <th
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Remark: activate to sort column ascending"
+                  >
+                    Remark
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr role="row" className="odd">
+                  <td className="sorting_1">1</td>
+                  <td>
+                    <Link className="btn-link" to="/">Working Hours </Link>
+                  </td>
+                  <td>
+                    <span className="badge badge-success">Active</span>
+                  </td>
+                  <td>-</td>
+                </tr>
+                <tr role="row" className="even">
+                  <td className="sorting_1">2</td>
+                  <td>
+                    <Link className="btn-link" to="/">Morning </Link>
+                  </td>
+                  <td>
+                    <span className="badge badge-success">Active</span>
+                  </td>
+                  <td>-</td>
+                </tr>
+                <tr role="row" className="odd">
+                  <td className="sorting_1">3</td>
+                  <td>
+                    <Link className="btn-link" to="/">Noon </Link>
+                  </td>
+                  <td>
+                    <span className="badge badge-success">Active</span>
+                  </td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );

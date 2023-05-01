@@ -12,7 +12,9 @@ const FormComponent = ({ setData }) => {
   const [confirmModal, setConfirmModal] = useState(false);
 
   useEffect(() => {
-    $(selectRef.current).select2();
+    $(selectRef.current).select2({
+      theme: "bootstrap4"
+    });
   }, []);
 
   return (
@@ -70,7 +72,7 @@ const FormComponent = ({ setData }) => {
                   <button
                     type="button"
                     onClick={() => setConfirmModal(true)}
-                    className="btn btn-secondary ms-2"
+                    className="btn btn-secondary ml-2"
                   >
                     Check All
                   </button>

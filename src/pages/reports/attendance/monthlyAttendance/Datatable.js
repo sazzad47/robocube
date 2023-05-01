@@ -87,7 +87,7 @@ const Datatable = () => {
   }
 
   return (
-    <div className="container">
+    <React.Fragment>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -159,7 +159,7 @@ const Datatable = () => {
           ))}
         </tbody>
         <tfoot>
-          <tr className="fw-bold">
+          <tr className="font-weight-bold">
             <td rowSpan="1" colSpan="1">
               Total
             </td>
@@ -181,7 +181,7 @@ const Datatable = () => {
           </tr>
         </tfoot>
       </table>
-    </div>
+    </React.Fragment>
   );
 };
 

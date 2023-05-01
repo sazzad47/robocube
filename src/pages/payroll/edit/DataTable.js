@@ -1,287 +1,300 @@
 import React, { useState } from "react";
-import { Card, CardBody, Table } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import DeleteModal from "../../../Components/Common/DeleteModal";
 import SelectEmployee from "./SelectEmployee";
-import { useCallback } from "react";
-
-import avatar1 from "../../../assets/images/users/avatar-3.jpg";
 import { Tooltip } from "react-tooltip";
 import ConfirmationModal from "../../../Components/Common/ConfirmationModal";
-
-const tableData = [
-  {
-    employee: {
-      name: "John Doe",
-      position: "Manager",
-      general: "Full-time",
-      salary_basis: "Monthly",
-      salary_amount: 5000,
-      public_holiday: 12,
-      working_days: 22,
-    },
-    basic_salary: 5000,
-    additions: 1000,
-    gross_pay: 6000,
-    deductoins: 500,
-    net_pay: 5500,
-  },
-  {
-    employee: {
-      name: "Jane Smith",
-      position: "Sales Executive",
-      general: "Part-time",
-      salary_basis: "Hourly",
-      salary_amount: 20,
-      public_holiday: 5,
-      working_days: 18,
-    },
-    basic_salary: 1440,
-    additions: 200,
-    gross_pay: 1640,
-    deductoins: 50,
-    net_pay: 1590,
-  },
-  // Add more objects to represent additional rows
-];
 
 const DataTable = () => {
   const navigate = useNavigate();
 
   const [addNewModal, setAddNewModal] = useState(false);
+  const [removeModal, setRemoveModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
-  const [checkedAll, setCheckedAll] = useState(false);
-  const [checkedIndex, setCheckedIndex] = useState(-1);
-
-  const handleCheckAll = (event) => {
-    const { checked } = event.target;
-    setCheckedAll(checked);
-  };
-
-  const handleCheck = (e, i) => {
-    const isChecked = e.target.checked;
-    setCheckedIndex(isChecked ? i : -1);
-  };
-
-  const toggle = useCallback(() => {
-    if (addNewModal) {
-      setAddNewModal(false);
-    } else {
-      setAddNewModal(true);
-    }
-  }, [addNewModal]);
-
-  const runPayroll = () => {
-    setAddNewModal(true);
-  };
-
-  const ActionCell = () => (
-    <div className="d-flex justify-content-center">
-      <button className="btn link-danger">
-        <i className="bx bx-x-circle bx-sm"></i>
-      </button>
-    </div>
-  );
-
-  //Total
-  const totalBasicSalary = tableData.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.basic_salary,
-    0
-  );
-
-  const totalAdditions = tableData.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.additions,
-    0
-  );
-
-  const totalGrossPay = tableData.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.gross_pay,
-    0
-  );
-
-  const totalDeductoins = tableData.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.deductoins,
-    0
-  );
-
-  const totalNetPay = tableData.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.net_pay,
-    0
-  );
 
   return (
     <React.Fragment>
+      <ConfirmationModal
+        show={removeModal}
+        text="Are you sure you want to remove this employee?"
+        primaryCmd="No"
+        secondaryCmd="Yes"
+        onPrimaryCmd={() => setRemoveModal(false)}
+        onSecondaryCmd={() => navigate("/payroll_hock/list")}
+      />
       <ConfirmationModal
         show={confirmModal}
         text="Are you sure you want to save this payroll?"
         primaryCmd="No"
         secondaryCmd="Yes"
         onPrimaryCmd={() => setConfirmModal(false)}
-        onSecondaryCmd={() => navigate("/payroll/123/view")}
+        onSecondaryCmd={() => navigate("/payroll_hock/edit/123/view")}
       />
-      <SelectEmployee
-        modal={addNewModal}
-        setModal={setAddNewModal}
-        toggle={toggle}
-      />
-      <Card>
-        <CardBody>
-          <div className="w-100 d-flex justify-content-end mb-3">
-            <button onClick={runPayroll} className="btn btn-success">
-              <i className="ri-add-line align-bottom me-1"></i>
-              Add New
-            </button>
-          </div>
-          <div className="table-responsive">
-            <Table className="table-nowrap mb-0 table-hover">
-              <thead className="">
-                <tr>
-                  <th scope="col">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="cardtableCheck03"
-                        onChange={handleCheckAll}
-                        checked={checkedAll}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cardtableCheck03"
-                      ></label>
-                    </div>
-                  </th>
-                  <th scope="col">Employee</th>
-                  <th scope="col">
-                    <div className="d-flex align-items-center gap-2">
-                      <i className="bx bx-sync bx-sm link link-primary sync"></i>{" "}
-                      <Tooltip anchorSelect=".sync" place="top">
-                        Sync to basic salary
-                      </Tooltip>
-                      <div>Basic Salary (MYR)</div>
-                    </div>
-                  </th>
-                  <th scope="col">Additions (MYR)</th>
-                  <th scope="col">Gross Pay (MYR)</th>
-                  <th scope="col">Deductoins (MYR)</th>
-                  <th scope="col">Net Pay (MYR)</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableData.map((item, i) => (
-                  <tr key={i}>
-                    <td>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id={`cardtableCheck${i}`}
-                          checked={checkedIndex === i || checkedAll}
-                          onChange={(e) => handleCheck(e, i)}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor={`cardtableCheck${i}`}
-                        ></label>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-start">
-                        <div className="flex-shrink-0 me-3">
-                          <div>
-                            <img
-                              className="avatar-sm rounded-circle"
-                              alt=""
-                              src={avatar1}
-                            />
-                          </div>
-                        </div>
+      <SelectEmployee modal={addNewModal} setModal={setAddNewModal} />
+      <form method="post" onSubmit="Loading(1)">
+        <div className="text-right form-group">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => setAddNewModal(true)}
+          >
+            <i className="fa fa-fw fa-plus-circle"></i> Add New
+          </button>
+        </div>
 
-                        <div className="flex-grow-1 overflow-hidden">
-                          <h5 className="contact-name fs-13 mb-1">
-                            <Link to="#" className="link text-primary">
-                              {item.employee.name}
-                            </Link>
-                          </h5>
-                          <div
-                            style={{ fontSize: "0.8em" }}
-                            className="text-muted mb-0"
-                          >
-                            <div className="text-nowrap">
-                              Position: {item.employee.position}
-                            </div>
-                            <div className="text-nowrap">
-                              Type: {item.employee.general}
-                            </div>
-                            <div className="text-nowrap">
-                              HRDF:{" "}
-                              <span className="text-success">Enabled</span>
-                            </div>
-                          </div>
-                          <div
-                            style={{ cursor: "pointer" }}
-                            className="employee_info badge bg-primary mt-3"
-                          >
-                            Info
-                          </div>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th className="text-left">
+                <div className="custom-control custom-checkbox d-flex align-items-center">
+                  <input
+                    type="checkbox"
+                    onClick="select_all(this)"
+                    className="custom-control-input"
+                    id="checkbox-all"
+                    checked=""
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="checkbox-all"
+                  ></label>
+                </div>
+              </th>
+              <th className="text-left">Employee</th>
+              <th style={{ width: "12%" }}>
+                <div className="sync btn-link mr-3">
+                  <i className="fa fa-fw fa-sync"></i>
+                  <Tooltip anchorSelect=".sync" place="top">
+                    Sync to basic salary
+                  </Tooltip>
+                </div>
+                Basic Salary (MYR)
+              </th>
+              <th style={{ width: "12%" }}>Additions (MYR)</th>
+              <th style={{ width: "12%" }}>Gross Pay (MYR)</th>
+              <th style={{ width: "12%" }}>Deductions (MYR)</th>
+              <th style={{ width: "12%" }}>Net Pay (MYR)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody className="summary-tbody">
+            <tr id="7141">
+              <input type="hidden" name="user_id" value="166804835212" />
+              <input type="hidden" name="month" value="05" />
+              <input type="hidden" name="year" value="2023" />
+              <input type="hidden" name="salary_amount" value="1600" />
+              <td className="text-left">
+                <div className="custom-control custom-checkbox d-flex align-items-center">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input checkbox-user"
+                    id="checkbox-7141"
+                    name="id[]"
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="checkbox-7141"
+                  ></label>
+                </div>
+              </td>
+              <td className="text-left">
+                <div className="media">
+                  <a href="https://robocube.synorexcloud.com/hr/employees/edit/166804835212">
+                    <img
+                      alt=""
+                      src="https://cdn.synorex.link/assets/images/blank/4x3.jpg"
+                      className="mr-2 rounded-circle border"
+                      style={{
+                        height: "50px",
+                        width: "50px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </a>
+                  <div className="media-body my-auto">
+                    <Link to="/" className="btn-link">
+                      Amirah{" "}
+                    </Link>
+                    <span className="d-block small text-muted">
+                      Position: Office Assistant{" "}
+                    </span>
+                    <span className="d-block small text-muted">
+                      Type: General{" "}
+                    </span>
+                    <div
+                      className="mt-2 d-flex align-items-center"
+                      style={{ fontSize: "100%" }}
+                    >
+                      <span
+                        className="working_days_link"
+                        data-id="7141"
+                        value="0"
+                        data-toggle="modal"
+                        data-target="#modal-working-days"
+                      >
+                        <span className="employee_info small badge badge-primary working_days">
                           <Tooltip
                             className="bg-white text-dark"
+                            style={{ fontSize: "1em" }}
                             anchorSelect=".employee_info"
                             place="top"
                           >
-                            <div className="text-nowrap">
-                              Salary Basis: {item.employee.salary_basis}
-                            </div>
-                            <div className="text-nowrap">
-                              Salary Amount: {item.employee.salary_amount}
-                            </div>
-                            <div className="text-nowrap">
-                              Public Holiday: {item.employee.public_holiday}
-                            </div>
-                            <div className="text-nowrap">
-                              Working Days: {item.employee.working_days}
-                            </div>
+                            <table className="m-0 table-borderless">
+                              <tr>
+                                <td>Salary basis:&nbsp;&nbsp;&nbsp;</td>
+                                <td>Monthly</td>
+                              </tr>
+                              <tr>
+                                <td>Salary amount:&nbsp;&nbsp;&nbsp;</td>
+                                <td>1,600.00</td>
+                              </tr>
+                              <tr>
+                                <td>Public Holiday:&nbsp;&nbsp;&nbsp;</td>
+                                <td>0</td>
+                              </tr>
+                              <tr>
+                                <td>Working days:&nbsp;&nbsp;&nbsp;</td>
+                                <td>
+                                  <span className="working_days">0</span>/22
+                                </td>
+                              </tr>
+                            </table>
                           </Tooltip>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{item.basic_salary}</td>
-                    <td>{item.additions}</td>
-                    <td>{item.gross_pay}</td>
-                    <td>{item.deductoins}</td>
-                    <td>{item.net_pay}</td>
-                    <td>
-                      <ActionCell />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot className="table-light">
-                <tr>
-                  <td colSpan="2">Grand Total {`(${tableData.length})`} </td>
-                  <td>{totalBasicSalary.toFixed(2)}</td>
-                  <td>{totalAdditions.toFixed(2)}</td>
-                  <td>{totalGrossPay.toFixed(2)}</td>
-                  <td>{totalDeductoins.toFixed(2)}</td>
-                  <td colSpan="2">{totalNetPay.toFixed(2)}</td>
-                </tr>
-              </tfoot>
-            </Table>
+                          Info
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <Link to="/" className="btn-link">
+                  <span className="amount_basic_salary">0.00 </span>
+                </Link>
+                <input
+                  type="hidden"
+                  className="input_amount_basic_salary"
+                  name="amount_basic_salary[7141]"
+                  value="0"
+                />
+                <input
+                  type="hidden"
+                  className="input_salary_type"
+                  name="salary_type[7141]"
+                  value="monthly"
+                />
+                <input
+                  type="hidden"
+                  className="input_salary_rate"
+                  name="salary_rate[7141]"
+                  value="1"
+                />
+                <input
+                  type="hidden"
+                  className="input_basic_salary"
+                  name="basic_salary[7141]"
+                  value="0"
+                />
+              </td>
+              <td>
+                <Link to="/" className="btn-link">
+                  <span className="amount_basic_salary">0.00 </span>
+                </Link>
+                <input
+                  type="hidden"
+                  className="input_additions"
+                  name="additions[7141]"
+                  value='[{"secondary":"166839467441","qty":"1","amount":"0","type":""},{"secondary":"166839477839","qty":"1","amount":"0","type":""},{"secondary":"166839465724","qty":"1","amount":"0","type":""}]'
+                />
+                <input
+                  type="hidden"
+                  className="payroll_type"
+                  name="payroll_type[7141]"
+                  value=""
+                />
+              </td>
+              <td>
+                <span className="amount_gross">0.00</span>
+              </td>
+              <td>
+                <Link to="/" className="btn-link">
+                  <span className="amount_basic_salary">0.00 </span>
+                </Link>
+                <input
+                  type="hidden"
+                  className="input_deductions"
+                  name="deductions[7141]"
+                  value="[]"
+                />
+                <input
+                  type="hidden"
+                  className="input_deductions_gov"
+                  name="deductions_gov[7141]"
+                  value='[{"title":"EPF","help_text":"EPF No: 115141608","employer":"0.00","employer_rate":"Auto","employee":"0.00","employee_rate":"Auto"},{"title":"SOCSO","help_text":"","employer":"0.00","employee":"0.00","socso_type":"socso\/inj_inv\/2022"}]'
+                />
+              </td>
+              <td>
+                <span className="amount_net">0.00</span>
+              </td>
+              <th className="text-center">
+                <div
+                  onClick={() => setConfirmModal(true)}
+                  className="text-danger"
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fa fa-fw fa-times-circle"></i>
+                </div>
+              </th>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>
+                Grand Total (<span id="total_selected_employee">1</span>)
+              </th>
+              <th className="text-right">
+                <span className="total_basis">0.00</span>
+              </th>
+              <th className="text-right">
+                <span className="total_additions">1.00</span>
+              </th>
+              <th className="text-right">
+                <span className="total_gross">1.00</span>
+              </th>
+              <th className="text-right">
+                <span className="total_deductions">0.00</span>
+              </th>
+              <th className="text-right">
+                <span className="total_net">1.00</span>
+              </th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div className="row">
+          <div className="col-md-12 text-right">
+            <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-secondary"
+                name="save"
+                onClick={() => navigate("/payroll_hock/list")}
+              >
+                Save as Draft
+              </button>
+              <button
+                type="button"
+                onClick={() => setConfirmModal(true)}
+                className="ml-1 btn btn-primary"
+              >
+                Confirm
+              </button>
+              <input type="hidden" name="status" value="draft" />
+            </div>
           </div>
-          <div className="w-100 d-flex justify-content-end gap-2 mt-4">
-            <button className="btn btn-danger">Save as Draft</button>
-            <button
-              onClick={() => setConfirmModal(true)}
-              className="btn btn-primary"
-            >
-              Confirm
-            </button>
-          </div>
-        </CardBody>
-      </Card>
+        </div>
+      </form>
     </React.Fragment>
   );
 };

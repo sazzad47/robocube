@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 
@@ -11,9 +11,7 @@ const Driver = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Driver" />
-          <Row className="mt-3">
-            <Datatable />
-          </Row>
+          <Datatable />
         </Container>
       </div>
     </React.Fragment>

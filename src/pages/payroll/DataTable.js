@@ -1,197 +1,212 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardBody,
-} from "reactstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-import TableContainer from "../../Components/Common/TableContainer";
-import { useMemo } from "react";
-import DeleteModal from "../../Components/Common/DeleteModal";
-import SelectMonth from "./SelectMonth";
-import { useCallback } from "react";
+import $ from "jquery";
+import "datatables.net-bs4";
 
 const tableData = [
   {
-    no: 1,
-    month: "January 2022",
-    status: "Approved",
-    total_basis: 5000,
-    total_additions: 1000,
-    total_gross_pay: 6000,
-    total_deductoins: 1200,
-    total_net_pay: 4800,
-    hrdf_listing: "View Listing",
+    id: 1,
+    month: "January",
+    status: "Completed",
+    total_basis: 1000,
+    total_additions: 500,
+    total_gross_pay: 1500,
+    total_deductions: 200,
+    total_net_pay: 1300,
+    hrdf_listing: "Yes",
   },
   {
-    no: 2,
-    month: "February 2022",
-    status: "Rejected",
-    total_basis: 5500,
-    total_additions: 800,
-    total_gross_pay: 6300,
-    total_deductoins: 1300,
-    total_net_pay: 5000,
-    hrdf_listing: "View Listing",
+    id: 2,
+    month: "February",
+    status: "Draft",
+    total_basis: 1200,
+    total_additions: 600,
+    total_gross_pay: 1800,
+    total_deductions: 250,
+    total_net_pay: 1550,
+    hrdf_listing: "No",
   },
   {
-    no: 3,
-    month: "March 2022",
-    status: "Pending",
-    total_basis: 6000,
-    total_additions: 1200,
-    total_gross_pay: 7200,
-    total_deductoins: 1500,
-    total_net_pay: 5700,
-    hrdf_listing: "View Listing",
+    id: 3,
+    month: "March",
+    status: "Completed",
+    total_basis: 1100,
+    total_additions: 550,
+    total_gross_pay: 1650,
+    total_deductions: 225,
+    total_net_pay: 1425,
+    hrdf_listing: "Yes",
   },
   {
-    no: 4,
-    month: "April 2022",
-    status: "Approved",
-    total_basis: 5500,
-    total_additions: 1000,
-    total_gross_pay: 6500,
-    total_deductoins: 1400,
-    total_net_pay: 5100,
-    hrdf_listing: "View Listing",
+    id: 4,
+    month: "April",
+    status: "Draft",
+    total_basis: 1050,
+    total_additions: 525,
+    total_gross_pay: 1575,
+    total_deductions: 210,
+    total_net_pay: 1365,
+    hrdf_listing: "No",
   },
   {
-    no: 5,
-    month: "May 2022",
-    status: "Approved",
-    total_basis: 6000,
-    total_additions: 1500,
-    total_gross_pay: 7500,
-    total_deductoins: 1800,
-    total_net_pay: 5700,
-    hrdf_listing: "View Listing",
-  }
+    id: 5,
+    month: "May",
+    status: "Completed",
+    total_basis: 1300,
+    total_additions: 650,
+    total_gross_pay: 1950,
+    total_deductions: 275,
+    total_net_pay: 1675,
+    hrdf_listing: "Yes",
+  },
 ];
 
 const DataTable = () => {
-  const [modal, setModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
+  const tableRef = useRef(null);
 
-  const toggle = useCallback(() => {
-    if (modal) {
-      setModal(false);
-    } else {
-      setModal(true);
-    }
-  }, [modal]);
-  
-  const runPayroll = ()=> {
-     setModal(true);
-  }
-  const ActionCell = () => (
-    <div className="d-flex justify-content-center">
-      <button className="btn link-primary">
-      <i className='bx bx-link-external'></i>
-      </button>
-    </div>
-  );
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: "No",
-        accessor: "no",
-        filterable: false,
-      },
-      {
-        Header: "Month",
-        accessor: "month",
-        filterable: false,
-        Cell: (cell) => {
-          return (
-            <Link to="/payroll">{cell.value}</Link>
-          );
-        },
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        filterable: false,
-        Cell: (cell) => {
-          return (
-            <span
-              className={`${
-                cell.value === "Rejected"
-                  ? "badge badge-soft-danger": cell.value === "Pending"? "badge badge-soft-info"
-                  : "badge badge-soft-success"
-              }`}
-            >
-              {cell.value}
-            </span>
-          );
-        },
-      },
-      {
-        Header: "Total Basis (MYR)",
-        accessor: "total_basis",
-        filterable: false,
-      },
-      {
-        Header: "Total Additions (MYR)",
-        accessor: "total_additions",
-        filterable: false,
-      },
-      {
-        Header: "Total Gross Pay (MYR)",
-        accessor: "total_gross_pay",
-        filterable: false,
-      },
-      {
-        Header: "Total Deductoins (MYR)",
-        accessor: "total_deductoins",
-        filterable: false,
-      },
-      {
-        Header: "Total Net Pay (MYR)",
-        accessor: "total_net_pay",
-        filterable: false,
-      },
-      {
-        Header: "HRDF Listing",
-        accessor: "hrdf_listing",
-        filterable: false,
-        Cell: (cell) => {
-          return (
-            <ActionCell id={cell.row.original._id} />
-          );
-        },
-      },
-    ],
-    []
-  );
+  useEffect(() => {
+    // initialize DataTables
+    $(tableRef.current).DataTable();
+  }, []);
 
   return (
     <React.Fragment>
-       <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
-      />
-      <SelectMonth modal={modal} setModal={setModal} toggle={toggle} />
-      <Card>
-        <CardBody>
-          <div id="table-search">
-            <TableContainer
-              columns={columns}
-              data={tableData || []}
-              isGlobalFilter={true}
-              customPageSize={10}
-              divClass="table-responsive mb-1"
-              tableClass="mb-0 align-middle table-borderless"
-              theadClass="table-light text-muted"
-              isAddNew={true}
-              addNewTitle="Run Payroll"
-              addNewFunction={runPayroll}
-              SearchPlaceholder="Type a keyword..."
-            />
-          </div>
-        </CardBody>
-      </Card>
+      <div className="container-fluid container-wrapper">
+        <table
+          className="DTable table table-hover dataTable no-footer"
+          ref={tableRef}
+        >
+          <thead>
+            <tr role="row">
+              <th
+                className="text-left sorting_asc"
+                style={{ width: "10%" }}
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-sort="ascending"
+                aria-label="No: activate to sort column descending"
+              >
+                No
+              </th>
+              <th
+                className="text-left sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Month: activate to sort column ascending"
+              >
+                Month
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Status: activate to sort column ascending"
+              >
+                Status
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Total Basis (MYR): activate to sort column ascending"
+              >
+                Total Basis (MYR)
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Total Additions (MYR): activate to sort column ascending"
+              >
+                Total Additions (MYR)
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Total Gross Pay (MYR): activate to sort column ascending"
+              >
+                Total Gross Pay (MYR)
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Total Deductions (MYR): activate to sort column ascending"
+              >
+                Total Deductions (MYR)
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="Total Net Pay (MYR): activate to sort column ascending"
+              >
+                Total Net Pay (MYR)
+              </th>
+              <th
+                className="sorting"
+                tabIndex="0"
+                aria-controls="DataTables_Table_0"
+                rowSpan="1"
+                colSpan="1"
+                aria-label="HRDF Listing: activate to sort column ascending"
+              >
+                HRDF Listing
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((item) => (
+              <tr key={item.id} role="row" className="odd">
+                <td className="text-left sorting_1"> {item.id} </td>
+                <td className="text-left">
+                  <Link to="/">{item.month}</Link>
+                </td>
+                <td>
+                  <span
+                    className={`badge ${
+                      item.status === "Completed"
+                        ? "badge-success"
+                        : "badge-secondary"
+                    }`}
+                  >
+                    {" "}
+                    {item.status}{" "}
+                  </span>
+                </td>
+                <td>{item.total_basis}</td>
+                <td> {item.total_additions} </td>
+                <td> {item.total_gross_pay} </td>
+                <td> {item.total_deductions} </td>
+                <td> {item.total_net_pay} </td>
+                <td>
+                  <Link to="/">
+                    <i className="fa fa-fw fa-external-link-square-alt"></i>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </React.Fragment>
   );
 };

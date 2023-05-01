@@ -1,120 +1,64 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Col,
-  Form,
-  FormFeedback,
-  Label,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  Row,
-} from "reactstrap";
-//flatpickr
-import Flatpickr from "react-flatpickr";
-import * as monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
+import { Modal } from "reactstrap";
 
-import * as Yup from "yup";
-//formik
-import { useFormik } from "formik";
-
-const SelectMonth = ({ modal, setModal, toggle }) => {
+const SelectMonth = ({ modal, setModal }) => {
   const navigate = useNavigate();
-
-  const validation = useFormik({
-    enableReinitialize: true,
-
-    initialValues: {
-      month: "",
-    },
-    validationSchema: Yup.object({
-      month: Yup.string().required("Please select a month"),
-    }),
-    onSubmit: () => {
-      navigate("/payroll/123/edit")
-      validation.resetForm();
-      setModal(false);
-    },
-    
-  });
-
-  const handleMonthChange = (selectedMonths) => {
-    const month = selectedMonths[0];
-    validation.setFieldValue("month", month);
-  }
 
   return (
     <React.Fragment>
-      <Modal id="showModal" isOpen={modal} toggle={toggle} centered>
-        <ModalHeader className="bg-light p-3" toggle={toggle}>
-          Select Month
-        </ModalHeader>
-        <Form
-          className="tablelist-form"
+      <Modal id="showModal" isOpen={modal} centered>
+        <form
           onSubmit={(e) => {
             e.preventDefault();
-            validation.handleSubmit();
-            return false;
+            navigate("/payroll_hock/edit/123");
           }}
+          className="modal fade show"
+          id="modal-run"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-modal="true"
+          role="dialog"
+          style={{ paddingRight: "5px", display: "block" }}
         >
-          <ModalBody>
-            <Row className="mb-3">
-              <Col>
-                <Label htmlFor="month" className="form-label">
-                  Month
-                </Label>
-                <Flatpickr
-                  name="month"
-                  // type="date"
-                  className="form-control"
-                  id="datepicker-publish-input"
-                  placeholder="Select a month"
-                  options={{
-                    altInput: true,
-                    plugins: [
-                      new monthSelectPlugin({
-                        shorthand: true,
-                        dateFormat: "m.y",
-                        altFormat: "F Y",
-                      }),
-                    ],
-                    dateFormat: "m.y",
-                    defaultDate: "today",
-                  }}
-                  onChange={handleMonthChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.month}
-                  invalid={
-                    validation.touched.month && validation.errors.month
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.month && validation.errors.month ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.month}
-                  </FormFeedback>
-                ) : null}
-              </Col>
-            </Row>
-          </ModalBody>
-          <div className="modal-footer">
-            <div className="hstack gap-2 justify-content-end">
-              <button
-                type="button"
-                className="btn btn-light"
-                onClick={() => {
-                  setModal(false);
-                }}
-              >
-                Close
-              </button>
-              <button type="submit" className="btn btn-success">
-                Run Payroll
-              </button>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Select Month
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span onClick={() => setModal(false)}>×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="alert alert-warning d-none">
+                  Please select a month
+                </div>
+                <div className="form-group">
+                  <label className="text-danger">Month</label>
+                  <input
+                    type="month"
+                    className="form-control"
+                    name="month"
+                    value="2023-05"
+                    required=""
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="submit" name="save" className="btn btn-primary">
+                  Run Payroll
+                </button>
+              </div>
             </div>
           </div>
-        </Form>
+        </form>
       </Modal>
     </React.Fragment>
   );

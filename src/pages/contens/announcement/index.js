@@ -6,20 +6,24 @@ import {
 } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import DataTable from "./DataTable";
+import { useNavigate } from "react-router-dom";
 
 const Announcement = () => {
   document.title = "Contents-Announcement | Robocube HR";
+  
+  const naviagte = useNavigate();
 
+  const addNew = ()=> {
+    naviagte("/content/add/announcement")
+  }
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Announcement" pageTitle="Contents" />
-          <Row>
-            <Col xxl={6}>
+          <BreadCrumb title="Announcement" isAddNew={true} addNewFunction={addNew} />
+          
               <DataTable/>
-            </Col>
-          </Row>
+        
         </Container>
       </div>
     </React.Fragment>
@@ -27,3 +31,4 @@ const Announcement = () => {
 };
 
 export default Announcement;
+

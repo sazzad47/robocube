@@ -25,8 +25,7 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2 no-footer" ref={tableRef}>
+      <table className="table table-bordered datatable my-2 no-footer" ref={tableRef}>
         <thead>
           <tr>
             <th className="sorting">No</th>
@@ -46,7 +45,6 @@ const Datatable = () => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

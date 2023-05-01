@@ -11,11 +11,7 @@ const Reports = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Reports" />
-          <Row>
-            <Col xxl={6}>
               <Links />
-            </Col>
-          </Row>
         </Container>
       </div>
     </React.Fragment>

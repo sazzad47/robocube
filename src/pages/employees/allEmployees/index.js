@@ -18,9 +18,7 @@ const AllEmployees = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="All Employees" isAddNew={true} addNewFunction={addNew} />
-          <Row className="mt-3">
             <Datatable />
-          </Row>
         </Container>
       </div>
     </React.Fragment>

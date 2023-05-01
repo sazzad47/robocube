@@ -82,107 +82,107 @@ const Links = () => {
   ];
   return (
     <React.Fragment>
-      <Row className="pt-4">
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faClock} className="fs-15 me-1" />
-            <h5 className="mb-0">Attendance</h5>
+      <div className="container container-wrapper pt-4">
+        <div className="row">
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-clock mr-1"></i> Attendance
+            </h5>
+            <ul className="nav flex-column">
+              {attendanceLinks.map((item) => (
+                <li key={item.id} className="nav-item">
+                  <Link className="nav-link px-0 py-2" to={`${item.link}`}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="nav flex-column">
-            {attendanceLinks.map((item) => (
-              <li key={item.id} className="nav-item">
-                <Link className="nav-link px-0 py-2" to={`${item.link}`}>
-                  {" "}
-                  {item.label}{" "}
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-door-open mr-1"></i> Leave
+            </h5>
+            <ul className="nav flex-column">
+              {leaveLinks.map((item) => (
+                <li key={item.id} className="nav-item">
+                  <Link className="nav-link px-0 py-2" to={`${item.link}`}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-money-check-alt mr-1"></i> Claims
+            </h5>
+            <ul className="nav flex-column">
+              {claimLinks.map((item) => (
+                <li key={item.id} className="nav-item">
+                  <Link className="nav-link px-0 py-2" to={`${item.link}`}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-chart-pie mr-1"></i> Data Check
+            </h5>
+            <ul className="nav flex-column">
+              {dataCheckLinks.map((item)=> (
+                  <li key={item.id} className="nav-item">
+                  <Link
+                    className="nav-link px-0 py-2"
+                    to={`${item.link}`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-search-dollar mr-1"></i> PCB
+            </h5>
+            <ul className="nav flex-column">
+              <li className="nav-item">
+                <Link
+                  className="nav-link px-0 py-2"
+                  to="/reports/pcb"
+                >
+                  PCB Report
                 </Link>
               </li>
-            ))}
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faDoorOpen} className="fs-15 me-1" />
-            <h5 className="mb-0">Leave</h5>
+            </ul>
           </div>
-          <ul className="nav flex-column">
-            {leaveLinks.map((item) => (
-              <li key={item.id} className="nav-item">
-                <Link className="nav-link px-0 py-2" to={`${item.link}`}>
-                  {" "}
-                  {item.label}{" "}
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-hand-holding-usd mr-1"></i> HRDF
+            </h5>
+            <ul className="nav flex-column">
+              <li className="nav-item">
+                <Link
+                  className="nav-link px-0 py-2"
+                  to="/reports/hrdf"
+                >
+                  HRDF Listing
                 </Link>
               </li>
-            ))}
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faMoneyCheckAlt} className="fs-15 me-1" />
-            <h5 className="mb-0">Claims</h5>
+            </ul>
           </div>
-          <ul className="nav flex-column">
-            {claimLinks.map((item) => (
-              <li key={item.id} className="nav-item">
-                <Link className="nav-link px-0 py-2" to={`${item.link}`}>
-                  {" "}
-                  {item.label}{" "}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faChartPie} className="fs-15 me-1" />
-            <h5 className="mb-0">Data Check</h5>
+          <div className="col-md-3 mb-5">
+            <h5 className="font-weight-bold mb-3">
+              <i className="fa fa-fw fa-hand-holding-usd mr-1"></i> Salary
+            </h5>
+            <ul className="nav flex-column">
+              <em className="text-muted">No result found</em>{" "}
+            </ul>
           </div>
-          <ul className="nav flex-column">
-            {dataCheckLinks.map((item) => (
-              <li key={item.id} className="nav-item">
-                <Link className="nav-link px-0 py-2" to={`${item.link}`}>
-                  {" "}
-                  {item.label}{" "}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faSearchDollar} className="fs-15 me-1" />
-            <h5 className="mb-0">PCB</h5>
-          </div>
-          <ul className="nav flex-column">
-            <li className="nav-item">
-              <Link className="nav-link px-0 py-2" to="/reports/pcb">
-                PCB Report
-              </Link>
-            </li>
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faHandHoldingUsd} className="fs-15 me-1" />
-            <h5 className="mb-0">HRDF</h5>
-          </div>
-          <ul className="nav flex-column">
-            <li className="nav-item">
-              <Link className="nav-link px-0 py-2" to="/reports/hrdf">
-                HRDF Listing
-              </Link>
-            </li>
-          </ul>
-        </Col>
-        <Col md={3} className="mb-5">
-          <div className="d-flex align-items-center mb-3">
-            <FontAwesomeIcon icon={faHandHoldingUsd} className="fs-15 me-1" />
-            <h5 className="mb-0">Salary</h5>
-          </div>
-          <ul className="nav flex-column">
-            <em className="text-muted">No result found</em>
-          </ul>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

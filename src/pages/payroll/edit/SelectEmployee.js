@@ -1,113 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Col,
-  Form,
-  FormFeedback,
-  Label,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  Row,
-} from "reactstrap";
-import Select from "react-select";
+import { Modal } from "reactstrap";
+import $ from "jquery";
+import "select2";
 
-//formik
-import { useFormik } from "formik";
+const SelectEmployee = ({ modal, setModal }) => {
 
-const SelectEmployee = ({ modal, setModal, toggle }) => {
   const navigate = useNavigate();
-
-  const employees = [
-    { label: "John Doe", value: "John Doe" },
-    { label: "Jane Smith", value: "Jane Smith" },
-    { label: "Bob Johnson", value: "Bob Johnson" },
-    { label: "Alice Lee", value: "Alice Lee" },
-    { label: "Mike Davis", value: "Mike Davis" },
-    // add more employee objects as needed
-  ];
-  const validation = useFormik({
-    enableReinitialize: true,
-
-    initialValues: {
-      employee: "",
-    },
-
-    onSubmit: () => {
-      navigate("/payroll");
-      validation.resetForm();
-      setModal(false);
-    },
-  });
-
-  const handleSelectEmployee = (data) => {
-    validation.setFieldValue("employee", data);
-  };
+  
+  useEffect(() => {
+    $(".select2").select2({
+      theme: "bootstrap4",
+    });
+  }, []);
 
   return (
     <React.Fragment>
-      <Modal id="showModal" isOpen={modal} toggle={toggle} centered>
-        <ModalHeader className="bg-light p-3" toggle={toggle}>
-          Add Employee
-        </ModalHeader>
-        <Form
-          className="tablelist-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            validation.handleSubmit();
-            return false;
-          }}
+      <Modal id="showModal" isOpen={modal} centered>
+        <div
+          className="modal fade show"
+          id="modal-add-employee"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-modal="true"
+          role="dialog"
+          style={{ paddingRight: "5px", display: "block" }}
         >
-          <ModalBody>
-            <Row className="mb-3">
-              <Col>
-                <Label htmlFor="employee" className="form-label">
-                  Employee
-                </Label>
-                <Select
-                  name="employee"
-                  defaultValue={employees[0]}
-                  value={validation.values.employee}
-                  onChange={handleSelectEmployee}
-                  options={employees}
-                  isSearchable={true}
-                  onBlur={validation.handleBlur}
-                  invalid={
-                    validation.touched.employee && validation.errors.employee
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.employee && validation.errors.employee ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.employee}
-                  </FormFeedback>
-                ) : null}
-              </Col>
-            </Row>
-          </ModalBody>
-          <div className="modal-footer">
-            <div className="hstack gap-2 justify-content-end">
-              <button
-                type="button"
-                className="btn btn-light"
-                onClick={() => {
-                  validation.resetForm();
-                  setModal(false);
-                }}
-              >
-                Close
-              </button>
-              <button
-                disabled={!validation.values.employee}
-                type="submit"
-                className="btn btn-success"
-              >
-                Add
-              </button>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Add Employee
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  onClick={() => setModal(false)}
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="alert alert-warning d-none">
+                  Please select an employee
+                </div>
+                <div className="form-group">
+                  <label className="text-danger">Employee</label>
+                  <select
+                    className="form-control select2"
+                    name="employee"
+                    required=""
+                    data-select2-id="4"
+                    tabIndex="-1"
+                    aria-hidden="true"
+                  >
+                    <option value="" data-select2-id="7">
+                      -
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  name="add_employee"
+                  onClick={() => navigate("/payroll_hock/list")}
+                  className="btn btn-primary"
+                >
+                  Add
+                </button>
+              </div>
             </div>
           </div>
-        </Form>
+        </div>
       </Modal>
     </React.Fragment>
   );

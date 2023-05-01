@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Col, Input, Label, Row } from "reactstrap";
 
-import Flatpickr from "react-flatpickr";
 const daysOfWeek = [
   "Sunday",
   "Monday",
@@ -24,12 +22,15 @@ const FormComponent = () => {
     Saturday: { from: null, to: null, reset: true },
   });
 
-  const handleDayChange = (day, field) => (value) => {
+  const handleDayChange = (e, day, field) => {
+
+    const value = e.target.value;
+
     setSchedule((prevSchedule) => ({
       ...prevSchedule,
       [day]: {
         ...prevSchedule[day],
-        [field]: value[0],
+        [field]: value,
       },
     }));
   };
@@ -39,78 +40,71 @@ const FormComponent = () => {
       ...prevSchedule,
       [day]: {
         ...prevSchedule[day],
-        reset: !prevSchedule[day].reset,
-        from: checked ? null : prevSchedule[day].from,
-        to: checked ? null : prevSchedule[day].to,
+        from: checked ? "" : prevSchedule[day].from,
+        to: checked ? "" : prevSchedule[day].to,
+        reset: checked,
       },
+      
     }));
   };
-
+  
+  console.log('schedule', schedule)
   return (
     <React.Fragment>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <Row>
-          <Col md={6}>
-            <div className="my-3">
-              <Row className="mb-3">
-                <Col lg={3}>
-                  <Label htmlFor="title" className="form-label">
-                    Title
-                  </Label>
-                </Col>
-                <Col lg={9}>
-                  <Input
+      <div className="container-fluid container-wrapper">
+        <form method="post">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group row">
+                <label className="col-form-label col-md-3 text-danger">
+                  Title
+                </label>
+                <div className="col-md-9">
+                  <input
                     type="text"
-                    name="title"
-                    id="title"
                     className="form-control"
-                    placeholder="Enter title"
+                    name="title"
+                    required=""
                   />
-                </Col>
-              </Row>
+                </div>
+              </div>
+
               {daysOfWeek.map((day) => (
-                <Row key={day} className="mb-3">
-                  <Col lg={3}>
-                    <Label htmlFor={day.toLowerCase()} className="form-label">
-                      {day}
-                    </Label>
-                  </Col>
-                  <Col lg={9}>
-                    <div className="d-flex">
-                      <Flatpickr
+                <div
+                  key={day}
+                  className="form-group row"
+                  id="group-timetable-7"
+                >
+                  <label
+                    htmlFor={day.toLowerCase()}
+                    className="col-md-3 col-form-label"
+                  >
+                    {day}
+                  </label>
+                  <div className="col-md-9">
+                    <div className="input-group mb-2">
+                      <input
                         name={`${day.toLowerCase()}From`}
-                        className="form-control"
                         id={`datepicker-${day.toLowerCase()}-input`}
-                        placeholder="Select a starting date"
-                        options={{
-                          noCalendar: true,
-                          enableTime: true,
-                          altFormat: "G:i K",
-                          dateFormat: "G:i K",
-                        }}
-                        onChange={handleDayChange(day, "from")}
+                        onChange={(e)=> handleDayChange(e, day, "from")}
                         value={schedule[day].from}
                         disabled={schedule[day].reset}
+                        type="time"
+                        className="form-control form-control-timetable"
                       />
-                      <Flatpickr
+                      <input
+                        type="time"
+                        className="form-control form-control-timetable"
                         name={`${day.toLowerCase()}To`}
-                        className="form-control"
                         id={`datepicker-${day.toLowerCase()}-input`}
-                        placeholder="Select an ending date"
-                        options={{
-                          noCalendar: true,
-                          enableTime: true,
-                          altFormat: "G:i K",
-                          dateFormat: "G:i K",
-                        }}
-                        onChange={handleDayChange(day, "to")}
+                        onChange={(e)=> handleDayChange(e, day, "to")}
                         value={schedule[day].to}
                         disabled={schedule[day].reset}
                       />
                     </div>
-                    <div className="form-check">
+                    <div className="custom-control custom-checkbox">
                       <input
-                        className="form-check-input"
+                        className="custom-control-input checkbox-rest"
                         name={`reset-${day}`}
                         type="checkbox"
                         id={`reset-${day}`}
@@ -118,75 +112,67 @@ const FormComponent = () => {
                         checked={schedule[day].reset}
                       />
                       <label
-                        className="form-check-label"
-                        htmlFor={`cardtableCheck${day}`}
-                      ></label>
+                        className="custom-control-label"
+                        htmlFor={`reset-${day}`}
+                      >
+                        Reset
+                      </label>
                     </div>
-                  </Col>
-                </Row>
-              ))}
-
-              <Row className="mb-3">
-                <Col lg={3}></Col>
-                <Col lg={9}>
-                  <div className="form-check d-block d-md-none">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="cardtableCheck03"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="cardtableCheck03"
-                    >
-                      Active
-                    </label>
                   </div>
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col lg={3}>
-                  <Label htmlFor="remark" className="form-label">
-                    Remark
-                  </Label>
-                </Col>
-                <Col lg={9}>
-                  <Input
-                    type="textarea"
-                    rows="4"
-                    name="remark"
-                    id="remark"
-                    className="form-control"
-                    placeholder="Enter remark"
+                </div>
+              ))}
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-group mb-4">
+                <div className="custom-control custom-checkbox mt-1">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    id="checkbox-active"
+                    name="active"
                   />
-                </Col>
-              </Row>
-              <div className="d-flex gap-4 justify-content-end align-items-center">
-                <button type="submit" className="btn btn-primary">
-                  Save
-                </button>
-                <Link className="text-dark" to="/timetable/general">
-                  Cancel
-                </Link>
+                  <label
+                    className="custom-control-label"
+                    htmlFor="checkbox-active"
+                  >
+                    Active
+                  </label>
+                </div>
               </div>
             </div>
-          </Col>
-          <Col md={6}>
-            <div className="form-check my-3 d-none d-md-block">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="cardtableCheck03"
-              />
-              <label className="form-check-label" htmlFor="cardtableCheck03">
-                Active
-              </label>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group row">
+                <label className="col-form-label col-md-3">Remark</label>
+                <div className="col-md-9">
+                  <textarea
+                    className="form-control"
+                    name="remark"
+                    rows="4"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <div className="col-md-9 offset-md-3">
+                  <button type="submit" name="save" className="btn btn-primary">
+                    Save
+                  </button>
+                  <Link
+                    to="/timetable/list"
+                    className="btn btn-link text-muted"
+                  >
+                    Cancel
+                  </Link>
+                </div>
+              </div>
             </div>
-          </Col>
-        </Row>
-      </form>
+          </div>
+        </form>
+      </div>
     </React.Fragment>
   );
 };

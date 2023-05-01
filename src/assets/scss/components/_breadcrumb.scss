@@ -1,20 +1,3 @@
 // 
 // breadcrumb.scss
 //
-
-
-// Breadcrumb item arrow
-.breadcrumb-item {
-    > a {
-        color: var(--#{$prefix}gray-700);
-    }
-    +.breadcrumb-item {
-        &::before {
-            font-family: 'Material Icons';
-            content: "chevron_right";
-            font-size: 15px;
-            line-height: 20px;
-        }
-    }
-}
-  

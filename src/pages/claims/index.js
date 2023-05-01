@@ -1,25 +1,25 @@
 import React from "react";
 import {
-  Col,
   Container,
-  Row,
 } from "reactstrap";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import DataTable from "./DataTable";
+import { useNavigate } from "react-router-dom";
 
 const Claims = () => {
-  document.title = "Claims | Robocube HR";
+  document.title = "All Claims | Robocube HR";
+  
+  const navigate = useNavigate();
 
+  const addNew = ()=> {
+    navigate("/claims/add")
+  }
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Claims" />
-          <Row>
-            <Col xxl={6}>
+          <BreadCrumb title="All Claims" isAddNew={true} addNewFunction={addNew} />
               <DataTable/>
-            </Col>
-          </Row>
         </Container>
       </div>
     </React.Fragment>

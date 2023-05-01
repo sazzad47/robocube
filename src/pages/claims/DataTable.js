@@ -1,153 +1,152 @@
-import React, { useState } from "react";
-import { Card, CardBody } from "reactstrap";
-import { Link } from "react-router-dom";
-import TableContainer from "../../Components/Common/TableContainer";
-import { useMemo } from "react";
-import DeleteModal from "../../Components/Common/DeleteModal";
-import { useNavigate } from "react-router-dom";
-
-const tableData = [
-  {
-    serial_no: 1,
-    subject: "Vacation Request",
-    date: "2022-04-10",
-    status: "Approved",
-    employee: "John Doe",
-    remark: "Approved with conditions",
-    total: 5000,
-  },
-  {
-    serial_no: 2,
-    subject: "Sick Leave Request",
-    date: "2022-05-15",
-    status: "Rejected",
-    employee: "Jane Smith",
-    remark: "Insufficient documentation",
-    total: 10000,
-  },
-  {
-    serial_no: 3,
-    subject: "Maternity Leave Request",
-    date: "2022-06-20",
-    status: "Pending",
-    employee: "Alice Lee",
-    remark: "N/A",
-    total: 8000,
-  },
-  {
-    serial_no: 4,
-    subject: "Business Trip Request",
-    date: "2022-07-25",
-    status: "Approved",
-    employee: "Bob Chen",
-    remark: "Approved without conditions",
-    total: 12000,
-  },
-];
+import React from "react";
+import { useEffect } from "react";
+import $ from "jquery";
+import "datatables.net-bs4";
+import { useRef } from "react";
 
 const DataTable = () => {
-  const navigate = useNavigate();
-  const [deleteModal, setDeleteModal] = useState(false);
+  const tableRef = useRef(null);
 
-  const AddNew = () => {
-    navigate("/claims/add");
-  };
-
-  const ActionCell = () => (
-    <div className="d-flex justify-content-end">
-      <button onClick={() => setDeleteModal(true)} className="btn link-danger">
-        <i className="bx bx-xs bx-trash"></i>
-      </button>
-    </div>
-  );
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: "No",
-        accessor: "serial_no",
-        filterable: false,
-      },
-      {
-        Header: "Subject",
-        accessor: "subject",
-        filterable: false,
-      },
-      {
-        Header: "Date",
-        accessor: "date",
-        filterable: false,
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        filterable: false,
-        Cell: (cell) => {
-          return (
-            <span
-              className={`${
-                cell.value === "Rejected"
-                  ? "badge badge-soft-danger"
-                  : cell.value === "Pending"
-                  ? "badge badge-soft-info"
-                  : "badge badge-soft-success"
-              }`}
-            >
-              {cell.value}
-            </span>
-          );
-        },
-      },
-      {
-        Header: "Employee",
-        accessor: "employee",
-        filterable: false,
-      },
-      {
-        Header: "Remark",
-        accessor: "remark",
-        filterable: false,
-      },
-      {
-        Header: "Total ($)",
-        accessor: "total",
-        filterable: false,
-      },
-      {
-        Header: "Action",
-        Cell: (cell) => {
-          return <ActionCell id={cell.row.original._id} />;
-        },
-      },
-    ],
-    []
-  );
+  useEffect(() => {
+    // initialize DataTables
+    $(tableRef.current).DataTable();
+  }, []);
 
   return (
     <React.Fragment>
-      <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
-      />
-      <Card>
-        <CardBody>
-          <div id="table-search">
-            <TableContainer
-              columns={columns}
-              data={tableData || []}
-              isGlobalFilter={true}
-              customPageSize={10}
-              divClass="table-responsive mb-1"
-              tableClass="mb-0 align-middle table-bordered"
-              theadClass="table-light text-muted"
-              isAddNew={true}
-              addNewFunction={AddNew}
-              SearchPlaceholder="Type a keyword..."
-            />
+      <div className="container-fluid container-wrapper">
+        <div className="row">
+          <div className="col-sm-12">
+            <table
+              ref={tableRef}
+              data-order='[[ 0, "desc" ]]'
+              className="DTable table dataTable no-footer"
+              id="DataTables_Table_0"
+              role="grid"
+              aria-describedby="DataTables_Table_0_info"
+            >
+              <thead>
+                <tr role="row">
+                  <th
+                    style={{ width: "10%" }}
+                    className="sorting_asc"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-sort="ascending"
+                    aria-label="No: activate to sort column descending"
+                  >
+                    No
+                  </th>
+                  <th
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Subject: activate to sort column ascending"
+                  >
+                    Subject
+                  </th>
+                  <th
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Date: activate to sort column ascending"
+                  >
+                    Date
+                  </th>
+                  <th
+                    style={{ width: "10%" }}
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Status: activate to sort column ascending"
+                  >
+                    Status
+                  </th>
+                  <th
+                    style={{ width: "25%" }}
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Employee: activate to sort column ascending"
+                  >
+                    Employee
+                  </th>
+                  <th
+                    className="sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Remark: activate to sort column ascending"
+                  >
+                    Remark
+                  </th>
+                  <th
+                    className="text-right sorting"
+                    tabIndex="0"
+                    aria-controls="DataTables_Table_0"
+                    rowSpan="1"
+                    colSpan="1"
+                    aria-label="Total ($): activate to sort column ascending"
+                  >
+                    Total ($)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr role="row" className="odd">
+                  <td className="sorting_1">1</td>
+                  <td>
+                    <a href="https://robocube.synorexcloud.com/hr/claims/edit/167299638230">
+                      Claim{" "}
+                    </a>
+                  </td>
+                  <td>2023-01-06</td>
+                  <td>
+                    <span className="badge badge-warning">Pending</span>
+                  </td>
+                  <td>
+                    <a href="https://robocube.synorexcloud.com/hr/employees/edit/166804835212">
+                      Amirah
+                    </a>
+                  </td>
+                  <td>-</td>
+                  <td className="text-right">30.00</td>
+                </tr>
+                <tr role="row" className="even">
+                  <td className="sorting_1">2</td>
+                  <td>
+                    <a href="https://robocube.synorexcloud.com/hr/claims/edit/168244605661">
+                      testing{" "}
+                    </a>
+                  </td>
+                  <td>2023-04-27</td>
+                  <td>
+                    <span className="badge badge-success">Approved</span>{" "}
+                  </td>
+                  <td>
+                    <a href="https://robocube.synorexcloud.com/hr/employees/edit/166804835212">
+                      Amirah
+                    </a>
+                  </td>
+                  <td>testing</td>
+                  <td className="text-right">0.04</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </CardBody>
-      </Card>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

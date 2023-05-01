@@ -1,26 +1,23 @@
 import React from "react";
-import { Col, Row } from "reactstrap";
 
 const BreadCrumb = ({ title, isAddNew, addNewTitle, addNewFunction }) => {
   return (
     <React.Fragment>
-      <Row>
-        <Col xs={12}>
-          <div className="d-sm-flex align-items-center justify-content-between">
-            <h4 className="mb-sm-0 fw-bold">{title}</h4>
-
-            {isAddNew && (
-              <div className="col-sm-auto ms-auto">
-                <button onClick={addNewFunction} className="fs-16 d-flex align-items-center gap-2 btn btn-primary">
-                <i className='fa mr-1 fa-plus-circle'></i>{" "}
-
-                  <div>{addNewTitle ? addNewTitle : "Add New"}</div>
-                </button>
-              </div>
-            )}
+      <div className="container-fluid py-2">
+        <div className="row">
+          <div className="col-6 my-auto">
+            <h4 className="py-2 mb-0 font-weight-bold">{title}</h4>
           </div>
-        </Col>
-      </Row>
+          {isAddNew && (
+            <div className="col-6 my-auto text-right">
+              <button onClick={addNewFunction} className="btn btn-primary">
+                <i className="fa mr-1 fa-plus-circle"></i>{" "}
+                {addNewTitle ? addNewTitle : "Add New"}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </React.Fragment>
   );
 };

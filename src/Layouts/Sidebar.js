@@ -1,71 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { Collapse, Nav, NavItem, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
-import SimpleBar from "simplebar-react";
-//import logo
-import logoSm from "../assets/images/hr.png";
-import logoLg from "../assets/images/robocube.png";
+import { navItems } from "./NavData";
 
-//Import Components
-import VerticalLayout from "./VerticalLayouts/index";
-import { Container } from "reactstrap";
+const NestedSidebar = () => {
+  const [isOpen, setIsOpen] = useState(null);
 
-const Sidebar = ({ layoutType }) => {
-
-  useEffect(() => {
-    var verticalOverlay = document.getElementsByClassName("vertical-overlay");
-    if (verticalOverlay) {
-      verticalOverlay[0].addEventListener("click", function () {
-        document.body.classList.remove("vertical-sidebar-enable");
-      });
-    }
-  });
-
-  const addEventListenerOnSmHoverMenu = () => {
-    // add listener Sidebar Hover icon on change layout from setting
-    if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
-      document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
-    } else if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover-active') {
-      document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
-    } else {
-      document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
-    }
+  const toggle = (index) => {
+    setIsOpen(isOpen === index ? null : index);
   };
+
   return (
-    <React.Fragment>
-      <div className="app-menu navbar-menu">
-        <div className="navbar-brand-box">
-          <Link to="/" className="logo">
-            <span className="logo-sm">
-              <img src={logoSm} alt="" height="22" />
-            </span>
-            <span className="logo-lg">
-              <img src={logoLg} alt="" height="40" />
-            </span>
-          </Link>
-          <button
-            onClick={addEventListenerOnSmHoverMenu}
-            type="button"
-            className="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-            id="vertical-hover"
-          >
-            <i className="ri-record-circle-line"></i>
-          </button>
-        </div>
-          <React.Fragment>
-            <SimpleBar id="scrollbar" className="h-100">
-              <Container fluid>
-                <div id="two-column-menu"></div>
-                <ul className="navbar-nav" id="navbar-nav">
-                  <VerticalLayout layoutType={layoutType} />
-                </ul>
-              </Container>
-            </SimpleBar>
-            <div className="sidebar-background"></div>
-          </React.Fragment>
-      </div>
-      <div className="vertical-overlay"></div>
-    </React.Fragment>
+    <div className="sidebar-wrapper">
+      <Nav className="sidebar-nav" vertical>
+        {navItems.map((item, index) => (
+          <NavItem key={index}>
+            <NavLink
+              className="nav-link"
+              tag={Link}
+              to={item.link}
+              onClick={() => toggle(index)}
+            >
+              <span className="nav-icon">
+                <i className={`${item.icon}`}> </i>
+              </span>
+              <span className="nav-label">{item.label}</span>
+            </NavLink>
+            {item.subItems && (
+              <Collapse
+                isOpen={isOpen === index}
+                classNames="Collapse"
+                timeout={{ enter: 300, exit: 300 }}
+              >
+                <Nav vertical>
+                  {item.subItems.map((child, childIndex) => (
+                    <NavItem key={childIndex}>
+                      <NavLink className="nav-link" tag={Link} to={child.link}>
+                        <span className="nav-label">{child.label}</span>
+                      </NavLink>
+                    </NavItem>
+                  ))}
+                </Nav>
+              </Collapse>
+            )}
+          </NavItem>
+        ))}
+      </Nav>
+    </div>
   );
 };
 
-export default Sidebar;
+export default NestedSidebar;

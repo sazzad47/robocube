@@ -1,0 +1,72 @@
+// 
+// sidebar.scss
+//
+
+.sidebar-wrapper {
+  height: calc(100% - 52px);
+  z-index: 1000;
+  position: fixed;
+  left: -225px;
+  width: 0;
+  overflow-y: auto;
+  background-color: #2d373c;
+  border-right: 1px solid rgba(0,0,0,0.125);
+  transition: all 0.3s ease-in-out;
+  
+  .sidebar-nav {
+    padding: 0.5rem 0;
+  }
+  
+  .nav-link {
+    color: #fff;
+    padding-left: 1rem;
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    &:hover, :focus, :active {
+      color: #fff!important;
+      background-color: #2fa3e6
+    }
+
+    .nav-icon {
+      position: absolute;
+      color: rgba(255,255,255,0.5);
+      font-weight: 900;
+      font-family: "Font Awesome 5 Free";
+      text-align: center;
+      width: 1.25em;
+    }
+    .nav-label {
+      margin-left: 2rem;
+    }
+  }
+}
+
+.wrapper.toggled .sidebar-wrapper {
+  width: 225px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.Collapse-enter {
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.Collapse-enter-active {
+  max-height: 1000px;
+}
+
+.Collapse-exit {
+  max-height: 1000px;
+  transition: max-height 0.3s ease-in;
+}
+
+.Collapse-exit-active {
+  max-height: 0;
+}
+
+
+
+

@@ -12,12 +12,10 @@ const DailyOvertime = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Daily Overtime" />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <FormComponent/>
-          </Row>
-          <Row>
             <Datatable/>
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

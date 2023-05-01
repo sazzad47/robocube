@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Datatable = () => {
   return (
-    <div className="container">
+    <div className="container-fluid container-wrapper">
       <table className="table table-bordered">
         <thead>
           <tr>

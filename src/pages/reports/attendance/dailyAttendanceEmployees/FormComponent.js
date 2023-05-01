@@ -9,12 +9,13 @@ const FormComponent = () => {
   const selectRef = useRef(null);
 
   useEffect(() => {
-    $(selectRef.current).select2();
+    $(selectRef.current).select2({
+      theme: "bootstrap4"
+    });
   }, []);
 
   return (
     <React.Fragment>
-      <Col xxl={6}>
         <form method="get">
           <div className="row">
             <div className="col-md-6">
@@ -56,7 +57,6 @@ const FormComponent = () => {
             </div>
           </div>
         </form>
-      </Col>
     </React.Fragment>
   );
 };

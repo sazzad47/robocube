@@ -6,6 +6,7 @@ import Home from "../pages/home";
 //Attendance
 import Daily from "../pages/attendance/daily";
 import Manually from "../pages/attendance/manually";
+//Calendar
 import Calendar from "../pages/calendar";
 //Contents
 import Announcement from "../pages/contens/announcement";
@@ -105,22 +106,22 @@ const routes = [
   { path: "/attendance-daily", component: <Daily /> },
   { path: "/attendance-manually", component: <Manually /> },
   { path: "/calendar", component: <Calendar /> },
-  { path: "/contents-announcement", component: <Announcement /> },
-  { path: "/contents-announcement-add", component: <CreateAnnouncement /> },
-  { path: "/contents-slideshow", component: <SlideShow /> },
+  { path: "/content/list/announcement", component: <Announcement /> },
+  { path: "/content/add/announcement", component: <CreateAnnouncement /> },
+  { path: "/content/list/slideshow", component: <SlideShow /> },
   { path: "/leaves-requests", component: <LeaveRequests /> },
   { path: "/leaves-approvals", component: <LeaveApprovals /> },
   { path: "/claims", component: <Claims /> },
   { path: "/claims/add", component: <AddNewClaims /> },
-  { path: "/advance_salary", component: <AdvanceSalary /> },
-  { path: "/advance_salary/add", component: <AddNewAdvanceSalary /> },
+  { path: "/advance/list", component: <AdvanceSalary /> },
+  { path: "/advance/add", component: <AddNewAdvanceSalary /> },
   { path: "/trip", component: <Trip /> },
   { path: "/trip/add", component: <AddNewTrip /> },
-  { path: "/payroll", component: <Payroll /> },
-  { path: "/payroll/:id/edit", component: <EditPayroll /> },
-  { path: "/payroll/:id/view", component: <ViewPayroll /> },
-  { path: "/timetable/general", component: <GeneralTimetable /> },
-  { path: "/timetable/driver", component: <DriverTimetable /> },
+  { path: "/payroll_hock/list", component: <Payroll /> },
+  { path: "/payroll_hock/edit/:id", component: <EditPayroll /> },
+  { path: "/payroll_hock/edit/:id/view", component: <ViewPayroll /> },
+  { path: "/timetable/list", component: <GeneralTimetable /> },
+  { path: "/timetable_hock_driver/list", component: <DriverTimetable /> },
   { path: "/timetable/add", component: <AddNewTimetable /> },
   { path: "/reports", component: <Reports /> },
   {

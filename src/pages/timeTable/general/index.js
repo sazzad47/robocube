@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import DataTable from "./DataTable";
 import { useNavigate } from "react-router-dom";
@@ -23,11 +23,7 @@ const General = () => {
             addNewTitle="Add New"
             addNewFunction={addNew}
           />
-          <Row>
-            <Col xxl={6}>
-              <DataTable />
-            </Col>
-          </Row>
+          <DataTable />
         </Container>
       </div>
     </React.Fragment>

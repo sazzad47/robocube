@@ -57,7 +57,7 @@ const FormComponent = () => {
 
             <div className="col-md-6">
               <div className="form-group mb-4 d-flex flex-wrap">
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -69,7 +69,7 @@ const FormComponent = () => {
                   </label>
                 </div>
 
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -80,7 +80,7 @@ const FormComponent = () => {
                     EPF
                   </label>
                 </div>
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -91,7 +91,7 @@ const FormComponent = () => {
                     SOCSO
                   </label>
                 </div>
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -102,7 +102,7 @@ const FormComponent = () => {
                     EIS
                   </label>
                 </div>
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -114,7 +114,7 @@ const FormComponent = () => {
                   </label>
                 </div>
 
-                <div className="form-check mt-1 ms-4">
+                <div className="form-check mt-1 ml-4">
                   <input
                     className="form-check-input"
                     type="checkbox"

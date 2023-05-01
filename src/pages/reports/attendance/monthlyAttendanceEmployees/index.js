@@ -14,10 +14,8 @@ const MonthlyAttendanceEmployees = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Monthly Attendance (Employees)" />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <FormComponent setData={setData} />
-          </Row>
-          <Row>
             {!data ? (
               <div className="alert alert-warning">
                 Please select an employee
@@ -25,7 +23,7 @@ const MonthlyAttendanceEmployees = () => {
             ) : (
               <Datatable />
             )}
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

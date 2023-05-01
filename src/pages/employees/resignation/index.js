@@ -11,9 +11,7 @@ const Resignation = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Resignation" />
-          <Row className="mt-3">
-            <Datatable />
-          </Row>
+          <Datatable />
         </Container>
       </div>
     </React.Fragment>

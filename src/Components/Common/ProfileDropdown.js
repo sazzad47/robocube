@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import {
-  Col,
-  Dropdown,
-  DropdownMenu,
-  DropdownToggle,
-} from "reactstrap";
-
-//import images
-import avatar1 from "../../assets/images/users/avatar-3.jpg";
+import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const ProfileDropdown = () => {
-  
   //Dropdown Toggle
   const [isProfileDropdown, setIsProfileDropdown] = useState(false);
   const toggleProfileDropdown = () => {
@@ -19,48 +10,46 @@ const ProfileDropdown = () => {
   };
   return (
     <React.Fragment>
-      <Dropdown
-        isOpen={isProfileDropdown}
-        toggle={toggleProfileDropdown}
-        className="ms-sm-3 header-item"
-      >
-        <DropdownToggle tag="button" type="button" className="btn">
-          <span className="d-flex align-items-center">
+      <Dropdown isOpen={isProfileDropdown} toggle={toggleProfileDropdown}>
+        <DropdownToggle
+          tag="div"
+          style={{cursor: "pointer"}}
+          className="nav-link py-0"
+        >
+          <span className="d-flex align-iteml-center">
             <img
-              className="rounded-circle header-profile-user"
-              src={avatar1}
-              alt="Header Avatar"
+              alt=""
+              src="https://cdn.synorexcloud.com/assets/images/icons/avatar.svg"
+              style={{ height: "35px" }}
             />
           </span>
         </DropdownToggle>
         <DropdownMenu
-          className="dropdown-menu-lg dropdown-menu-end"
-          aria-labelledby="page-header-cart-dropdown"
+          style={{ minWidth: "300px" }}
+          className="dropdown-menu-lg dropdown-menu-end mt-3"
         >
-          <div className="w-100 d-flex flex-column align-items-center justify-content-center">
-            <Col lg={4} className="col">
-              <div className="team-profile-img">
-                <div className="avatar-lg img-thumbnail rounded-circle flex-shrink-0">
-                  <img
-                    src={avatar1}
-                    alt=""
-                    className="img-fluid d-block rounded-circle"
-                  />
-                </div>
-              </div>
-            </Col>
-            <div className="py-2 d-flex flex-column align-items-center">
-              <h5 className="p-0 m-0">Sazzad Hossen</h5>
-              <span className="d-block">sazzad47.ju@gmail.com</span>
-            </div>
-            <div
-              className="w-100 p-3 d-flex flex-column gap-2 border-bottom-0 border-start-0 border-end-0 border-dashed border"
-              id="checkout-elem"
-            >
-              <Link to="/" className="btn btn-light text-center w-100">
-                My account
-              </Link>
-              <Link to="/" className="btn btn-light text-center w-100">
+          <div className="container text-center py-3">
+            <img
+              alt=""
+              src="https://cdn.synorexcloud.com/assets/images/blank/1x1.jpg"
+              style={{ width: "35%" }}
+              className="d-block mx-auto mb-3 border rounded-circle"
+            />
+            <h6 className="mb-1">Sazzad Hossen</h6>
+            <p className="mb-2 small text-muted">sazzad47.ju@gmail.com</p>
+            <div className="mb-0 small d-flex flex-column gap-2">
+              <a
+                href="https://one.synorexcloud.com/client/account?pg=profile"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-sm btn-light btn-block"
+              >
+                My Account
+              </a>
+              <Link
+                to="/"
+                className="btn btn-sm btn-light text-danger btn-block"
+              >
                 Logout
               </Link>
             </div>

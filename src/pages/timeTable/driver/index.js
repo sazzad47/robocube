@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import Components from "./Components";
 
@@ -10,14 +10,8 @@ const General = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb
-            title="Driver"
-          />
-          <Row>
-            <Col xxl={6}>
-              <Components/>
-            </Col>
-          </Row>
+          <BreadCrumb title="Driver" />
+          <Components />
         </Container>
       </div>
     </React.Fragment>

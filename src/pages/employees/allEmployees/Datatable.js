@@ -51,8 +51,8 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2" ref={tableRef}>
+    <div className="container-fluid container-wrapper">
+      <table className="DTable table table-hover dataTable no-footer" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: "7%" }}>No</th>
@@ -67,7 +67,7 @@ const Datatable = () => {
             <tr key={item.no}>
               <td>{item.no}</td>
               <td>
-                <div className="d-flex gap-2 align-items-center">
+                <div className="d-flex gap-2 align-iteml-center">
                   <Link to="/employees/list">
                     <img
                       alt=""
@@ -89,7 +89,7 @@ const Datatable = () => {
                 </div>
               </td>
               <td>
-                <div
+                <span
                   className={`badge ${
                     item.status === "Active"
                       ? "badge-success"
@@ -97,7 +97,7 @@ const Datatable = () => {
                   }`}
                 >
                   {item.status}
-                </div>
+                </span>
               </td>
               <td>{item.gender}</td>
               <td>{item.phone}</td>

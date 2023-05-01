@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import FormComponent from "./FormComponent";
@@ -12,12 +12,10 @@ const MonthlyAttendanceDrivers = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Daily Attendance (Drivers)" />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <FormComponent/>
-          </Row>
-          <Row>
             <Datatable/>
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

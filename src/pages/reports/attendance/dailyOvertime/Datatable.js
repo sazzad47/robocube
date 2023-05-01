@@ -63,7 +63,7 @@ const Datatable = () => {
   }, 0);
 
   return (
-    <div className="container">
+    <React.Fragment>
       <table
         className="DTable table table-bordered my-2 table-hover dataTable"
         ref={tableRef}
@@ -114,7 +114,7 @@ const Datatable = () => {
           </tr>
         </tfoot>
       </table>
-    </div>
+    </React.Fragment>
   );
 };
 

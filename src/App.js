@@ -3,8 +3,6 @@ import React from 'react';
 //import Scss
 import './assets/scss/themes.scss';
 
-
-
 //imoprt Route
 import Route from './Routes';
 

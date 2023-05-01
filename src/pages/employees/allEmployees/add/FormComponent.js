@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Col } from "reactstrap";
 import $ from 'jquery';
 import 'select2';
 
 const FormComponent = () => {
+  
   useEffect(() => {
-    $('.select2').select2();
+    $(".select2").select2({
+      theme: "bootstrap4",
+    });
   }, []);
+
   return (
     <React.Fragment>
-      <Col xxl={6}>
+      <div className="container-fluid container-wrapper">
         <form method="post" encType="multipart/form-data">
           <div className="row">
             <div className="col-md-6 d-flex flex-column gap-3">
@@ -71,7 +74,7 @@ const FormComponent = () => {
                       objectFit: "cover",
                     }}
                   />
-                  <input type="file" className="form-control" name="image" />
+                  <input type="file" className="form-control-file" name="image" />
                 </div>
               </div>
             </div>
@@ -91,8 +94,8 @@ const FormComponent = () => {
               </div>
               <div className="form-group row mb-3 pb-1">
                 <label className="col-md-3 col-form-label">Gender</label>
-                <div className="col-md-9 d-flex gap-3 my-auto">
-                  <div className="form-check">
+                <div className="col-md-9 d-flex my-auto">
+                  <div className="form-check mr-2">
                     <input
                       type="radio"
                       id="radio-gender-male"
@@ -508,7 +511,7 @@ const FormComponent = () => {
             </div>
           </div>
         </form>
-      </Col>
+      </div>
     </React.Fragment>
   );
 };

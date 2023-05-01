@@ -9,7 +9,9 @@ const FormComponent = () => {
   const selectRef = useRef(null);
 
   useEffect(() => {
-    $(selectRef.current).select2();
+    $(selectRef.current).select2({
+      theme: "bootstrap4"
+    });
   }, []);
 
   return (

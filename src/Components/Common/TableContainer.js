@@ -11,7 +11,6 @@ import {
   useRowSelect,
 } from "react-table";
 import { Table, Input } from "reactstrap";
-import { DefaultColumnFilter } from "./filters";
 
 // Define a default UI for filtering
 function GlobalFilter({ globalFilter, isGlobalFilter, setGlobalFilter }) {
@@ -23,7 +22,7 @@ function GlobalFilter({ globalFilter, isGlobalFilter, setGlobalFilter }) {
   return (
     <React.Fragment>
       {isGlobalFilter && (
-        <div className="d-flex gap-2 align-items-center">
+        <div className="d-flex gap-2 align-iteml-center">
           <span>Search:</span>
           <input
             onChange={(e) => {
@@ -71,7 +70,6 @@ const TableContainer = ({
     {
       columns,
       data,
-      defaultColumn: { Filter: DefaultColumnFilter },
       initialState: {
         pageIndex: 0,
         pageSize: customPageSize,
@@ -95,14 +93,14 @@ const TableContainer = ({
   const generateSortingIndicator = (column) => {
     return column.isSorted ? (
       column.isSortedDesc ? (
-        <span className="ms-1">&darr;</span>
+        <span className="ml-1">&darr;</span>
       ) : (
-        <span className="ms-1">&uarr;</span>
+        <span className="ml-1">&uarr;</span>
       )
     ) : column.Header === "Action" ? (
       ""
     ) : (
-      <span className="ms-1">&uarr;&darr;</span>
+      <span className="ml-1">&uarr;&darr;</span>
     );
   };
 
@@ -112,7 +110,7 @@ const TableContainer = ({
 
   return (
     <Fragment>
-      <div className="d-flex align-items-center justify-content-between my-3">
+      <div className="d-flex align-iteml-center justify-content-between my-3">
         <div>
           <select
             className="form-select"
@@ -180,14 +178,14 @@ const TableContainer = ({
         </Table>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center p-2">
+      <div className="d-flex justify-content-between align-iteml-center p-2">
         <div>
           <div>
             Showing {pageIndex * pageSize + 1} to{" "}
             {pageIndex * pageSize + page.length} of {data.length} entries
           </div>
         </div>
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-iteml-center">
           <button
             className="btn btn-white"
             onClick={previousPage}

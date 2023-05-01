@@ -1,231 +1,156 @@
-@import "../scss/config/saas/bootstrap.scss";
 @import "../scss/config/saas/app.scss";
 @import "../scss/config/saas/custom.scss"; 
-@import"./shepherd.css";
-@import "./mermaid.min.css";
 @import 'react-tooltip/dist/react-tooltip.css';
+@import 'select2/dist/css/select2.min.css';
+@import 'select2/dist/css/select2.css';
+@import 'select2-bootstrap4-theme/dist/select2-bootstrap4.css';
+@import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css';
 @import url('~remixicon/fonts/remixicon.css');
 
 
-//Rigthsidebar offcanvas
-.offcanvas-header-dark {
-  .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%);
-  }
-}
 
 body {
   * {
     outline: none;
   }
 }
-.noUi-horizontal .noUi-handle {
-  height: 16px !important;
-  width: 16px !important;
-  border-radius: 50% !important;
-  right: -10px !important;
-  top: -7px !important;
+
+
+.page-content-wrapper {
+  flex: 1;
+  transition: all 0.3s ease-in-out;
 }
-.noUi-connect,
-.noUi-horizontal {
-  height: 2px !important;
-  background: #13c56b !important;
-}
-.noUi-handle {
-  background: #13c56b !important;
-  border: 2px solid var(--vz-card-bg) !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-.noUi-target {
-  background: #fafafa !important;
-  border-radius: 4px !important;
-  border: 1px solid #d3d3d3 !important;
-  background-color: var(--vz-light) !important;
-  border-color: var(--vz-light) !important;
-  box-shadow: none !important;
-  height: 4px !important;
-}
-.dropzone .dz-message {
-  text-align: center;
+.wrapper.toggled .page-content-wrapper {
+  margin-left: 0;
+  width: 100%;
 }
 
-// //Calendar
-.fc-direction-ltr .fc-daygrid-event.fc-event-end,
-.fc-direction-rtl .fc-daygrid-event.fc-event-start {
-  padding: 5px !important;
-  font-size: 12px !important;
-  margin-right: 2px;
+@media (min-width: 768px) {
+
+  .wrapper.toggled .page-content-wrapper {
+    margin-left: 225px;
+    width: calc(100% - 225px);
+  }
 }
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ml-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ml-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}
+
+.btn-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+html, body, input, button, option, select, textarea, h1, h2, h3, h4, h5, h6, * {
+    font-family: "Roboto","Microsoft YaHei",serif;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+div {
+    display: block;
+}
+body {
+    background-color: #fafafa;
+    font-size: 14px;
+}
+
+.container-wrapper {
+  padding-bottom: 3rem;
+}
+.container-wrapper {
+  min-height: 100vh;
+}
+
+
+
+//Layout
+.app_container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin-top: 52px;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0,0,0,0.1);
+}
+
+*, :hover, :focus {
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+//fcEvent
+.fc-event, .fc-event:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.fc-event, .fc-event-dot {
+  background-color: #3788d8;
+}
+
 .fc-event {
-  border: none !important;
+  position: relative;
+  display: block;
+  font-size: .85em;
+  line-height: 1.4;
+  border-radius: 3px;
+  border: 1px solid #3788d8;
 }
 
-@include media-breakpoint-down(sm) {
-  .fc-toolbar {
-    display: block !important;
-    text-align: center;
-    .fc-left,
-    .fc-right,
-    .fc-center {
-      float: none;
-      display: block;
-      clear: both;
-      margin: 10px 0;
-    }
-  }
-  .fc {
-    .fc-toolbar {
-      > * {
-        > * {
-          float: none;
-        }
-      }
-    }
-  }
-  .fc-today-button {
-    display: none;
-  }
-}
-.flatpickr-calendar.open {
-  z-index: 1090 !important;
-}
-.upcoming-scheduled .flatpickr-input[readonly] {
-  display: none;
-}
-.ql-container.ql-snow {
-  height: 250px;
-}
-.rangeslider-horizontal .rangeslider__fill {
-  background-color: #6691e7 !important;
-}
 
-// .Toastify__toast{
-//   min-height: 43px !important;
-//   max-height: 43px !important;
-// }
 
-@each $color, $value in $theme-colors {
-  .simplebar-track-#{$color} {
-    .simplebar-scrollbar:before{
-      background: $value !important; 
-    }
-  }   
-}
 
-// chat
-.chat-conversation .chat-list .message-box-drop{
-  .nav-btn{
-      font-size: 18px;
-      padding: 4px;
-      color: $gray-600;
-  }
-}
 
-.chatwidgets {
-  height: 250px !important;
-}
 
-[data-layout="horizontal"] .chat-conversation{
-  &.chatwidgets {
-    height: 250px !important;
-  }
-}
 
-// Authentication pages 
-#tsparticles{
-  canvas{
-    position: absolute !important;
-  }
-}
 
-// landing page
-.process-card {
-    .process-arrow-img {
-        left: auto;
-        right: 75%;
-        transform: scaleX(-1);
-    }
-}
-.icon-effect {
-    &::before {
-        left: auto;
-        right: 0;
-    }
-}
 
-.marketplace-swiper {
-  .swiper-button-next, .swiper-button-prev {
-    top: 22px;
-  }
-}
 
-.alert-msg-show {
-  right: 24px;
-  top: 40px;
-  z-index: 1005;
-}
 
-// Emoji Picker
 
-.pickerEmoji{
-  position: absolute;
-  bottom: -50px;
-  left: 10%;
-  transform: translateX(-50%);
-}
 
-// Toast
-.Toastify {
-  .Toastify__toast{
-    min-height: 43px;
-  }
-  .Toastify__close-button {
-    top: 6px;
-  }
-  .Toastify__close-button--light {
-    color: $light;
-  }
-}
-
-// Tranfer List
-
-.rdl-filter, .rdl-control{
-  background-color: $input-bg;
-  border: 1px solid $input-border-color !important;
-  color: $input-color !important;
-}
-
-.rdl-move{
-  background: var(--#{$prefix}light) !important;
-  border: 1px solid var(--#{$prefix}light) !important;
-  color: var(--#{$prefix}body-color) !important;
-}
-
-.react-dual-listbox {
-  input:disabled, select:disabled{
-    background-color: $input-disabled-bg !important;
-    border: 1px solid $input-border-color !important;
-  }
-}
-
-.css-26l3qy-menu{
-  background-color: var(--#{$prefix}gray-200) !important;
-  border-color: var(--#{$prefix}border-color) !important;
-}
-
-.css-1n7v3ny-option{
-  background-color: var(--#{$prefix}gray-300) !important;
-  border-color: var(--#{$prefix}border-color) !important;
-}
-
-/* Change the white to any color */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px var(--#{$prefix}input-bg) inset !important;
-    background-color: var(--#{$prefix}input-bg) !important;
-    color: var(--#{$prefix}body-color) !important;
-    -webkit-text-fill-color: var(--#{$prefix}body-color) !important;
-}
