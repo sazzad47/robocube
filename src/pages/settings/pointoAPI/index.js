@@ -10,7 +10,7 @@ const PointoAPI = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="PointoAPI" />
-          <div className="row mt-3">
+          <div className="container-fluid container-wrapper">
             <div className="alert alert-info" role="alert">
               PointoAPI will control your WhatsApp Notify, Email Notify, Upload
               Storage and other features. Launch{" "}
@@ -23,9 +23,11 @@ const PointoAPI = () => {
                 <i className="fa fa-fw fa-external-link-square-alt"></i>
               </a>
             </div>
+
             <div className="alert alert-warning">
               Some charges may be applied due to the usage of this function
             </div>
+
             <form method="post">
               <div className="row">
                 <div className="col-md-6">
@@ -38,6 +40,8 @@ const PointoAPI = () => {
                           className="form-control"
                           name="pointoapi_key"
                           value="08e58384ce723f02870f25698be72e8e"
+                          onChange="check_pointoapi(this.value)"
+                          onKeyUp="$('.btn-primary').attr('disabled', true)"
                         />
                         <div className="input-group-append">
                           <button className="btn btn-secondary" type="button">
@@ -55,7 +59,8 @@ const PointoAPI = () => {
                   </div>
                 </div>
               </div>
-              <div className="row mt-3">
+
+              <div className="row">
                 <div className="col-md-6">
                   <div className="form-group row">
                     <div className="col-md-9 offset-md-3">

@@ -7,6 +7,7 @@ import withRouter from "../Components/Common/withRouter";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 const Layout = (props) => {
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
@@ -21,7 +22,10 @@ const Layout = (props) => {
         <Header toggleSidebar={toggleSidebar} />
         <div className={`wrapper ${isOpenSidebar ? "toggled" : ""}`}>
             <Sidebar isOpenSidebar={isOpenSidebar} />
-            <div className="page-content-wrapper">{props.children}</div>
+            <div className="page-content-wrapper">
+              {props.children}
+              <Footer/>
+            </div>
           </div>
       </Container>
     </React.Fragment>

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { Col } from "reactstrap";
 import $ from "jquery";
 import "select2";
 import { Link } from "react-router-dom";
@@ -15,7 +14,6 @@ const FormComponent = () => {
   
   return (
     <React.Fragment>
-      <Col xxl={6}>
         <form method="post">
           <div className="row">
             <div className="col-md-6 d-flex flex-column gap-3">
@@ -158,7 +156,6 @@ const FormComponent = () => {
             </div>
           </div>
         </form>
-      </Col>
     </React.Fragment>
   );
 };

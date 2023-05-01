@@ -12,12 +12,10 @@ const LeaveByDepartment = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Leave by Department" />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <FormComponent/>
-          </Row>
-          <Row>
             <Datatable/>
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

@@ -11,9 +11,9 @@ const AddDevice = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Add Device" />
-          <Row className="mt-3">
-          <FormComponent/>
-          </Row>
+          <div className="container-fluid container-wrapper">
+            <FormComponent />
+          </div>
         </Container>
       </div>
     </React.Fragment>

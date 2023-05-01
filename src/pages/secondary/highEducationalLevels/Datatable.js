@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
-import { Input } from "reactstrap";
 
 //Sample Data
 const sampleData = [
@@ -45,8 +44,7 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2" ref={tableRef}>
+      <table className="Dtable table datatable my-2" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: "10%" }}>No</th>
@@ -61,22 +59,20 @@ const Datatable = () => {
               <td>{item.no}</td>
               <td>{item.title}</td>
               <td>
-                <div className="form-check form-switch form-switch-md">
-                  <Input
-                    className="form-check-input"
+                <label className="switch">
+                  <input
                     type="checkbox"
-                    role="switch"
-                    id={`SwitchCheck${item.no}`}
                     defaultChecked={item.status === "Active"}
                   />
-                </div>
+                  <span className="slider round"></span>
+                </label>
               </td>
               <td>{item.remark}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+  
   );
 };
 

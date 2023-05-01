@@ -40,26 +40,24 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2 no-footer" ref={tableRef}>
-        <thead>
-          <tr>
-            <th className="sorting">No</th>
-            <th className="sorting">Department</th>
-            <th className="sorting">Total Leave Day(s)</th>
+    <table className="Dtable table datatable my-2 no-footer" ref={tableRef}>
+      <thead>
+        <tr>
+          <th className="sorting">No</th>
+          <th className="sorting">Department</th>
+          <th className="sorting">Total Leave Day(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((item, i) => (
+          <tr key={i}>
+            <td>{item.no}</td>
+            <td>{item.department}</td>
+            <td>{item.totalLeaveDays}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((item, i) => (
-            <tr key={i}>
-              <td>{item.no}</td>
-              <td>{item.department}</td>
-              <td>{item.totalLeaveDays}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

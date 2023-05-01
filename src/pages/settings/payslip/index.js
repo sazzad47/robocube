@@ -27,7 +27,7 @@ const Payslip = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Payslip" />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <Nav tabs className=" ">
               <NavItem>
                 <NavLink
@@ -73,7 +73,7 @@ const Payslip = () => {
                 <WhatsApp />
               </TabPane>
             </TabContent>
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

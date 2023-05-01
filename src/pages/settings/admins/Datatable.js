@@ -56,7 +56,7 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
+    <React.Fragment>
       <ConfirmationModal
         show={confirmModal}
         text="Are you sure you want to remove this admin"
@@ -65,7 +65,7 @@ const Datatable = () => {
         onPrimaryCmd={() => setConfirmModal(false)}
         onSecondaryCmd={() => setConfirmModal(false)}
       />
-      <table className="table table-bordered my-2" ref={tableRef}>
+      <table className="Dtable table datatable my-2" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: "10%" }}>No</th>
@@ -84,17 +84,15 @@ const Datatable = () => {
                 <Link to="#">{item.name}</Link>
               </td>
               <td>
-                <td>
-                  <div
-                    className={`badge ${
-                      item.status === "Approved"
-                        ? "badge-success"
-                        : "badge-warning text-dark"
-                    }`}
-                  >
-                    {item.status}
-                  </div>
-                </td>
+                <div
+                  className={`badge ${
+                    item.status === "Approved"
+                      ? "badge-success"
+                      : "badge-warning text-dark"
+                  }`}
+                >
+                  {item.status}
+                </div>
               </td>
               <td>{item.permissions}</td>
               <td>{item["joined date"]}</td>
@@ -117,7 +115,7 @@ const Datatable = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </React.Fragment>
   );
 };
 

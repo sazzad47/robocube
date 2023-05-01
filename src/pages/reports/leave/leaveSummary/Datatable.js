@@ -45,34 +45,31 @@ const sampleData = [
 ];
 
 const Datatable = () => {
-
   return (
-    <div className="container">
-      <table className="DTableA table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th style={{ width: "10%" }}>No</th>
-            <th>Employee</th>
-            <th>Leave</th>
-            <th>Total</th>
-            <th>Used</th>
-            <th>Leave</th>
+    <table className="DTableA table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th style={{ width: "10%" }}>No</th>
+          <th>Employee</th>
+          <th>Leave</th>
+          <th>Total</th>
+          <th>Used</th>
+          <th>Leave</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((data, index) => (
+          <tr key={index}>
+            <td>{data.no}</td>
+            <td>{data.employee}</td>
+            <td>{data.leaveType}</td>
+            <td>{data.totalLeaveDays}</td>
+            <td>{data.usedLeaveDays}</td>
+            <td>{data.leaveBalance}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((data, index) => (
-            <tr key={index}>
-              <td>{data.no}</td>
-              <td>{data.employee}</td>
-              <td>{data.leaveType}</td>
-              <td>{data.totalLeaveDays}</td>
-              <td>{data.usedLeaveDays}</td>
-              <td>{data.leaveBalance}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

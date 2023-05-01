@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
-import { Input } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //Sample Data
@@ -52,42 +51,40 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2" ref={tableRef}>
-        <thead>
-          <tr>
-            <th style={{ width: "10%" }}>No</th>
-            <th style={{ width: "35%" }}>Title</th>
-            <th style={{ width: "10%" }}>Status</th>
-            <th>Type</th>
-            <th>Last Online</th>
+    <table className="Dtable table datatable my-2" ref={tableRef}>
+      <thead>
+        <tr>
+          <th style={{ width: "10%" }}>No</th>
+          <th style={{ width: "35%" }}>Title</th>
+          <th style={{ width: "10%" }}>Status</th>
+          <th>Type</th>
+          <th>Last Online</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((item) => (
+          <tr key={item.no}>
+            <td>{item.no}</td>
+            <td>
+              <Link>{item.title}</Link>
+            </td>
+            <td>
+              <div
+                className={`badge ${
+                  item.status === "Active"
+                    ? "badge-success"
+                    : "badge-warning text-dark"
+                }`}
+              >
+                {item.status}
+              </div>
+            </td>
+            <td>{item.type}</td>
+            <td>{item.lastOnline}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((item) => (
-            <tr key={item.no}>
-              <td>{item.no}</td>
-              <td>
-                <Link>{item.title}</Link>
-              </td>
-              <td>
-                <div
-                  className={`badge ${
-                    item.status === "Active"
-                      ? "badge-success"
-                      : "badge-warning text-dark"
-                  }`}
-                >
-                  {item.status}
-                </div>
-              </td>
-              <td>{item.type}</td>
-              <td>{item.lastOnline}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

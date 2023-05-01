@@ -65,36 +65,36 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2 no-footer" ref={tableRef}>
-        <thead>
-          <tr>
-            <th style={{width: "10%"}} className="sorting">No</th>
-            <th className="sorting">Employee</th>
-            <th className="sorting">Working Day</th>
-            <th className="sorting">Annual Leave 2</th>
-            <th className="sorting">Sick Leave</th>
-            <th className="sorting">Annual Leave</th>
-            <th className="sorting">Unpaid Leave</th>
-            <th className="sorting">Paid Leave</th>
+    <table className="Dtable table datatable my-2 no-footer" ref={tableRef}>
+      <thead>
+        <tr>
+          <th style={{ width: "10%" }} className="sorting">
+            No
+          </th>
+          <th className="sorting">Employee</th>
+          <th className="sorting">Working Day</th>
+          <th className="sorting">Annual Leave 2</th>
+          <th className="sorting">Sick Leave</th>
+          <th className="sorting">Annual Leave</th>
+          <th className="sorting">Unpaid Leave</th>
+          <th className="sorting">Paid Leave</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((item, i) => (
+          <tr key={i}>
+            <td>{item.no}</td>
+            <td>{item.employee}</td>
+            <td>{item.workingDay}</td>
+            <td>{item.annualLeave2}</td>
+            <td>{item.sickLeave}</td>
+            <td>{item.annualLeave}</td>
+            <td>{item.unpaidLeave}</td>
+            <td>{item.paidLeave}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((item, i) => (
-            <tr key={i}>
-              <td>{item.no}</td>
-              <td>{item.employee}</td>
-              <td>{item.workingDay}</td>
-              <td>{item.annualLeave2}</td>
-              <td>{item.sickLeave}</td>
-              <td>{item.annualLeave}</td>
-              <td>{item.unpaidLeave}</td>
-              <td>{item.paidLeave}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

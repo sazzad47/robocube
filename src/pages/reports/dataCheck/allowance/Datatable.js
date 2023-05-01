@@ -50,37 +50,35 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table
-        className="DTable table table-bordered my-2 dataTable no-footer"
-        ref={tableRef}
-      >
-        <thead>
-          <tr>
-            <th style={{ width: "10%" }} className="sorting">
-              Employee No
-            </th>
-            <th style={{ width: "40%" }} className="sorting">
-              Name
-            </th>
-            <th className="sorting">Allowance</th>
-            <th className="sorting">Description</th>
-            <th className="text-right sorting">Amount</th>
+    <table
+      className="DTable table my-2 dataTable no-footer"
+      ref={tableRef}
+    >
+      <thead>
+        <tr>
+          <th style={{ width: "10%" }} className="sorting">
+            Employee No
+          </th>
+          <th style={{ width: "40%" }} className="sorting">
+            Name
+          </th>
+          <th className="sorting">Allowance</th>
+          <th className="sorting">Description</th>
+          <th className="text-right sorting">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((data, index) => (
+          <tr key={index}>
+            <td>{data.employeeNo}</td>
+            <td>{data.name}</td>
+            <td>{data.allowance}</td>
+            <td>{data.description}</td>
+            <td className="text-right">{data.amount}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((data, index) => (
-            <tr key={index}>
-              <td>{data.employeeNo}</td>
-              <td>{data.name}</td>
-              <td>{data.allowance}</td>
-              <td>{data.description}</td>
-              <td className="text-right">{data.amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

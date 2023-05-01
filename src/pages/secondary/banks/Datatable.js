@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
-import { Input } from "reactstrap";
 
 //Sample Data
 const sampleData = [
@@ -55,42 +54,38 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2" ref={tableRef}>
-        <thead>
-          <tr>
-            <th style={{ width: "10%" }}>No</th>
-            <th style={{ width: "35%" }}>Title</th>
-            <th style={{ width: "10%" }}>Status</th>
-            <th>City</th>
-            <th>Branch Name</th>
-            <th>Remark</th>
+    <table className="Dtable table datatable my-2" ref={tableRef}>
+      <thead>
+        <tr>
+          <th style={{ width: "10%" }}>No</th>
+          <th style={{ width: "35%" }}>Title</th>
+          <th style={{ width: "10%" }}>Status</th>
+          <th>City</th>
+          <th>Branch Name</th>
+          <th>Remark</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sampleData.map((item) => (
+          <tr key={item.no}>
+            <td>{item.no}</td>
+            <td>{item.title}</td>
+            <td>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  defaultChecked={item.status === "Active"}
+                />
+                <span className="slider round"></span>
+              </label>
+            </td>
+            <td>{item.city}</td>
+            <td>{item.branchName}</td>
+            <td>{item.remark}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sampleData.map((item) => (
-            <tr key={item.no}>
-              <td>{item.no}</td>
-              <td>{item.title}</td>
-              <td>
-                <div className="form-check form-switch form-switch-md">
-                  <Input
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id={`SwitchCheck${item.no}`}
-                    defaultChecked={item.status === "Active"}
-                  />
-                </div>
-              </td>
-              <td>{item.city}</td>
-              <td>{item.branchName}</td>
-              <td>{item.remark}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

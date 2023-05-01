@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import Invite from "./Invite";
@@ -28,11 +28,11 @@ const AllAdmins = () => {
             title="All Admins"
             isAddNew={true}
             addNewTitle="Invite Admin"
-            addNewFunction={()=> setInviteModal(true)}
+            addNewFunction={() => setInviteModal(true)}
           />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <Datatable />
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>

@@ -50,9 +50,8 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
       <table
-        className="DTable table table-bordered my-2 dataTable no-footer"
+        className="DTable table my-2 dataTable no-footer"
         ref={tableRef}
       >
         <thead>
@@ -80,7 +79,6 @@ const Datatable = () => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

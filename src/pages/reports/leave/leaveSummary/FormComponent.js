@@ -9,23 +9,20 @@ const FormComponent = () => {
   const selectRef = useRef(null);
 
   useEffect(() => {
-    $(selectRef.current).select2();
+    $(selectRef.current).select2({
+      theme: "bootstrap4",
+    });
   }, []);
 
   return (
     <React.Fragment>
-      <Col xxl={6}>
         <form method="get">
           <div className="row">
             <div className="col-md-6">
               <div className="form-group row mb-3">
                 <label className="col-form-label col-md-3">User</label>
                 <div className="col-md-9">
-                  <select
-                    ref={selectRef}
-                    className="form-control "
-                    name="user"
-                  >
+                  <select ref={selectRef} className="form-control " name="user">
                     <option value="">-</option>
                     <option value="166804835212">Amirah</option>
                     <option value="167108913646">Jacky</option>
@@ -49,7 +46,6 @@ const FormComponent = () => {
             </div>
           </div>
         </form>
-      </Col>
     </React.Fragment>
   );
 };

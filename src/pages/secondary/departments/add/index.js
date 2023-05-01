@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import FormComponent from "./FormComponent";
 
@@ -11,9 +11,9 @@ const AddDepartment = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Add Department" />
-          <Row className="mt-3">
-          <FormComponent/>
-          </Row>
+          <div className="container-fluid container-wrapper">
+            <FormComponent />
+          </div>
         </Container>
       </div>
     </React.Fragment>

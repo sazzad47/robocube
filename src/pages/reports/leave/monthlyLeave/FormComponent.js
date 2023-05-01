@@ -5,7 +5,6 @@ const FormComponent = () => {
 
   return (
     <React.Fragment>
-      <Col xxl={6}>
         <form method="get">
           <div className="row">
             <div className="col-md-6">
@@ -25,7 +24,6 @@ const FormComponent = () => {
             </div>
           </div>
         </form>
-      </Col>
     </React.Fragment>
   );
 };

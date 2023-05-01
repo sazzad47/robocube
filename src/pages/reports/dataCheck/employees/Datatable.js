@@ -65,8 +65,7 @@ const Datatable = () => {
   }, []);
 
   return (
-    <div className="container">
-      <table className="table table-bordered my-2 no-footer" ref={tableRef}>
+      <table className="Dtable table datatable my-2 no-footer" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: "10%" }}>No</th>
@@ -94,7 +93,6 @@ const Datatable = () => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

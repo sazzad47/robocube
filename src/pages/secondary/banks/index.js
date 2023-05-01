@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import Datatable from "./Datatable";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +18,9 @@ const Banks = () => {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title="Banks" isAddNew={true} addNewFunction={addNew} />
-          <Row className="mt-3">
+          <div className="container-fluid container-wrapper">
             <Datatable />
-          </Row>
+          </div>
         </Container>
       </div>
     </React.Fragment>
