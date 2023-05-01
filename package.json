@@ -46,7 +46,6 @@
     "redux-saga": "^1.2.3",
     "remixicon": "^3.2.0",
     "select2": "^4.1.0-rc.0",
-    "select2-bootstrap4-theme": "^1.0.0",
     "simplebar-react": "^3.2.4",
     "swiper": "^9.2.3",
     "web-vitals": "^3.3.1",
