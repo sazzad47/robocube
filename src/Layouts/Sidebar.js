@@ -5,7 +5,7 @@ import { navItems } from "./NavData";
 
 const NestedSidebar = () => {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(0);
 
   useEffect(() => {
     const storedOpenItemIndex = sessionStorage.getItem("openItemIndex");
