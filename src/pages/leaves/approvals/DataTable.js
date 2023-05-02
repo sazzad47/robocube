@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import DeleteModal from "../../../Components/Common/DeleteModal";
 import { Tooltip } from "react-tooltip";
 import { useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
 import { useRef } from "react";
+import Alert from "../../../Components/Common/Alert";
 
 const DataTable = () => {
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [alertUser, setAlertUser] = useState(false);
 
   const tableRef = useRef(null);
 
@@ -19,10 +19,14 @@ const DataTable = () => {
 
   return (
     <React.Fragment>
-      <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
+      <Alert
+        show={alertUser}
+        type="warning"
+        onConfirm={() => setAlertUser(false)}
+        onCancel={() => setAlertUser(false)}
+        confirmBtnText="Yes"
+        cancelBtnText="No"
+        message="Are you sure want to delete this request?"
       />
       <div className="container-fluid container-wrapper">
         <div className="row">
@@ -148,8 +152,7 @@ const DataTable = () => {
                     <form method="post">
                       <input type="hidden" name="id" value="167108690870" />
                       <div
-                        href="https://"
-                        onClick={() => setDeleteModal(true)}
+                        onClick={() => setAlertUser(true)}
                         className="approval-delete text-danger"
                         style={{ cursor: "pointer" }}
                       >
@@ -178,8 +181,7 @@ const DataTable = () => {
                     <form method="post">
                       <input type="hidden" name="id" value="167108685667" />
                       <div
-                        href="https://"
-                        onClick={() => setDeleteModal(true)}
+                        onClick={() => setAlertUser(true)}
                         className="approval-delete text-danger"
                         style={{ cursor: "pointer" }}
                       >

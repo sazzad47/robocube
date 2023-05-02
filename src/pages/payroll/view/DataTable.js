@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import ConfirmationModal from "../../../Components/Common/ConfirmationModal";
+import Alert from "../../../Components/Common/Alert";
 
 const DataTable = () => {
   const navigate = useNavigate();
 
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [alertUser, setAlertUser] = useState(false);
 
   return (
     <React.Fragment>
-      <ConfirmationModal
-        show={deleteModal}
-        text="Are you sure want to delete this payroll?"
-        primaryCmd="No"
-        secondaryCmd="Yes"
-        onPrimaryCmd={() => setDeleteModal(false)}
-        onSecondaryCmd={() => setDeleteModal(false)}
+      <Alert
+        show={alertUser}
+        type="warning"
+        onConfirm={() => setAlertUser(false)}
+        onCancel={() => setAlertUser(false)}
+        confirmBtnText="Yes"
+        cancelBtnText="No"
+        message="Are you sure want to delete this slideshow?"
       />
       <table className="table table-hover">
         <thead>
@@ -266,7 +267,7 @@ const DataTable = () => {
               type="submit"
               className="btn btn-secondary"
               name="delete"
-              onClick={() => setDeleteModal(true)}
+              onClick={() => setAlertUser(true)}
             >
               Delete
             </button>

@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react";
 import $ from "jquery";
 import "datatables.net-bs4";
 import { Tooltip } from "react-tooltip";
-import ConfirmationModal from "../../../Components/Common/ConfirmationModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Alert from "../../../Components/Common/Alert";
 
 //Sample Data
 const tableData = [
@@ -48,7 +48,7 @@ const tableData = [
 const Datatable = () => {
   const tableRef = useRef(null);
 
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [alertUser, setAlertUser] = useState(false);
 
   useEffect(() => {
     // initialize DataTables
@@ -57,15 +57,16 @@ const Datatable = () => {
 
   return (
     <React.Fragment>
-      <ConfirmationModal
-        show={confirmModal}
-        text="Are you sure you want to remove this admin"
-        primaryCmd="No"
-        secondaryCmd="Yes"
-        onPrimaryCmd={() => setConfirmModal(false)}
-        onSecondaryCmd={() => setConfirmModal(false)}
-      />
       <table className="Dtable table datatable my-2" ref={tableRef}>
+        <Alert
+          show={alertUser}
+          type="warning"
+          onConfirm={() => setAlertUser(false)}
+          onCancel={() => setAlertUser(false)}
+          confirmBtnText="Yes"
+          cancelBtnText="No"
+          message="Are you sure you want to remove this admin"
+        />
         <thead>
           <tr>
             <th style={{ width: "10%" }}>No</th>
@@ -98,7 +99,7 @@ const Datatable = () => {
               <td>{item["joined date"]}</td>
               <td>
                 <button
-                  onClick={() => setConfirmModal(true)}
+                  onClick={() => setAlertUser(true)}
                   className="remove_admin btn btn-sm btn-danger"
                 >
                   <i className="fa fa-fw fa-times py-1"></i>

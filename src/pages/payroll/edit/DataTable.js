@@ -2,32 +2,34 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SelectEmployee from "./SelectEmployee";
 import { Tooltip } from "react-tooltip";
-import ConfirmationModal from "../../../Components/Common/ConfirmationModal";
+import Alert from "../../../Components/Common/Alert";
 
 const DataTable = () => {
   const navigate = useNavigate();
 
   const [addNewModal, setAddNewModal] = useState(false);
-  const [removeModal, setRemoveModal] = useState(false);
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [removeAlert, setRemoveAlert] = useState(false);
+  const [saveAlert, setSaveAlert] = useState(false);
 
   return (
     <React.Fragment>
-      <ConfirmationModal
-        show={removeModal}
-        text="Are you sure you want to remove this employee?"
-        primaryCmd="No"
-        secondaryCmd="Yes"
-        onPrimaryCmd={() => setRemoveModal(false)}
-        onSecondaryCmd={() => navigate("/payroll_hock/list")}
+      <Alert
+        show={removeAlert}
+        type="warning"
+        onConfirm={() => setRemoveAlert(false)}
+        onCancel={() => setRemoveAlert(false)}
+        confirmBtnText="Yes"
+        cancelBtnText="No"
+        message="Are you sure want to remove this employee?"
       />
-      <ConfirmationModal
-        show={confirmModal}
-        text="Are you sure you want to save this payroll?"
-        primaryCmd="No"
-        secondaryCmd="Yes"
-        onPrimaryCmd={() => setConfirmModal(false)}
-        onSecondaryCmd={() => navigate("/payroll_hock/edit/123/view")}
+      <Alert
+        show={saveAlert}
+        type="warning"
+        onConfirm={() => navigate("/payroll_hock/edit/123/view")}
+        onCancel={() => setSaveAlert(false)}
+        confirmBtnText="Yes"
+        cancelBtnText="No"
+        message="Are you sure want to save this payroll?"
       />
       <SelectEmployee modal={addNewModal} setModal={setAddNewModal} />
       <form method="post" onSubmit="Loading(1)">
@@ -237,7 +239,7 @@ const DataTable = () => {
               </td>
               <th className="text-center">
                 <div
-                  onClick={() => setConfirmModal(true)}
+                  onClick={() => setRemoveAlert(true)}
                   className="text-danger"
                   style={{ cursor: "pointer" }}
                 >
@@ -285,7 +287,7 @@ const DataTable = () => {
               </button>
               <button
                 type="button"
-                onClick={() => setConfirmModal(true)}
+                onClick={() => setSaveAlert(true)}
                 className="ml-1 btn btn-primary"
               >
                 Confirm

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import DeleteModal from "../../../Components/Common/DeleteModal";
 import $ from "jquery";
 import "datatables.net-bs4";
 import { Tooltip } from "react-tooltip";
+import Alert from "../../../Components/Common/Alert";
 
 const tableData = [
   {
@@ -45,8 +45,8 @@ const tableDataWithImage = tableData.map((item) => ({
 
 const DataTable = () => {
   const tableRef = useRef();
-
-  const [deleteModal, setDeleteModal] = useState(false);
+  
+  const [alertUser, setAlertUser] = useState(false); 
 
   useEffect(() => {
     // initialize DataTables
@@ -55,10 +55,14 @@ const DataTable = () => {
 
   return (
     <React.Fragment>
-      <DeleteModal
-        show={deleteModal}
-        onDeleteClick={() => setDeleteModal(false)}
-        onCloseClick={() => setDeleteModal(false)}
+      <Alert 
+       show={alertUser}
+       type="warning"
+       onConfirm={()=> setAlertUser(false)}
+       onCancel={()=> setAlertUser(false)}
+       confirmBtnText="Yes"
+       cancelBtnText="No"
+       message="Are you sure want to delete this slideshow?"
       />
       <div className="col-sm-12">
         <table
@@ -150,7 +154,7 @@ const DataTable = () => {
                 <td>
                   <div
                     className="btn btn-danger btn-sm deleteItem"
-                    onClick={() => setDeleteModal(true)}
+                    onClick={() => setAlertUser(true)}
                   >
                     <Tooltip anchorSelect=".deleteItem" place="top">
                       Delete

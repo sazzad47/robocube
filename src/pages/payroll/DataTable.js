@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Card, CardBody } from "reactstrap";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import "datatables.net-bs4";

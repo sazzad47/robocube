@@ -1,13 +1,5 @@
-import React, { useState, useCallback } from "react";
-import {
-  Modal,
-  ModalHeader,
-  Form,
-  ModalBody,
-  Col,
-  Row,
-  Card,
-} from "reactstrap";
+import React from "react";
+import { Modal } from "reactstrap";
 
 const AddNew = (props) => {
   const { modal, setModal } = props;
@@ -46,7 +38,12 @@ const AddNew = (props) => {
                     className="mb-3 d-block rounded border"
                     style={{ height: "100px" }}
                   />
-                  <input name="image" type="file" className="form-control-file" id="exampleFormControlFile1" />
+                  <input
+                    name="image"
+                    type="file"
+                    className="form-control-file"
+                    id="exampleFormControlFile1"
+                  />
                   <small
                     id="slideshowHelpBlock"
                     className="form-text text-muted"

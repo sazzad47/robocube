@@ -4,28 +4,29 @@ import { useRef } from "react";
 import { Col } from "reactstrap";
 import $ from "jquery";
 import "select2";
-import ConfirmationModal from "../../../../Components/Common/ConfirmationModal";
+import Alert from "../../../../Components/Common/Alert";
 
 const FormComponent = ({ setData }) => {
   const selectRef = useRef(null);
 
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [alertUser, setAlertUser] = useState(false);
 
   useEffect(() => {
     $(selectRef.current).select2({
-      theme: "bootstrap4"
+      theme: "bootstrap4",
     });
   }, []);
 
   return (
     <React.Fragment>
-      <ConfirmationModal
-        show={confirmModal}
-        text="Are you sure want to recheck all timetable?"
-        primaryCmd="No"
-        secondaryCmd="Yes"
-        onPrimaryCmd={() => setConfirmModal(false)}
-        onSecondaryCmd={() => setConfirmModal(false)}
+      <Alert
+        show={alertUser}
+        type="warning"
+        onConfirm={() => setAlertUser(false)}
+        onCancel={() => setAlertUser(false)}
+        confirmBtnText="Yes"
+        cancelBtnText="No"
+        message="Are you sure want to recheck all timetable?"
       />
       <Col xxl={6}>
         <form
@@ -71,7 +72,7 @@ const FormComponent = ({ setData }) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setConfirmModal(true)}
+                    onClick={() => setAlertUser(true)}
                     className="btn btn-secondary ml-2"
                   >
                     Check All

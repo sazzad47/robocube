@@ -1,31 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
-import {
-  Card,
-  CardBody,
-  Col,
-  Container,
-  CardHeader,
-  Row,
-  Label,
-  FormFeedback,
-  Form,
-  Input,
-} from "reactstrap";
-
+import { Container } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Link, useNavigate } from "react-router-dom";
-
-//formik
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const Create = () => {
   document.title = "Create Announcement | Robocube HR";
-
-  const history = useNavigate();
 
   return (
     <div className="page-content">

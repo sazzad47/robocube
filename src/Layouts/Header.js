@@ -24,7 +24,7 @@ const Header = ({ toggleSidebar }) => {
             alt=""
             src="https://cdn.synorex.link/assets/images/robocube/hr.png"
             style={{ height: "38px" }}
-            className="mr-1"
+            className="mr-2"
           />
           <span className="small">Robocube HR</span>
         </Link>
