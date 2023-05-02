@@ -141,6 +141,26 @@ body {
   border: 1px solid #3788d8;
 }
 
+//scrolling text
+.marquee {
+line-height: 25px;
+width: 95%;
+color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+}
+@keyframes marquee {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+
 
 
 

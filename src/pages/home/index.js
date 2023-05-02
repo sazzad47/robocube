@@ -18,13 +18,13 @@ const Home = () => {
       <div className="page-content">
         <div className="container container-wrapper pt-4">
           <div className="card mb-3">
-            <div className="card-body py-0 mt-2">
-              <div className="d-flex">
+            <div className="card-body py-0 my-2">
+              <div className="d-flex align-items-center">
                 <div style={{ width: "5%" }}>
                   <i className="fa fa-fw fa-bullhorn"></i>
                 </div>
-                <div style={{ width: "95%" }}>
-                  <marquee className="m-0">Welcome to Robocube HR</marquee>
+                <div className="marquee">
+                  <p>Welcome to Robocube HR</p>
                 </div>
               </div>
             </div>
