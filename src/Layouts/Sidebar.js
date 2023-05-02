@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collapse, Nav, NavItem, NavLink } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { navItems } from "./NavData";
 
 const NestedSidebar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(null);
 
+  useEffect(() => {
+    const storedOpenItemIndex = sessionStorage.getItem("openItemIndex");
+    if (storedOpenItemIndex) {
+      setIsOpen(parseInt(storedOpenItemIndex));
+    }
+  }, []);
+
   const toggle = (index) => {
-    setIsOpen(isOpen === index ? null : index);
+    if (isOpen === index) {
+      setIsOpen(null);
+      sessionStorage.removeItem("openItemIndex");
+    } else {
+      setIsOpen(index);
+      sessionStorage.setItem("openItemIndex", index);
+    }
+  };
+
+  const isChildActive = (child) => {
+    return location.pathname === child.link;
   };
 
   return (
@@ -16,7 +34,7 @@ const NestedSidebar = () => {
         {navItems.map((item, index) => (
           <NavItem key={index}>
             <NavLink
-              className="nav-link"
+              className={`nav-link ${isOpen === index ? "active-parent" : ""}`}
               tag={Link}
               to={item.link}
               onClick={() => toggle(index)}
@@ -35,7 +53,13 @@ const NestedSidebar = () => {
                 <Nav vertical>
                   {item.subItems.map((child, childIndex) => (
                     <NavItem key={childIndex}>
-                      <NavLink className="nav-link" tag={Link} to={child.link}>
+                      <NavLink
+                        className={`nav-link ${
+                          isChildActive(child) ? "active-child" : ""
+                        }`}
+                        tag={Link}
+                        to={child.link}
+                      >
                         <span className="nav-label">{child.label}</span>
                       </NavLink>
                     </NavItem>

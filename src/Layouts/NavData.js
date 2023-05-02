@@ -4,8 +4,8 @@ export const navItems = [
       label: "Attendance",
       icon: "fa fa-fw fa-clock",
       subItems: [
-        { label: "Daily", link: "/attendance-daily" },
-        { label: "Manually", link: "/attendance-manually" },
+        { label: "Daily", link: "/attendance/daily" },
+        { label: "Manually", link: "/attendance/manually" },
       ],
     },
     {
@@ -33,11 +33,11 @@ export const navItems = [
       subItems: [
         {
           label: "Requests",
-          link: "/leaves-requests",
+          link: "/leaves/request",
         },
         {
           label: "Approvals",
-          link: "/leaves-approvals",
+          link: "/leaves/approval",
         },
       ],
     },
@@ -76,7 +76,7 @@ export const navItems = [
     {
       label: "Trip",
       icon: "fa fa-fw fa-plane",
-      link: "/trip",
+      link: "/trip/list",
     },
     {
       label: "Payroll",
