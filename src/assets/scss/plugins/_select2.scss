@@ -1,3 +1,6 @@
+.select2-container {
+  width: 100% !important;
+}
 .select2-container--bootstrap4 {
     display: block;
   }
@@ -399,7 +402,8 @@
     table-layout: fixed;
     position: relative;
     z-index: 2;
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     margin-bottom: 0;
   }
   .input-group > .select2-container--bootstrap4 > .selection > .select2-selection.form-control {
