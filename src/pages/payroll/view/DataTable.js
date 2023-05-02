@@ -19,7 +19,7 @@ const DataTable = () => {
         cancelBtnText="No"
         message="Are you sure want to delete this slideshow?"
       />
-      <table className="table table-hover">
+      <table className="table-responsive table table-hover">
         <thead>
           <tr>
             <th className="text-left">No</th>

@@ -65,7 +65,7 @@ const Datatable = () => {
   }, []);
 
   return (
-    <table className="Dtable table datatable my-2 no-footer" ref={tableRef}>
+    <table className="table-responsive table datatable my-2 no-footer" ref={tableRef}>
       <thead>
         <tr>
           <th style={{ width: "10%" }} className="sorting">

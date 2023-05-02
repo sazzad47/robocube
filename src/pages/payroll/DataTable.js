@@ -73,7 +73,7 @@ const DataTable = () => {
     <React.Fragment>
       <div className="container-fluid container-wrapper">
         <table
-          className="DTable table table-hover dataTable no-footer"
+          className="table-responsive table table-hover dataTable no-footer"
           ref={tableRef}
         >
           <thead>

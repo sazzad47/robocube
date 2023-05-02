@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Datatable = () => {
   return (
     <div className="container-fluid container-wrapper">
-      <table className="table table-bordered">
+      <table className="table-responsive table table-bordered">
         <thead>
           <tr>
             <th style={{ width: "7%" }}>No</th>

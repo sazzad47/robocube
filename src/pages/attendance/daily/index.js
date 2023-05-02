@@ -13,7 +13,6 @@ const Daily = () => {
           <BreadCrumb title="Daily Attendance" />
           <div className="container container-wrapper mb-4">
             <div className="card mb-4">
-              <div className="card-body font-weight-bold pb-0"></div>
               <div className="card-body">
                 <div className="row">
                   <div className="col-md-6 offset-md-3">
@@ -89,9 +88,9 @@ const Daily = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-sm-12">
+                <div className="col-sm-12 table-responsive">
                   <table
-                    className="DTable table dataTable no-footer"
+                    className="table-responsive table dataTable no-footer"
                     id="DataTables_Table_0"
                     role="grid"
                     aria-describedby="DataTables_Table_0_info"

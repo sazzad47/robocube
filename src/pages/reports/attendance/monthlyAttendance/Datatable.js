@@ -104,7 +104,7 @@ const Datatable = () => {
       </table>
       <table
         ref={tableRef}
-        className="DTable table table-bordered my-2 table-hover dataTable"
+        className="table-responsive table table-bordered my-2 table-hover dataTable"
         id="DataTables_Table_0"
         role="grid"
         aria-describedby="DataTables_Table_0_info"

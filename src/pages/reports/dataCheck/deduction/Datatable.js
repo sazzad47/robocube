@@ -51,7 +51,7 @@ const Datatable = () => {
 
   return (
       <table
-        className="DTable table my-2 dataTable no-footer"
+        className="table-responsive table my-2 dataTable no-footer"
         ref={tableRef}
       >
         <thead>

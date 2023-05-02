@@ -52,7 +52,7 @@ const Datatable = () => {
 
   return (
     <div className="container-fluid container-wrapper">
-      <table className="DTable table table-hover dataTable no-footer" ref={tableRef}>
+      <table className="table-responsive table table-hover dataTable no-footer" ref={tableRef}>
         <thead>
           <tr>
             <th style={{ width: "7%" }}>No</th>

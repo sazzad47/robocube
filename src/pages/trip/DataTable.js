@@ -20,7 +20,7 @@ const DataTable = () => {
             <table
               ref={tableRef}
               data-order='[[ 0, "desc" ]]'
-              className="DTable table dataTable no-footer"
+              className="table-responsive table dataTable no-footer"
               id="DataTables_Table_0"
               role="grid"
               aria-describedby="DataTables_Table_0_info"

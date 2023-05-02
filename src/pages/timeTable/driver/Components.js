@@ -8,7 +8,7 @@ const Components = () => {
   return (
     <div className="container-fluid container-wrapper">
       <div className="row">
-        <div className="col-xl-2 col-md-3">
+        <div className="col-xl-2 col-md-3 mb-4 mb-md-0">
           <div id="mydraggable" className="card">
             <div className="card-body">
               <p>

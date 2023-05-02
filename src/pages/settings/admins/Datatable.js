@@ -57,7 +57,7 @@ const Datatable = () => {
 
   return (
     <React.Fragment>
-      <table className="Dtable table datatable my-2" ref={tableRef}>
+      <table className="table-responsive table datatable my-2" ref={tableRef}>
         <Alert
           show={alertUser}
           type="warning"

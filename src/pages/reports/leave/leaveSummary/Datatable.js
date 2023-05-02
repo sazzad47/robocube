@@ -46,7 +46,7 @@ const sampleData = [
 
 const Datatable = () => {
   return (
-    <table className="DTableA table table-bordered table-striped">
+    <table className="table-responsiveA table table-bordered table-striped">
       <thead>
         <tr>
           <th style={{ width: "10%" }}>No</th>

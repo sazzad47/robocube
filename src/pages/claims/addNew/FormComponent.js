@@ -112,7 +112,7 @@ const FormComponent = () => {
             </div>
           </div>
 
-          <table className="table table-bordered mt-3 mb-4">
+          <table className="table-responsive table table-bordered mt-3 mb-4">
             <thead>
               <tr>
                 <th style={{ width: "5%" }}>No</th>

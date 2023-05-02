@@ -67,7 +67,7 @@ const DataTable = () => {
       <div className="col-sm-12">
         <table
           ref={tableRef}
-          className="DTable table dataTable no-footer"
+          className="table-responsive table datatable no-footer"
           id="DataTables_Table_0"
           role="grid"
           aria-describedby="DataTables_Table_0_info"

@@ -65,7 +65,7 @@ const Datatable = () => {
   return (
     <React.Fragment>
       <table
-        className="DTable table table-bordered my-2 table-hover dataTable"
+        className="table-responsive table table-bordered my-2 table-hover dataTable"
         ref={tableRef}
       >
         <thead>

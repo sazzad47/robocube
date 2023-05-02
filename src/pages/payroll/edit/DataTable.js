@@ -43,7 +43,7 @@ const DataTable = () => {
           </button>
         </div>
 
-        <table className="table table-hover">
+        <table className="table-responsive table table-hover">
           <thead>
             <tr>
               <th className="text-left">
